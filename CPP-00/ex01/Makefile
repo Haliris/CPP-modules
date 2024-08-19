@@ -6,7 +6,7 @@
 #    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/18 14:44:08 by jteissie          #+#    #+#              #
-#    Updated: 2024/08/18 16:16:57 by jteissie         ###   ########.fr        #
+#    Updated: 2024/08/19 14:05:51 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ CPP = c++
 
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC_FILE = phonebook.cpp
+SRC_FILE =	phonebook.cpp \
+			contact.cpp
 
 INCLUDE = -I include/
 

@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 16:17:52 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/18 17:41:47 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/19 14:13:42 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,18 @@
 #define FALSE 0
 #define TRUE 1
 
-class PhoneBook {
+class Phonebook
+{
 
-	private:
-		uint32_t	contact_nb;
-		Contact		contacts[8];
-	public:
-		Phonebook();
-		uint32_t	get_contact_nb();
-		set			increment_contact_nb();
-		void		add_contact();
-		void		search_contact();
+private:
+	uint32_t contact_nb;
+	Contact contacts[MAX_CONTACTS];
+
+public:
+	Phonebook();
+	uint32_t	get_contact_nb() const;
+	void		increment_contact_nb();
+	void		add_contact();
+	void		search_contact();
+	void		display_contacts() const;
 };
-
-//Exit to add in main

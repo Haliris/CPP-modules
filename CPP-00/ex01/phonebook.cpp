@@ -6,26 +6,29 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 17:01:54 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/18 17:42:00 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/19 14:12:04 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
 
-uint32_t	get_contact_nb()
+Phonebook::Phonebook() : contact_nb(0) {}
+
+uint32_t Phonebook::get_contact_nb() const
 {
 	return this->contact_nb;
 }
 
-set	increment_contact_nb()
+void Phonebook::increment_contact_nb()
 {
-	this->contact_nb = this->contact_nb + 1;
+	if (this->contact_nb < MAX_CONTACTS)
+		this->contact_nb = this->contact_nb + 1;
 }
 
-void	add_contact()
+void Phonebook::add_contact()
 {
-	uint32_t	contact_nb = get_contact_nb();
-	Contact		new_contact;
+	uint32_t contact_nb = get_contact_nb();
+	Contact new_contact;
 
 	create_contact(&new_contact);
 	if (contact_nb == 8)
@@ -41,12 +44,16 @@ void	add_contact()
 	}
 }
 
-void	search_contact()
+void Phonebook::search_contact()
 {
-	uint32_t	index;
+	uint32_t index;
 
 	this->display_contact();
 	std::cout << "Enter contact index: ";
 	std::cin >> index;
 
+	if (index < 1 || index > this->contact_nb)
+		std::cout << "Invalid index!" << std::endl;
+	else
+		contacts[index - 1].display();
 }
