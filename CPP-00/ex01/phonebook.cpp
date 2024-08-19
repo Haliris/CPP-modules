@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 17:01:54 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/19 14:12:04 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/19 14:29:41 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ void Phonebook::increment_contact_nb()
 		this->contact_nb = this->contact_nb + 1;
 }
 
+
 void Phonebook::add_contact()
 {
 	uint32_t contact_nb = get_contact_nb();
 	Contact new_contact;
 
-	create_contact(&new_contact);
+	new_contact.create_contact();
 	if (contact_nb == 8)
 	{
 		for (int i; i = 0; i < 7)
@@ -39,7 +40,7 @@ void Phonebook::add_contact()
 	}
 	else
 	{
-		this->contact[contact_nb + 1] = new_contact();
+		this->contact[contact_nb + 1] = new_contact;
 		increment_contact_nb();
 	}
 }
