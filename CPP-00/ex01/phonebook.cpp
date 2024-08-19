@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 17:01:54 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/19 14:29:41 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/19 18:29:57 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Phonebook::Phonebook() : contact_nb(0) {}
 
-uint32_t Phonebook::get_contact_nb() const
+int Phonebook::get_contact_nb() const
 {
 	return this->contact_nb;
 }
@@ -25,36 +25,41 @@ void Phonebook::increment_contact_nb()
 		this->contact_nb = this->contact_nb + 1;
 }
 
-
 void Phonebook::add_contact()
 {
-	uint32_t contact_nb = get_contact_nb();
+	int contact_nb = get_contact_nb();
 	Contact new_contact;
 
 	new_contact.create_contact();
-	if (contact_nb == 8)
+	if (contact_nb == MAX_CONTACTS)
 	{
-		for (int i; i = 0; i < 7)
-			this->contact[i + 1] = this->contact[i];
-		contact[0] = new_contact;
+		for (int i = 0; i < MAX_CONTACTS - 1; i++)
+			this->contacts[i + 1] = this->contacts[i];
+		contacts[0] = new_contact;
 	}
 	else
 	{
-		this->contact[contact_nb + 1] = new_contact;
+		this->contacts[0] = new_contact; // check this hardcoded shit
 		increment_contact_nb();
 	}
 }
 
+void Phonebook::display_header() const
+{
+	for (int i = 0; i < contact_nb; i++)
+		this->contacts[i].display();
+}
+
 void Phonebook::search_contact()
 {
-	uint32_t index;
+	int index;
 
-	this->display_contact();
+	this->display_header();
 	std::cout << "Enter contact index: ";
 	std::cin >> index;
 
-	if (index < 1 || index > this->contact_nb)
-		std::cout << "Invalid index!" << std::endl;
-	else
-		contacts[index - 1].display();
+	// if (index < 1 || index > this->contact_nb)
+	// 	std::cout << "Invalid index!" << std::endl;
+	// else
+	// 	contacts[index - 1].display();
 }

@@ -6,26 +6,26 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 17:02:29 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/18 17:12:32 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:49:38 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phonebook.cpp"
+#include "phonebook.hpp"
 
 int	main(void)
 {
 	std::string	input;
 	Phonebook	phonebook;
 
-	while(std::cin.eof() == FALSE)
+	while(std::cin.eof() == false)
 	{
 		std::cout << "Enter a command: ";
 		std::cin >> input;
-		if (strcmp(input, EXIT) == 0)
+		if (input == EXIT)
 			break ;
-		else if (strcmp(input, ADD) == 0)
+		else if (input == ADD)
 			phonebook.add_contact() ;
-		else if (strcmp(input, SEARCH) == 0)
+		else if (input == SEARCH)
 			phonebook.search_contact() ;
 	}
 	return (0);
