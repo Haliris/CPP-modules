@@ -3,7 +3,10 @@
 #include <ctime>
 #include <iomanip>
 
-	static void	displayAccountsInfos( void );
+int	Account::_nbAccounts = 0;
+int	Account::_totalAmount = 0;
+int	Account::_totalNbDeposits = 0;
+int	Account::_totalNbWithdrawals = 0;
 
 int	Account::getNbAccounts ( void )
 {
@@ -23,6 +26,11 @@ int	Account::getNbDeposits( void )
 int	Account::getNbWithdrawals( void )
 {
 	return _totalNbWithdrawals;
+}
+
+int	Account::checkAmount( void ) const
+{
+	return _totalAmount;
 }
 
 void	Account::_displayTimestamp( void )
@@ -63,13 +71,24 @@ Account::~Account( void )
 	std::cout << "closed" << std::endl;
 }
 
+void	Account::displayStatus( void ) const
+{
+	_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ";";
+	std::cout << "amount:" << _amount << ";";
+	std::cout << "desposits:" << _nbDeposits << ";";
+	std::cout << "withdrawals:" << _nbWithdrawals;
+	std::cout << std::endl;
+}
+
 void	Account::displayAccountsInfos( void )
 {
 	_displayTimestamp();
-	std::cout << "accounts:" << _nbAccounts << ";";
-	std::cout << "total:" << _totalAmount << ";";
-	std::cout << "deposits:" << _totalNbDeposits << ";";
-	std::cout << "withdrawals:" << _totalNbWithdrawals << ";" << std::endl;
+	std::cout << "accounts:" << Account::getNbAccounts() << ";";
+	std::cout << "total:" << Account::getTotalAmount() << ";";
+	std::cout << "deposits:" << Account::getNbDeposits() << ";";
+	std::cout << "withdrawals:" << Account::getNbWithdrawals() << ";";
+	std::cout << std::endl;
 }
 
 void	Account::makeDeposit( int deposit )
