@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 17:02:11 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/20 14:27:07 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/20 15:13:48 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ void	Contact::display() const
 	display_entry(first_name);
 	display_entry(last_name);
 	display_entry(nickname);
-	display_entry(phone_nb);
-	display_entry(darkest_secret);
 	std::cout << std::endl;
 }
 
@@ -73,23 +71,9 @@ static bool	validate_phone_nb(std::string phone_nb)
 
 static void	read_input(std::string *input)
 {
-	// char		c;
-
 	std::cin.clear();
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	std::cin >> *input;
-	// while (std::cin.get(c))
-	// {
-	// 	if (std::cin.eof())
-	// 	{
-	// 		std::cout << "\nEOF" << std::endl;
-	// 		break;
-	// 	}
-	// 	if (c == '\n')
-	// 		break ;
-	// 	*input += c;
-	// }
-
 }
 
 void	Contact::create_contact()
@@ -110,8 +94,7 @@ void	Contact::create_contact()
 		read_input(&phone_nb);
 	}
 	std::cout << "Darkest secret: ";
-	read_input(&darkest_secret);
-	// std::getline(std::cin >> std::ws, darkest_secret);
+	std::getline(std::cin >> std::ws, darkest_secret);
 
 
 	this->first_name = first_name;

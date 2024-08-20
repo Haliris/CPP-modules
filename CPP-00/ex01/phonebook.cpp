@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 17:01:54 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/20 14:24:36 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/20 15:15:27 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ void Phonebook::add_contact()
 	new_contact.create_contact();
 	if (contact_nb == MAX_CONTACTS)
 	{
-		for (int i = 0; i < MAX_CONTACTS - 1; i++)
-			this->contacts[i + 1] = this->contacts[i];
+		for (int i = MAX_CONTACTS - 1; i > 0; i--)
+			this->contacts[i] = this->contacts[i - 1];
 		contacts[0] = new_contact;
 	}
 	else
 	{
-		this->contacts[contact_nb] = new_contact; // check this hardcoded shit
+		this->contacts[contact_nb] = new_contact;
 		increment_contact_nb();
 	}
 }
@@ -47,7 +47,12 @@ void Phonebook::add_contact()
 void Phonebook::display_header() const
 {
 	for (int i = 0; i < contact_nb; i++)
+	{
+		std::cout << "         ";
+		std::cout << i + 1;
+		std::cout << "|";
 		this->contacts[i].display();
+	}
 }
 
 void Phonebook::list_info(Contact contact)
