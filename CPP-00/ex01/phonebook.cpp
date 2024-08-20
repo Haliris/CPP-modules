@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 17:01:54 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/20 14:18:17 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:22:19 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void Phonebook::add_contact()
 	}
 	else
 	{
-		this->contacts[0] = new_contact; // check this hardcoded shit
+		this->contacts[contact_nb] = new_contact; // check this hardcoded shit
 		increment_contact_nb();
 	}
 }
@@ -68,7 +68,11 @@ void Phonebook::search_contact()
 	std::cin >> index;
 
 	if (index < 1 || index > this->contact_nb)
+	{
 		std::cout << "Invalid index!" << std::endl;
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	}
 	else
 		this->list_info(contacts[index - 1]);
 }
