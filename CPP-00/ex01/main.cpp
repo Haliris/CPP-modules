@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 17:02:29 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/20 15:17:29 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/20 15:23:42 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ int	main(void)
 	std::string	input;
 	Phonebook	phonebook;
 
-	while(std::cin.eof() == false)
+	while(true)
 	{
 		std::cout << "Enter a command: ";
-		std::cin >> input;
+		if (!(std::cin >> input))
+			break ;
 		if (input == EXIT)
 			break ;
 		else if (input == ADD)
