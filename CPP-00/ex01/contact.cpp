@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 17:02:11 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/19 18:27:53 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:18:53 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static void	display_entry(std::string entry)
 
 void	Contact::display() const
 {
-	std::cout << "first_name: " << first_name << std::endl;
 	display_entry(first_name);
 	display_entry(last_name);
 	display_entry(nickname);
@@ -118,7 +117,6 @@ void	Contact::create_contact()
 
 
 	this->first_name = first_name;
-	std::cout << "first_name: " << this->first_name << std::endl;
 	this->last_name = last_name;
 	this->nickname = nickname;
 	this->phone_nb = phone_nb;

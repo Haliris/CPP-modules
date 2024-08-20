@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 17:01:54 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/19 18:29:57 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:18:17 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,15 @@ void Phonebook::display_header() const
 		this->contacts[i].display();
 }
 
+void Phonebook::list_info(Contact contact)
+{
+	std::cout << "First name: " << contact.get_first_name() << std::endl;
+	std::cout << "Last name: " << contact.get_last_name() << std::endl;
+	std::cout << "Nickname: " << contact.get_nickname() << std::endl;
+	std::cout << "Phone number: " << contact.get_phone_nb() << std::endl;
+	std::cout << "Darkest secret: " << contact.get_secret() << std::endl;
+}
+
 void Phonebook::search_contact()
 {
 	int index;
@@ -58,8 +67,8 @@ void Phonebook::search_contact()
 	std::cout << "Enter contact index: ";
 	std::cin >> index;
 
-	// if (index < 1 || index > this->contact_nb)
-	// 	std::cout << "Invalid index!" << std::endl;
-	// else
-	// 	contacts[index - 1].display();
+	if (index < 1 || index > this->contact_nb)
+		std::cout << "Invalid index!" << std::endl;
+	else
+		this->list_info(contacts[index - 1]);
 }

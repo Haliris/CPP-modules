@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 16:17:52 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/19 18:10:23 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/20 13:45:23 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ class Phonebook
 		void		add_contact();
 		void		search_contact();
 		void		display_header()	const;
+		void		list_info(Contact contact);
 };
 #endif
