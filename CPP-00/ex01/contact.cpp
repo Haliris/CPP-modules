@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 17:02:11 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/20 14:18:53 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:27:07 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,6 @@ void	Contact::create_contact()
 	while (validate_phone_nb(phone_nb) == false)
 	{
 		std::cout << "Invalid phone number. Enter a 10 digits phone number: ";
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		read_input(&phone_nb);
 	}
 	std::cout << "Darkest secret: ";
