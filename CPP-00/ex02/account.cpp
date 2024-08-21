@@ -41,10 +41,9 @@ void	Account::_displayTimestamp( void )
 	std::cout << "[" << std::setw(4) << std::setfill('0') << (localTime->tm_year + 1900);
 	std::cout << std::setw(2) << std::setfill('0') << (localTime->tm_mon + 1);
 	std::cout << std::setw(2) << std::setfill('0') << (localTime->tm_mday);
-	std::cout << "_" << std::setw(2) << std::setfill('0') << (localTime->tm_mday);
-	std::cout << std::setw(2) << std::setfill('0') << (localTime->tm_mday);
-	std::cout << std::setw(2) << std::setfill('0') << (localTime->tm_mday);
-	std::cout << std::setw(2) << std::setfill('0') << (localTime->tm_mday);
+	std::cout << "_" << std::setw(2) << std::setfill('0') << (localTime->tm_hour);
+	std::cout << std::setw(2) << std::setfill('0') << (localTime->tm_min);
+	std::cout << std::setw(2) << std::setfill('0') << (localTime->tm_sec);
 	std::cout << "] ";
 }
 
