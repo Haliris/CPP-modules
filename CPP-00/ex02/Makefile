@@ -6,7 +6,7 @@
 #    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/18 14:44:08 by jteissie          #+#    #+#              #
-#    Updated: 2024/08/21 12:19:07 by jteissie         ###   ########.fr        #
+#    Updated: 2024/08/21 12:33:48 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CPP = c++
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC_FILE =	tests.cpp \
-			account.cpp \
+			Account.cpp \
 
 INCLUDE = -I include/
 
