@@ -6,11 +6,11 @@
 #    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/18 14:44:08 by jteissie          #+#    #+#              #
-#    Updated: 2024/08/20 19:31:57 by jteissie         ###   ########.fr        #
+#    Updated: 2024/08/21 12:19:07 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = account
+NAME = test
 
 CPP = c++
 
