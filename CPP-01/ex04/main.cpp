@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:48:35 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/21 18:28:16 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/21 19:01:03 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,21 @@
 #include <fstream>
 #include <string>
 
+std::string	find_and_replace(std::string line, std::string to_replace, std::string replacement)
+{
+	size_t	pos;
 
+	// std::cout << line << std::endl;
+	while ((pos = line.find(to_replace)) != std::string::npos)
+	{
+		// std::cout << "FOUND MATCH AT " << pos << std::endl;
+		line.erase(pos, to_replace.length());
+		line.insert(pos, replacement);
+		pos += replacement.length();
+	}
+	std::cout << line << std::endl;
+	return (line);
+}
 
 int	main(int ac, char **av)
 {
@@ -49,8 +63,7 @@ int	main(int ac, char **av)
 	}
 	while (std::getline(InFile, line))
 	{
-		if (line == to_replace)
-			line = replacement;
+		line = find_and_replace(line, to_replace, replacement);
 		ReplaceFile << line << std::endl;
 	}
 	InFile.close();
