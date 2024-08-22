@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 17:34:05 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/22 18:34:39 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/22 18:40:19 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ class Fixed
 {
 	private:
 		int					value;
-		static const int	bits;
+		static const int	bits = 8;
 	public:
 		Fixed();
 		Fixed(const Fixed& copyFixed);
