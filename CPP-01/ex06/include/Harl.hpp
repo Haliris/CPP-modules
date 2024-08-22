@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 19:22:06 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/22 15:02:26 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/22 15:11:09 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 # include <map>
 
 enum filter_level {
+	DEFAULT,
 	DEBUG,
 	INFO,
 	WARNING,
 	ERROR,
-	DEFAULT,
 };
 
 class	Harl
