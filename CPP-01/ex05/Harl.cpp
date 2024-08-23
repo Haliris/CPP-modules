@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 12:00:21 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/22 14:07:33 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/23 11:27:52 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,48 @@ void Harl::error(void)
 
 void Harl::complain(std::string level)
 {
-	std::vector<std::pair<std::string, void (Harl::*)()> > functionVector;
-	functionVector.push_back(std::make_pair("DEBUG", &Harl::debug));
-	functionVector.push_back(std::make_pair("INFO", &Harl::info));
-	functionVector.push_back(std::make_pair("WARNING", &Harl::warning));
-	functionVector.push_back(std::make_pair("ERROR", &Harl::error));
+	void (Harl::*functions[])(void) = {
+		&Harl::debug,
+		&Harl::info,
+		&Harl::warning,
+		&Harl::error
+	};
 
-	for (std::vector<std::pair<std::string, void (Harl::*)() > > ::iterator it = functionVector.begin();
-		it != functionVector.end();
-		it++)
+	std::string levels[] = {
+		"DEBUG",
+		"INFO",
+		"WARNING",
+		"ERROR"
+	};
+
+	for (int i = 0; i < 4; i++)
 	{
-		if (it->first == level)
+		if (levels[i] == level)
 		{
-			(this->*(it->second))();
-			return ;
+			(this->*functions[i])();
+			return;
 		}
 	}
 	std::cout << "Harl does not recognize this level!" << std::endl;
 }
+
+// void Harl::complain(std::string level)
+// {
+// 	std::vector<std::pair<std::string, void (Harl::*)()> > functionVector;
+// 	functionVector.push_back(std::make_pair("DEBUG", &Harl::debug));
+// 	functionVector.push_back(std::make_pair("INFO", &Harl::info));
+// 	functionVector.push_back(std::make_pair("WARNING", &Harl::warning));
+// 	functionVector.push_back(std::make_pair("ERROR", &Harl::error));
+
+// 	for (std::vector<std::pair<std::string, void (Harl::*)() > > ::iterator it = functionVector.begin();
+// 		it != functionVector.end();
+// 		it++)
+// 	{
+// 		if (it->first == level)
+// 		{
+// 			(this->*(it->second))();
+// 			return ;
+// 		}
+// 	}
+// 	std::cout << "Harl does not recognize this level!" << std::endl;
+// }
