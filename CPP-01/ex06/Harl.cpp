@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 12:00:21 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/22 15:17:15 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/23 11:36:51 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,40 +36,40 @@ void Harl::error(void)
 	std::cout << "This is unacceptable, that is it, I am blackholing!" << std::endl;
 }
 
-//pair : [std::string (24 bytes)] [padding (4 bytes)] [function pointer (8 bytes)]
 
 void Harl::complain(filter_level level)
 {
-	std::vector<std::pair<filter_level, void (Harl::*) ()> > functionVector;
-	functionVector.push_back(std::make_pair(DEBUG, &Harl::debug));
-	functionVector.push_back(std::make_pair(INFO, &Harl::info));
-	functionVector.push_back(std::make_pair(WARNING, &Harl::warning));
-	functionVector.push_back(std::make_pair(ERROR, &Harl::error));
+	void (Harl::*functions[])(void) = {
+		&Harl::debug,
+		&Harl::info,
+		&Harl::warning,
+		&Harl::error
+	};
 
-	std::vector<std::pair<filter_level, void (Harl::*)() > > ::iterator it;
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 4; i++)
 	{
-		for (it = functionVector.begin(); it != functionVector.end(); it++)
-		{
-			if (it->first >= level)
-			{
-				(this->*(it->second))();
-				std::cout << std::endl;
-			}
-		}
+		if (i >= level - 1)
+			(this->*functions[i])();
 	}
+}
+
+filter_level getFilterLevel(const std::string& level)
+{
+	if (level == "DEBUG")
+		return DEBUG;
+	if (level == "INFO")
+		return INFO;
+	if (level == "WARNING")
+		return WARNING;
+	if (level == "ERROR")
+		return ERROR;
+	else
+		return DEFAULT;
 }
 
 void Harl::filter(std::string level)
 {
-	std::map<std::string, filter_level > index;
-	index["DEFAULT"] = DEFAULT;
-	index["DEBUG"] = DEBUG;
-	index["INFO"] = INFO;
-	index["WARNING"] = WARNING;
-	index["ERROR"] = ERROR;
-
-	switch (index[level]) {
+	switch (getFilterLevel(level)) {
 		case DEBUG:
 			complain(DEBUG);
 			break;
@@ -87,3 +87,55 @@ void Harl::filter(std::string level)
 			break ;
 		}
 }
+
+//pair : [std::string (24 bytes)] [padding (4 bytes)] [function pointer (8 bytes)]
+
+// void Harl::complain(filter_level level)
+// {
+// 	std::vector<std::pair<filter_level, void (Harl::*) ()> > functionVector;
+// 	functionVector.push_back(std::make_pair(DEBUG, &Harl::debug));
+// 	functionVector.push_back(std::make_pair(INFO, &Harl::info));
+// 	functionVector.push_back(std::make_pair(WARNING, &Harl::warning));
+// 	functionVector.push_back(std::make_pair(ERROR, &Harl::error));
+
+// 	std::vector<std::pair<filter_level, void (Harl::*)() > > ::iterator it;
+// 	for (int i = 0; i < 1; i++)
+// 	{
+// 		for (it = functionVector.begin(); it != functionVector.end(); it++)
+// 		{
+// 			if (it->first >= level)
+// 			{
+// 				(this->*(it->second))();
+// 				std::cout << std::endl;
+// 			}
+// 		}
+// 	}
+// }
+
+// void Harl::filter(std::string level)
+// {
+// 	std::map<std::string, filter_level > index;
+// 	index["DEFAULT"] = DEFAULT;
+// 	index["DEBUG"] = DEBUG;
+// 	index["INFO"] = INFO;
+// 	index["WARNING"] = WARNING;
+// 	index["ERROR"] = ERROR;
+
+// 	switch (index[level]) {
+// 		case DEBUG:
+// 			complain(DEBUG);
+// 			break;
+// 		case INFO:
+// 			complain(INFO);
+// 			break;
+// 		case WARNING:
+// 			complain(WARNING);
+// 			break;
+// 		case ERROR:
+// 			complain(ERROR);
+// 			break;
+// 		case DEFAULT:
+// 			std::cout << "[Incomprehensible ramblings about minishell, probably...]" << std::endl;
+// 			break ;
+// 		}
+// }

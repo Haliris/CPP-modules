@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:48:35 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/21 19:01:03 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/23 11:24:46 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ std::string	find_and_replace(std::string line, std::string to_replace, std::stri
 {
 	size_t	pos;
 
-	// std::cout << line << std::endl;
 	while ((pos = line.find(to_replace)) != std::string::npos)
 	{
-		// std::cout << "FOUND MATCH AT " << pos << std::endl;
 		line.erase(pos, to_replace.length());
 		line.insert(pos, replacement);
 		pos += replacement.length();
