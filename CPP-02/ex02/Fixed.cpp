@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 17:41:09 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/22 19:48:40 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/23 15:38:12 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,51 +14,160 @@
 
 Fixed::Fixed()
 {
-	std::cout << "Default constructor called" << std::endl;
+	value = 0;
 }
 
 Fixed::Fixed(const int int_nb)
 {
-	std::cout << "Integer constructor called" << std::endl;
 	value = int_nb << bits;
 }
 
 Fixed::Fixed(const float float_nb)
 {
-	std::cout << "Float constructor called" << std::endl;
 	value = roundf(float_nb * (1 << bits));
 }
 
 Fixed::Fixed(const Fixed& copyFixed)
 {
-	std::cout << "Copy constructor called" << std::endl;
 	*this = copyFixed;
 }
 
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed:Fixed& operator=(const Fixed& copyFixed)
+Fixed	&Fixed::operator=(const Fixed& copyFixed)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &copyFixed) {
 		value = copyFixed.getRawBits();
 	}
 	return *this;
 }
 
+Fixed	Fixed::operator+(const Fixed& number)
+{
+	Fixed	newValue;
+	std::cout << "Addition operator called" << std::endl;
+	newValue.value = this->value + number.getRawBits();
+	return newValue;
+}
+
+Fixed	Fixed::operator-(const Fixed& number)
+{
+	Fixed	newValue;
+	std::cout << "Substraction operator called" << std::endl;
+	newValue.value = this->value - number.getRawBits();
+	return newValue;
+}
+
+Fixed	Fixed::operator*(const Fixed& number)
+{
+	Fixed	newValue;
+	std::cout << "Multiplication operator called" << std::endl;
+	newValue.value = (this->value * number.getRawBits()) / (1 << bits);
+	return newValue;
+}
+
+Fixed	Fixed::operator/(const Fixed& number)
+{
+	Fixed	newValue;
+	std::cout << "Division operator called" << std::endl;
+	newValue.value = ((this->value * (1 << bits)) / number.getRawBits());
+	return newValue;
+}
+
+Fixed&	Fixed::operator++()
+{
+	value++;
+	return (*this);
+}
+
+Fixed&	Fixed::operator--()
+{
+	value--;
+	return (*this);
+}
+
+Fixed	Fixed::operator++(int)
+{
+	Fixed	temp(*this);
+
+	value++;
+	return (temp);
+}
+
+Fixed	Fixed::operator--(int)
+{
+	Fixed	temp(*this);
+
+	value--;
+	return (temp);
+}
+
+bool	Fixed::operator==(const Fixed& comparedNb)
+{
+	std::cout << "Equality comparison operator called" << std::endl;
+	return (value == comparedNb.getRawBits());
+}
+
+bool	Fixed::operator!=(const Fixed& comparedNb)
+{
+	std::cout << "Different than comparison operator called" << std::endl;
+	return (value != comparedNb.getRawBits());
+}
+
+bool	Fixed::operator<(const Fixed& comparedNb)
+{
+	std::cout << "Strictly lower than comparison operator called" << std::endl;
+	return (value < comparedNb.getRawBits());
+}
+
+bool	Fixed::operator>(const Fixed& comparedNb)
+{
+	std::cout << "Stricly higher than comparison operator called" << std::endl;
+	return (value > comparedNb.getRawBits());
+}
+
+bool	Fixed::operator<=(const Fixed& comparedNb)
+{
+	std::cout << "Lower than or equal comparison operator called" << std::endl;
+	return (value <= comparedNb.getRawBits());
+}
+
+bool	Fixed::operator>=(const Fixed& comparedNb)
+{
+	std::cout << "Higher than or equal comparison operator called" << std::endl;
+	return (value >= comparedNb.getRawBits());
+}
+
+
+Fixed	&Fixed::max(Fixed &ref1, Fixed &ref2)
+{
+	return (ref1.getRawBits() > ref2.getRawBits() ? ref1 : ref2);
+}
+
+Fixed	&Fixed::min(Fixed &ref1, Fixed &ref2)
+{
+	return (ref1.getRawBits() > ref2.getRawBits() ? ref2 : ref1);
+}
+
+const Fixed	&Fixed::min(const Fixed &ref1, const Fixed &ref2)
+{
+	return (ref1.getRawBits() > ref2.getRawBits() ? ref2 : ref1);
+}
+
+const Fixed	&Fixed::max(const Fixed &ref1, const Fixed &ref2)
+{
+	return (ref1.getRawBits() > ref2.getRawBits() ? ref1 : ref2);
+}
+
 int		Fixed::getRawBits(void) const
 {
-
-	std::cout << "getRawBits member function called" << std::endl;
 	return value;
 }
 
 void	Fixed::setRawBits(int const raw)
 {
-	std::cout << "setRawBits member function called" << std::endl;
 	value = raw;
 }
 
