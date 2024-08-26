@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:38:38 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/26 12:03:56 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:54:27 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 ClapTrap::ClapTrap(std::string name)
 {
-	std::cout << "Creating Claptrap " << name << std::endl;
+	std::cout << "Claptrap default constructor called for " << name << std::endl;
 	this->name = name;
 	this->hitPoints = 10;
 	this->energyPoints = 10;
@@ -23,11 +23,13 @@ ClapTrap::ClapTrap(std::string name)
 
 ClapTrap::ClapTrap(const ClapTrap& copy)
 {
+	std::cout << "Claptrap copy constructor called" << std::endl;
 	*this = copy;
 }
 
 ClapTrap	&ClapTrap::operator=(const ClapTrap& copy)
 {
+	std::cout << "Claptrap assignment operator called" << std::endl;
 	if (this!= &copy)
 	{
 		this->name = copy.name;
@@ -44,15 +46,15 @@ ClapTrap::~ClapTrap()
 
 void	ClapTrap::attack(const std::string& target)
 {
-	if (energyPoints == 0)
-	{
-		std::cout << "ClapTrap " << name << " is out of energy and cannot do anything!" << std::endl;
-		return ;
-	}
 	if (hitPoints == 0)
 	{
 
 		std::cout << "ClapTrap " << name << " is DEAD and cannot do anything!" << std::endl;
+		return ;
+	}
+	if (energyPoints == 0)
+	{
+		std::cout << "ClapTrap " << name << " is out of energy and cannot do anything!" << std::endl;
 		return ;
 	}
 	energyPoints--;
@@ -63,12 +65,15 @@ void	ClapTrap::takeDamage(unsigned int amount)
 {
 	if (hitPoints == 0)
 	{
-		std::cout << "Stop hitting Claptrap, he is already dead! :(" << std::endl;
+		std::cout << "Stop hitting Claptrap " << name << " he is already dead!" << std::endl;
 		return ;
 	}
 	std::cout << "Claptrap " << name << " takes " << amount << " damage!" << std::endl;
-	if (amount > hitPoints)
+	if (amount >= hitPoints)
+	{
+		std::cout << "Claptrap " << name << " is dead! :(" << std::endl;
 		hitPoints = 0;
+	}
 	else
 		hitPoints -= amount;
 }

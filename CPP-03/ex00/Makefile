@@ -6,11 +6,11 @@
 #    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/18 14:44:08 by jteissie          #+#    #+#              #
-#    Updated: 2024/08/26 11:30:53 by jteissie         ###   ########.fr        #
+#    Updated: 2024/08/26 12:55:21 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = bsp_test
+NAME = claptrap_slaughter
 
 CPP = c++
 
