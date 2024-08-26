@@ -6,11 +6,12 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:29:22 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/26 14:12:24 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/26 15:19:06 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 # include "ClapTrap.hpp"
 
 class ScavTrap : public ClapTrap

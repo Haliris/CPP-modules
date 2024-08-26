@@ -6,11 +6,12 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:43:20 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/26 14:45:23 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/26 15:18:17 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 # include "ClapTrap.hpp"
 
 class FragTrap : public ClapTrap
