@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:38:38 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/26 11:52:20 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:03:56 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,22 @@ ClapTrap::ClapTrap(std::string name)
 	this->attackDamage = 0;
 }
 
+ClapTrap::ClapTrap(const ClapTrap& copy)
+{
+	*this = copy;
+}
+
+ClapTrap	&ClapTrap::operator=(const ClapTrap& copy)
+{
+	if (this!= &copy)
+	{
+		this->name = copy.name;
+		this->hitPoints = copy.hitPoints;
+		this->energyPoints = copy.energyPoints;
+		this->attackDamage = copy.attackDamage;
+	}
+	return *this;
+}
 ClapTrap::~ClapTrap()
 {
 	std::cout << "Destroying ClapTrap " << name << std::endl;
