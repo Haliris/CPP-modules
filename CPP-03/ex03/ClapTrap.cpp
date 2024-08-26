@@ -6,15 +6,24 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:38:38 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/26 14:00:26 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/26 19:48:58 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
+ClapTrap::ClapTrap()
+{
+	std::cout << "ClapTrap default constructor called" << std::endl;
+	this->name = "default_name";
+	this->hitPoints = 10;
+	this->energyPoints = 10;
+	this->attackDamage = 0;
+}
+
 ClapTrap::ClapTrap(std::string name)
 {
-	std::cout << "Claptrap default constructor called for " << name << std::endl;
+	std::cout << "Claptrap constructor called for " << name << std::endl;
 	this->name = name;
 	this->hitPoints = 10;
 	this->energyPoints = 10;
@@ -39,9 +48,15 @@ ClapTrap	&ClapTrap::operator=(const ClapTrap& copy)
 	}
 	return *this;
 }
+
 ClapTrap::~ClapTrap()
 {
 	std::cout << "Destroying ClapTrap " << name << std::endl;
+}
+
+std::string	ClapTrap::getName()
+{
+	return this->name;
 }
 
 void	ClapTrap::attack(const std::string& target)
@@ -94,4 +109,19 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	energyPoints--;
 	std::cout << name << " repairs himself for " << amount << " points." << std::endl;
 	hitPoints += amount;
+}
+
+unsigned int	ClapTrap::getEp()
+{
+	return this->energyPoints;
+}
+
+unsigned int	ClapTrap::getHp()
+{
+	return this->hitPoints;
+}
+
+unsigned int	ClapTrap::getAd()
+{
+	return this->attackDamage;
 }

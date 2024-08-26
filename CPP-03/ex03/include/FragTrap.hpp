@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:43:20 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/26 15:17:41 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/26 19:48:04 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ class FragTrap : virtual public ClapTrap
 {
 	private:
 	public:
+		FragTrap();
 		FragTrap(std::string name);
 		FragTrap(const FragTrap& copy);
 		FragTrap& operator=(const FragTrap& copy);
 		~FragTrap();
-		void	attack(const std::string& target);
-		void	highFivesGuys(void);
+		void			attack(const std::string& target);
+		void			highFivesGuys(void);
 };
 #endif
