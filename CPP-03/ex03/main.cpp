@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:49:23 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/26 19:35:52 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 14:00:33 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 int	main()
 {
 
-	DiamondTrap	DiamondTrapTest("DiamondTrap");
+	DiamondTrap	DiamondTrapTest("DiamondTrap_1");
+	DiamondTrap	DiamondTrapTest2("DiamondTrap_2");
 	DiamondTrap	dummy;
 	DiamondTrap	copy = DiamondTrapTest;
 	// ClapTrap	trap01("ClapTrap");
@@ -114,6 +115,7 @@ int	main()
 	std::cout << "-----------------------" << std::endl;
 	std::cout << "DiamondTrap's turn!" << std::endl;
 	DiamondTrapTest.whoAmI();
+	DiamondTrapTest2.whoAmI();
 	dummy.whoAmI();
 	copy.whoAmI();
 	return (0);

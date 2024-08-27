@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:16:55 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/26 18:37:13 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 13:53:38 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ class DiamondTrap : public ScavTrap, public FragTrap
 		DiamondTrap(const DiamondTrap& copy);
 		~DiamondTrap();
 		void	whoAmI();
+		using	ScavTrap::attack;
 };
 #endif

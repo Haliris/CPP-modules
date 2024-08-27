@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:33:02 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/26 19:52:34 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/08/27 13:56:52 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,22 @@
 ScavTrap::ScavTrap()
 {
 	std::cout << "ScavTrap default constructor called" << std::endl;
-	this->name = "default_ScavTrap";
-	this->hitPoints = 100;
 	this->energyPoints = 50;
-	this->attackDamage = 20;
+	std::cout << "EP: " << this->energyPoints << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
 	std::cout << "ScavTrap constructor called for " << name << std::endl;
-	this->hitPoints = 100;
 	this->energyPoints = 50;
-	this->attackDamage = 20;
+	std::cout << "EP: " << this->energyPoints << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap& copy) : ClapTrap(copy)
 {
 	std::cout << "ScavTrap copy constructor called" << std::endl;
 	*this = copy;
+	std::cout << "EP: " << this->energyPoints << std::endl;
 }
 
 ScavTrap	&ScavTrap::operator=(const ScavTrap& copy)

@@ -6,11 +6,11 @@
 #    By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/18 14:44:08 by jteissie          #+#    #+#              #
-#    Updated: 2024/08/26 16:57:09 by jteissie         ###   ########.fr        #
+#    Updated: 2024/08/27 14:19:07 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fragtrap_slaughter
+NAME = DiamondTrap_slaughter
 
 CPP = c++
 
