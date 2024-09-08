@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 17:01:54 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/20 15:15:27 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/08 19:00:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void Phonebook::add_contact()
 	new_contact.create_contact();
 	if (contact_nb == MAX_CONTACTS)
 	{
-		for (int i = MAX_CONTACTS - 1; i > 0; i--)
-			this->contacts[i] = this->contacts[i - 1];
-		contacts[0] = new_contact;
+		for (int i = 0; i < MAX_CONTACTS - 1 ; i++)
+			this->contacts[i] = this->contacts[i + 1];
+		contacts[MAX_CONTACTS - 1] = new_contact;
 	}
 	else
 	{
@@ -57,10 +57,10 @@ void Phonebook::display_header() const
 
 void Phonebook::list_info(Contact contact)
 {
-	std::cout << "First name: " << contact.get_first_name() << std::endl;
-	std::cout << "Last name: " << contact.get_last_name() << std::endl;
-	std::cout << "Nickname: " << contact.get_nickname() << std::endl;
-	std::cout << "Phone number: " << contact.get_phone_nb() << std::endl;
+	std::cout << "First name: " << contact.get_first_name() << '\n';
+	std::cout << "Last name: " << contact.get_last_name() << '\n';
+	std::cout << "Nickname: " << contact.get_nickname() << '\n';
+	std::cout << "Phone number: " << contact.get_phone_nb() << '\n';
 	std::cout << "Darkest secret: " << contact.get_secret() << std::endl;
 }
 
@@ -71,7 +71,6 @@ void Phonebook::search_contact()
 	this->display_header();
 	std::cout << "Enter contact index: ";
 	std::cin >> index;
-
 	if (index < 1 || index > this->contact_nb)
 	{
 		std::cout << "Invalid index!" << std::endl;
@@ -81,4 +80,5 @@ void Phonebook::search_contact()
 	}
 	else
 		this->list_info(contacts[index - 1]);
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }

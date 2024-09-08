@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 17:02:29 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/20 15:23:42 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/08 18:13:04 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@ int	main(void)
 
 	while(true)
 	{
-		std::cout << "Enter a command: ";
-		if (!(std::cin >> input))
-			break ;
+		std::cout << "Enter a command: " << std::flush;
+		if (!std::getline(std::cin, input))
+		{
+			std::cout << "\nEOF" << std::endl;
+			break;
+		}
 		if (input == EXIT)
 			break ;
 		else if (input == ADD)
@@ -31,4 +34,3 @@ int	main(void)
 	}
 	return (0);
 }
-//endl needed or not

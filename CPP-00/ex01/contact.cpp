@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 17:02:11 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/20 15:13:48 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/08 19:03:29 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	Contact::display() const
 
 static bool	validate_phone_nb(std::string phone_nb)
 {
+	if (phone_nb == "NULL")
+		return true;
 	if (phone_nb.length() != 10)
 		return false;
 	for (int i = 0; i < 10; i++)
@@ -69,11 +71,19 @@ static bool	validate_phone_nb(std::string phone_nb)
 	return true;
 }
 
-static void	read_input(std::string *input)
+static std::string	read_input(void)
 {
+	std::string	input;
+
 	std::cin.clear();
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	std::cin >> *input;
+	std::getline(std::cin, input);
+	if (std::cin.eof())
+	{
+		std::cin.clear();
+		std::cout << "read_input error: EOF sent, exiting" << std::endl;
+		input = "NULL";
+	}
+	return (input);
 }
 
 void	Contact::create_contact()
@@ -81,22 +91,21 @@ void	Contact::create_contact()
 	std::string	first_name, last_name, nickname, phone_nb, darkest_secret;
 
 	std::cout << "First name: ";
-	read_input(&first_name);
+	first_name = read_input();
 	std::cout << "Last name: ";
-	read_input(&last_name);
+	last_name = read_input();
 	std::cout << "Nickname: ";
-	read_input(&nickname);
+	nickname = read_input();
 	std::cout << "Phone number: ";
-	read_input(&phone_nb);
+	phone_nb = read_input();
 	while (validate_phone_nb(phone_nb) == false)
 	{
+		std::cin.clear();
 		std::cout << "Invalid phone number. Enter a 10 digits phone number: ";
-		read_input(&phone_nb);
+		phone_nb = read_input();
 	}
 	std::cout << "Darkest secret: ";
-	std::getline(std::cin >> std::ws, darkest_secret);
-
-
+	darkest_secret = read_input();
 	this->first_name = first_name;
 	this->last_name = last_name;
 	this->nickname = nickname;
