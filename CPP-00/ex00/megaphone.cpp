@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 16:00:35 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/18 16:11:16 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/08 17:13:43 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int	main(int ac, char **av)
 			break ;
 		std::cout << " ";
 	}
-	std::cout << "\n";
+	std::cout << std::endl;
 	return (0);
 }
