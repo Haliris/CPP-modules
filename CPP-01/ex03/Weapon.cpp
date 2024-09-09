@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:56:16 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/21 15:47:56 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/09 13:48:28 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 Weapon::Weapon(std::string name) : type(name) {}
 
-Weapon::~Weapon(void) {
+Weapon::~Weapon(void)
+{
 }
 
 const std::string&	Weapon::getType()
