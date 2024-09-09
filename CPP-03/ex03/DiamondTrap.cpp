@@ -6,9 +6,11 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 16:56:49 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/27 13:52:35 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:25:19 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//OVERWRITE VALUES IN CONSTRUCTOR CALLS DIRECTLY RATHER THAN HARDCODE THEM
 
 #include "DiamondTrap.hpp"
 
