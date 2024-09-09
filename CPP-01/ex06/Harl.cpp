@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 12:00:21 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/23 11:36:51 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/09 13:58:38 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 void Harl::debug(void)
 {
-	std::cout << "[ DEBUG ]" << std::endl;
+	std::cout << "[ DEBUG ]" << '\n';
 	std::cout << "I love working in Made, Made has Moulinette the cat, Made is awesome!" << std::endl;
 }
 
 void Harl::info(void)
 {
-	std::cout << "[ INFO ]" << std::endl;
+	std::cout << "[ INFO ]" << '\n';
 	std::cout << "Made is crawling with centipedes, I cannot believe Made is overrun with these annoying pesky bugs!" << std::endl;
 }
 
 void Harl::warning(void)
 {
-	std::cout << "[ WARNING ]" << std::endl;
+	std::cout << "[ WARNING ]" << '\n';
 	std::cout << "I think I deserve a workspace free of bugs, I have been working on my minishell for 2 years and never had to suffer from such insects!" << std::endl;
 }
 
 void Harl::error(void)
 {
-	std::cout << "[ ERROR ]" << std::endl;
+	std::cout << "[ ERROR ]" << '\n';
 	std::cout << "This is unacceptable, that is it, I am blackholing!" << std::endl;
 }
 

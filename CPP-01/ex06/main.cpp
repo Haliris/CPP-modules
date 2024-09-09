@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 12:00:00 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/22 15:01:31 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:01:10 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		std::cout << "Give me a filtering level!" << std::endl;
+		std::cout << "Give me a proper filtering level!" << std::endl;
 		return (1);
 	}
 	level = av[1];
