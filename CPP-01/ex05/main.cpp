@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 12:00:00 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/22 14:09:50 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/10 13:22:06 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,13 @@ int	main(void)
 	Harl_2_0.complain("ERROR");
 	Harl_2_0.complain("ERROR");
 	Harl_2_0.complain("ERROR");
+	std::cout << "------------" << std::endl;
+	std::cout << "Bad string test" << std::endl;
+	std::cout << "------------" << std::endl;
+	Harl_2_0.complain("null");
+	Harl_2_0.complain("null");
+	Harl_2_0.complain("null");
+	Harl_2_0.complain("null");
+	std::cout << "------------" << std::endl;
 	return (0);
 }
