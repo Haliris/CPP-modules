@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:43:20 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/26 15:18:17 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/12 16:48:04 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ class FragTrap : public ClapTrap
 {
 	private:
 	public:
+		FragTrap();
 		FragTrap(std::string name);
 		FragTrap(const FragTrap& copy);
 		FragTrap& operator=(const FragTrap& copy);

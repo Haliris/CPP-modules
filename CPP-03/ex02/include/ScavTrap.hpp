@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:29:22 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/26 15:18:26 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/12 16:48:10 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ class ScavTrap : public ClapTrap
 {
 	private:
 	public:
+		ScavTrap();
 		ScavTrap(std::string name);
 		ScavTrap(const ScavTrap& copy);
 		ScavTrap& operator=(const ScavTrap& copy);

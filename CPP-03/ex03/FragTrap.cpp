@@ -6,13 +6,13 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:45:31 by jteissie          #+#    #+#             */
-/*   Updated: 2024/08/27 13:58:54 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/12 17:03:51 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap()
+FragTrap::FragTrap() : ClapTrap()
 {
 	std::cout << "FragTrap default Constructor called" << std::endl;
 	this->hitPoints = 100;
