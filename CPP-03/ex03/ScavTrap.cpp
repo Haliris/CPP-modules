@@ -2,7 +2,6 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:33:02 by jteissie          #+#    #+#             */
