@@ -18,34 +18,23 @@
 #include "WrongCat.hpp"
 #include "WrongDog.hpp"
 
+#include "Brain.hpp"
+
 int	main()
 {
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	const Animal* horde[20];
 
-	const WrongAnimal* bad_meta = new WrongAnimal();
-	const WrongAnimal* bad_j = new WrongDog();
-	const WrongAnimal* bad_i = new WrongCat();
-
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
-	meta->makeSound();
+	for (int i = 0; i < 20; i++)
+	{
+		if (i < 10)
+			horde[i] = new Dog();
+		else
+	  		horde[i] = new Cat();
+	}
 	
-	std::cout << bad_j->getType() << " " << std::endl;
-	std::cout << bad_i->getType() << " " << std::endl;
-	bad_i->makeSound(); //will output the wrong cat sound!
-	bad_j->makeSound();
-	bad_meta->makeSound();
-	
-	delete i;
-	delete j;
-	delete meta;
-
-	delete bad_i;
-	delete bad_j;
-	delete bad_meta;
+	for (int j = 0; j < 20; j++)
+	{
+		delete horde[j];
+	}
 	return (0);
 }

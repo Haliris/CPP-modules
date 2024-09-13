@@ -19,6 +19,7 @@ Brain::Brain(const Brain& copyBrain)
 Brain	&Brain::operator=(const Brain& copyBrain)
 {
 	std::cout << "Default Brain copy assignment operator called" << std::endl;
-	this->type = copyBrain.type;
+	for (int i = 0; i < 100; i++)
+		this->ideas[i] = copyBrain.ideas[i];
 	return *this;
 }

@@ -22,7 +22,8 @@ SRC_FILE =	main.cpp \
 			Dog.cpp \
 			WrongAnimal.cpp \
 			WrongCat.cpp \
-			WrongDog.cpp
+			WrongDog.cpp \
+			Brain.cpp
 
 
 INCLUDE = -I include/
