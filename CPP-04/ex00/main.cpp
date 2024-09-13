@@ -14,11 +14,19 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
+#include "WrongDog.hpp"
+
 int	main()
 {
 	const Animal* meta = new Animal();
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
+
+	const WrongAnimal* bad_meta = new WrongAnimal();
+	const WrongAnimal* bad_j = new WrongDog();
+	const WrongAnimal* bad_i = new WrongCat();
 
 	std::cout << j->getType() << " " << std::endl;
 	std::cout << i->getType() << " " << std::endl;
@@ -26,8 +34,18 @@ int	main()
 	j->makeSound();
 	meta->makeSound();
 	
+	std::cout << bad_j->getType() << " " << std::endl;
+	std::cout << bad_i->getType() << " " << std::endl;
+	bad_i->makeSound(); //will output the wrong cat sound!
+	bad_j->makeSound();
+	bad_meta->makeSound();
+	
 	delete i;
 	delete j;
 	delete meta;
+
+	delete bad_i;
+	delete bad_j;
+	delete bad_meta;
 	return (0);
 }

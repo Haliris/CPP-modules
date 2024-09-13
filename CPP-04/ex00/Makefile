@@ -19,7 +19,11 @@ CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 SRC_FILE =	main.cpp \
 			Animal.cpp \
 			Cat.cpp \
-			Dog.cpp
+			Dog.cpp \
+			WrongAnimal.cpp \
+			WrongCat.cpp \
+			WrongDog.cpp
+
 
 INCLUDE = -I include/
 
