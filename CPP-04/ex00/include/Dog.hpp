@@ -17,12 +17,11 @@
 class	Dog: public Animal
 {
 	private:
-		std::string	type;
 	public:
 		Dog();
 		~Dog();
 		Dog(const Dog& copyDog);
 		Dog& operator=(const Dog& copyDog);
-		void	makeSound();
+		void				makeSound() const;
 };
 #endif

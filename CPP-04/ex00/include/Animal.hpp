@@ -17,13 +17,15 @@
 class	Animal
 {
 	private:
+	protected:
 		std::string	type;
 	public:
 		Animal();
 		Animal(const Animal& copyAnimal);
 		Animal&	operator=(const Animal& copyAnimal);
-		~Animal();
-		virtual void	makeSound();
+		virtual ~Animal();
+		virtual void				makeSound() const;
+		virtual const std::string	getType() const;
 };
 
 #endif

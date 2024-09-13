@@ -36,7 +36,12 @@ Animal	&Animal::operator=(const Animal& copyAnimal)
 	return *this;
 }
 
-void	Animal::makeSound()
+void	Animal::makeSound() const
 {
 	std::cout << "default animal sound" << std::endl;
+}
+
+const std::string	Animal::getType() const
+{
+	return type;
 }
