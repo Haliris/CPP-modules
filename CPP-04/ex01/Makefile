@@ -20,9 +20,6 @@ SRC_FILE =	main.cpp \
 			Animal.cpp \
 			Cat.cpp \
 			Dog.cpp \
-			WrongAnimal.cpp \
-			WrongCat.cpp \
-			WrongDog.cpp \
 			Brain.cpp
 
 

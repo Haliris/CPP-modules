@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:55:02 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/09 17:12:14 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/14 15:10:18 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
-Dog::Dog()
+Dog::Dog() : Animal()
 {
 	std::cout << "Default Dog constructor called" << std::endl;
 	type = "Dog";
@@ -23,7 +23,7 @@ Dog::~Dog()
 	std::cout << "Default Dog destructor called" << std::endl;
 }
 
-Dog::Dog(const Dog& copyDog)
+Dog::Dog(const Dog& copyDog) : Animal()
 {
 	std::cout << "Default Dog copy constructor called" << std::endl;
 	*this = copyDog;

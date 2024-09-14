@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:10:29 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/09 14:24:47 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/14 14:04:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ANIMAL_HPP
 # define ANIMAL_HPP
 # include <iostream>
+# include <new>
+# include <cstddef>
 
 class	Animal
 {

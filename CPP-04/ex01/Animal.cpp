@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:15:17 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/09 17:22:10 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/14 14:47:59 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ Animal::Animal(const Animal& Animalcpy)
 Animal	&Animal::operator=(const Animal& copyAnimal)
 {
 	std::cout << "default Animal assignment operator called." << std::endl;
-	this->type = copyAnimal.type;
+	if (this != &copyAnimal)
+		this->type = copyAnimal.type;
 	return *this;
 }
 

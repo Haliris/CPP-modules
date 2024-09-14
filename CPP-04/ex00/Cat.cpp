@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:59:42 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/09 17:22:35 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/14 15:10:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat()
+Cat::Cat() : Animal()
 {
 	std::cout << "Default Cat constructor called" << std::endl;
 	type = "Cat";
@@ -23,7 +23,7 @@ Cat::~Cat()
 	std::cout << "Default Cat destructor called" << std::endl;
 }
 
-Cat::Cat(const Cat& copyCat)
+Cat::Cat(const Cat& copyCat) : Animal()
 {
 	std::cout << "Default Cat copy constructor called" << std::endl;
 	*this = copyCat;
