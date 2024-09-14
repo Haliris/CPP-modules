@@ -14,7 +14,7 @@ NAME = poly_test
 
 CPP = c++
 
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
+CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g3
 
 SRC_FILE =	main.cpp \
 			Animal.cpp \

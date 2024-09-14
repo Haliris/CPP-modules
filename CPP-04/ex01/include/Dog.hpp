@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:52:16 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/09 16:54:44 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/14 15:49:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ class	Dog: public Animal
 		Dog(const Dog& copyDog);
 		Dog& operator=(const Dog& copyDog);
 		void				makeSound() const;
+		const std::string	getIdea(int idx);
+		void				addIdea(std::string newidea, int idx);
 };
 #endif

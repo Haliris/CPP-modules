@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:59:42 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/14 14:55:22 by marvin           ###   ########.fr       */
+/*   Updated: 2024/09/14 15:57:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,3 +49,12 @@ void	Cat::makeSound() const
 	std::cout << "Meow! Meow!" << std::endl;
 }
 
+const std::string	Cat::getIdea(int idx)
+{
+	return brain->getIdea(idx);
+}
+
+void	Cat::addIdea(std::string newidea, int idx)
+{
+	brain->addIdea(newidea, idx);
+}

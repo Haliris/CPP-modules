@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:55:02 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/14 14:55:10 by marvin           ###   ########.fr       */
+/*   Updated: 2024/09/14 15:57:28 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,3 +47,12 @@ void	Dog::makeSound() const
 	std::cout << "Bark! Bark!" << std::endl;
 }
 
+const std::string	Dog::getIdea(int idx)
+{
+	return brain->getIdea(idx);
+}
+
+void	Dog::addIdea(std::string newidea, int idx)
+{
+	brain->addIdea(newidea, idx);
+}

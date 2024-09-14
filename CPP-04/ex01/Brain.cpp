@@ -23,3 +23,22 @@ Brain	&Brain::operator=(const Brain& copyBrain)
 		this->ideas[i] = copyBrain.ideas[i];
 	return *this;
 }
+
+const std::string	Brain::getIdea(int idx)
+{
+	if (idx > 99)
+	{
+		std::cout << "Index out of bound of ideas array!" << std::endl;
+		return "buffer overflow ideas";
+	}
+	else	
+		return ideas[idx];
+}
+
+void	Brain::addIdea(std::string newidea, int idx)
+{
+	if (idx > 99)
+		std::cout << "Index out of bound of ideas array!" << std::endl;
+	else
+		ideas[idx] = newidea;
+}
