@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:55:02 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/14 15:57:28 by marvin           ###   ########.fr       */
+/*   Updated: 2024/09/14 16:48:29 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ Dog	&Dog::operator=(const Dog& copyDog)
 	if (this != &copyDog)
 	{
 		this->type = copyDog.type;
-		this->brain = new Brain();
+		this->brain = new Brain(*copyDog.brain);
 	}
 	return *this;
 }

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:59:42 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/14 15:57:33 by marvin           ###   ########.fr       */
+/*   Updated: 2024/09/14 16:48:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ Cat	&Cat::operator=(const Cat& copyCat)
 	if (this != &copyCat)
 	{
 		this->type = copyCat.type;
-		this->brain = new Brain();
+		this->brain = new Brain(*copyCat.brain);
 	}
 	return *this;
 }

@@ -17,7 +17,7 @@
 
 int	main()
 {
-	Animal*	horde[10];
+	Animal*		horde[10];
 	Dog*		copyDog;
 	Cat*		copyCat;
 	std::string	idea;
@@ -25,29 +25,80 @@ int	main()
 	for (int i = 0; i < 10; i++)
 	{
 		if (i < 5)
-			horde[i] = new Dog();
+		{
+			horde[i] = new(std::nothrow) Dog();
+			if (horde[i] == NULL)
+			{
+				std::cout << "Could not allocate memory for horde dogs" << std::endl;
+				while (i >= 0)
+					delete horde[i--];
+				return (1);
+			}
+		}
 		else
-	  		horde[i] = new Cat();
+		{
+	  		horde[i] = new(std::nothrow) Cat();
+			if (horde[i] == NULL)
+			{
+				std::cout << "Could not allocate memory for horde cats" << std::endl;
+				while (i >= 0)
+					delete horde[i--];
+				return (1);
+			}
+		}
 	}
 	for (int i = 0; i < 10; i++)	
 		horde[i]->makeSound();
 
-	copyDog = new Dog(*dynamic_cast<Dog*>(horde[0]));
-	copyCat = new Cat(*dynamic_cast<Cat*>(horde[5]));
-	
 	dynamic_cast<Dog*>(horde[0])->addIdea("I love tennis balls!", 0);
 	dynamic_cast<Cat*>(horde[5])->addIdea("I love napping!", 0);
-	copyDog->addIdea("I want food...", 0);
-	copyCat->addIdea("Leave me alone.", 0);
 
+	copyDog = new(std::nothrow) Dog(*dynamic_cast<Dog*>(horde[0]));
+	copyCat = new(std::nothrow) Cat(*dynamic_cast<Cat*>(horde[5]));
+	
+	if (copyDog == NULL || copyCat == NULL)
+	{
+		std::cout << "Could not allocate memory for copy animals" << std::endl;
+		if (copyDog)
+			delete copyDog;
+		if (copyCat)
+			delete copyCat;
+		for (int j = 0; j < 10; j++)
+			delete horde[j];
+		return (1);
+	}
+
+	std::cout << "------------" << std::endl;
+	std::cout << "horde ideas" << std::endl;
 	idea = dynamic_cast<Dog*>(horde[0])->getIdea(0);
 	std::cout << idea << std::endl;
 	idea = dynamic_cast<Cat*>(horde[5])->getIdea(0);
 	std::cout << idea << std::endl;
+	std::cout << "------------" << std::endl;
+	std::cout << "copies ideas" << std::endl;
 	idea = copyDog->getIdea(0);
 	std::cout << idea << std::endl;
 	idea = copyCat->getIdea(0);
 	std::cout << idea << std::endl;
+
+	std::cout << "------------" << std::endl;
+	std::cout << "addIdea() called on deep copies" << std::endl;
+	copyDog->addIdea("I want food...", 0);
+	copyCat->addIdea("Leave me alone.", 0);
+	std::cout << "------------" << std::endl;
+	std::cout << "horde ideas" << std::endl;
+	idea = dynamic_cast<Dog*>(horde[0])->getIdea(0);
+	std::cout << idea << std::endl;
+	idea = dynamic_cast<Cat*>(horde[5])->getIdea(0);
+	std::cout << idea << std::endl;
+	std::cout << "------------" << std::endl;
+	std::cout << "copies ideas" << std::endl;
+	idea = copyDog->getIdea(0);
+	std::cout << idea << std::endl;
+	idea = copyCat->getIdea(0);
+	std::cout << idea << std::endl;
+	std::cout << "------------" << std::endl;
+
 	for (int j = 0; j < 10; j++)
 		delete horde[j];
 	delete copyDog;
