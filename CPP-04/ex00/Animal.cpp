@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:15:17 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/09 17:22:10 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/14 17:02:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ Animal	&Animal::operator=(const Animal& copyAnimal)
 
 void	Animal::makeSound() const
 {
-	std::cout << "default animal sound" << std::endl;
+	std::cout << std::endl;
 }
 
 const std::string	Animal::getType() const
