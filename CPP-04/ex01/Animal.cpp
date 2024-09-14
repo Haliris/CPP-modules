@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:15:17 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/14 14:47:59 by marvin           ###   ########.fr       */
+/*   Updated: 2024/09/14 17:02:46 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ Animal	&Animal::operator=(const Animal& copyAnimal)
 
 void	Animal::makeSound() const
 {
-	std::cout << "default animal sound" << std::endl;
+	std::cout << std::endl;
 }
 
 const std::string	Animal::getType() const
