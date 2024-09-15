@@ -1,0 +1,95 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Character.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/15 16:14:24 by marvin            #+#    #+#             */
+/*   Updated: 2024/09/15 16:14:24 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "Character.hpp"
+
+Character::Character()
+{
+	std::cout << "Character default constructor called" << std::endl;
+	for (int i = 0; i < 4; i++)
+		inventor[i] = NULL;
+	materia_nb = 0;
+}
+
+Character::~Character()
+{
+	std::cout << "Character destructor called" << std::endl;
+}
+
+Character::Character(const Character& copyCharacter)
+{
+	std::cout << "Character copy constructor called" << std::endl;
+}
+
+Character	&Character::operator=(const Character& copyCharacter)
+{
+	std::cout << "Character assignment operator called" << std::endl;
+	if (*this != copyCharacter)
+	{
+		*this = copyCharacter; //refactor this shit, needs to be deep;
+	}
+	return *this;
+}
+
+Character::Character(std::string const & name)
+{
+	std::cout << "Character name constructor called" << std::endl;
+	this->name = name;
+	for (int i = 0; i < 4; i++)
+		inventor[i] = NULL;
+	materia_nb = 0;
+}
+
+std::string const &	Character::GetName()
+{
+	return this->name;
+}
+
+void	Character::equip(AMateria* m)
+{
+	if (materia_nb < 4 && inventory[materia_nb] == NULL)
+	{
+		inventory[materia_nb] = new(std::nothrow) AMateria(m);
+		if (inventory[materia_nb] == NULL)
+		{
+			std::cout << "Could not equip new materia!" << std::endl;
+			return ;
+		}
+		materia_nb++;
+	}
+	else
+		std::cout << name << "'s inventory is full!" << std::endl;
+}
+
+void	Character::unequip(int idx)
+{
+	if (idx > 3 || idx < 0)
+		std::cout << "Unequip index out of array bounds!" << std::endl
+	else if (inventory[idx] == NULL)
+		std::cout << "No materia to unequip at this index!" << std::endl;
+	else
+	{
+		std::cout << "Unequipped Materia at idx: " << idx << std::endl;
+		inventory[idx] = NULL;
+		materia_nb--;
+	}
+}
+
+void	Character::use(int idx, ICharacter &target)
+{
+	if (idx > 3 || idx < 0)
+		std::cout << "Unequip index out of array bounds!" << std::endl
+	else if (inventory[idx] == NULL)
+		std::cout << "No materia to use at this index!" << std::endl;
+	else
+		inventory[idx]->use(target);
+}

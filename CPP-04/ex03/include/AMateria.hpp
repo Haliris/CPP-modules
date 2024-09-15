@@ -20,14 +20,14 @@ class AMateria
 {
 	private:
 	protected:
-		std::string type;
+		std::string	type;
 	public:
 		AMateria();
 		~AMateria();
 		AMateria(const AMateria& copyAMateria);
 		AMateria& operator=(const AMateria& copyAMateria);
 		AMateria(std::string const & type);
-		std::string			const & getType() const;
+		std::string const &	getType() const;
 		virtual AMateria*	clone() const = 0;
 		virtual void		use(ICharacter& target);
 };

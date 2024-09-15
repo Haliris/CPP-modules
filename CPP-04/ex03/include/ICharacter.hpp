@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Character.hpp                                      :+:      :+:    :+:   */
+/*   ICharacter.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/15 15:49:16 by marvin            #+#    #+#             */
-/*   Updated: 2024/09/15 15:49:16 by marvin           ###   ########.fr       */
+/*   Created: 2024/09/15 15:44:58 by marvin            #+#    #+#             */
+/*   Updated: 2024/09/15 15:44:58 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHARACTER_HPP
-# define CHARACTER_HPP
-# include "ICharacter.hpp"
+#ifndef ICHARACTER_HPP
+# define ICHARACTER_HPP
+# include "AMateria.hpp"
 
-class Character : public ICharacter
+class ICharacter
 {
-	private:
-		AMateria*	inventory[4];
-		std::string	name;
-		int			materia_nb;
 	public:
-		Character(); 
-		~Character(); 
-		Character(const Character& copyCharacter);
-		Character& operator=(const Character& copyCharacter); // delete previous materias before overwriting them
-		Character(std::string const & name);
+		virtual ~ICharacter() {}
+		virtual std::string	const &	GetName() const = 0;
+		virtual void				equip(AMateria* m) = 0;
+		virtual void				unequip(int idx) = 0;
+		virtual void				use(int idx, ICharacter& target) = 0;
 };
 
 #endif
