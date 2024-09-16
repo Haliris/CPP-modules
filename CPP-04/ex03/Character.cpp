@@ -70,12 +70,7 @@ void	Character::equip(AMateria* m)
 {
 	if (materia_nb < 4 && inventory[materia_nb] == NULL)
 	{
-		inventory[materia_nb] = new(std::nothrow) AMateria(m);
-		if (inventory[materia_nb] == NULL)
-		{
-			std::cout << "Could not equip new materia!" << std::endl;
-			return ;
-		}
+		this->inventory[materia_nb] = m;
 		materia_nb++;
 	}
 	else
