@@ -72,6 +72,7 @@ void	Character::equip(AMateria* m)
 	if (materia_nb < 4 && inventory[materia_nb] == NULL)
 	{
 		this->inventory[materia_nb] = m;
+		std::cout << "Equipped materia " << m->getType() << " at index " << materia_nb << std::endl;
 		materia_nb++;
 	}
 	else
@@ -99,5 +100,5 @@ void	Character::use(int idx, ICharacter &target)
 	else if (inventory[idx] == NULL)
 		std::cout << "No materia to use at this index!" << std::endl;
 	else
-		this->inventory[idx]->AMateria::use(target);
+		this->inventory[idx]->use(target);
 }
