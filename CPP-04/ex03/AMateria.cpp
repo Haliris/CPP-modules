@@ -45,5 +45,5 @@ AMateria::AMateria(std::string const & type)
 
 void	AMateria::use(ICharacter& target)
 {
-	std::cout << "default AMAteria use() called targetting: " << target.name << std::endl;
+	std::cout << "default AMAteria use() called targetting: " << target.GetName() << std::endl;
 }

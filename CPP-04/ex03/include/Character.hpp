@@ -28,7 +28,7 @@ class Character : public ICharacter
 		Character(const Character& copyCharacter);
 		Character& operator=(const Character& copyCharacter); // delete previous materias before overwriting them
 		Character(std::string const & name);
-		std::string	const &	GetName();
+		std::string	const &	GetName() const;
 		void				equip(AMateria* m);
 		void				unequip(int idx);
 		void				use(int idx, ICharacter& target);

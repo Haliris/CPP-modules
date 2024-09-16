@@ -14,6 +14,7 @@ MateriaSource::~MateriaSource()
 MateriaSource::MateriaSource(const MateriaSource& copyMateriaSource)
 {
 	std::cout << "MateriaSource copy constructor called" << std::endl;
+	*this = copyMateriaSource;
 }
 
 MateriaSource	&MateriaSource::operator=(const MateriaSource& copyMateriaSource) 

@@ -28,6 +28,7 @@ Character::~Character()
 Character::Character(const Character& copyCharacter)
 {
 	std::cout << "Character copy constructor called" << std::endl;
+	*this = copyCharacter;
 }
 
 Character	&Character::operator=(const Character& copyCharacter)
@@ -61,7 +62,7 @@ Character::Character(std::string const & name)
 	materia_nb = 0;
 }
 
-std::string const &	Character::GetName()
+std::string const &	Character::GetName() const
 {
 	return this->name;
 }

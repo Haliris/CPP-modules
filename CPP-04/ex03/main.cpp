@@ -15,7 +15,7 @@ int	main(void)
 	cure_materia = new(std::nothrow) Cure();
 	bob = new(std::nothrow) Character("Bob");
 	if (ice_materia == NULL || cure_materia == NULL || materia_stash == NULL)
-		return (EXIT_FAILURE);
+		return (1);
 	delete bob;
 	delete ice_materia;
 	delete cure_materia;
