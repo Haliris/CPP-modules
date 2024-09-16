@@ -1,4 +1,5 @@
 *.out
+*.clangd
 .vscode/*
 *.swp
 *.o
