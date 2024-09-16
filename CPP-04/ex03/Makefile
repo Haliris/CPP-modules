@@ -38,7 +38,7 @@ $(NAME): $(OBJS)
 	$(CPP) $(CPP_FLAGS) $(INCLUDE) -o $(NAME) $(OBJS)
 
 clean:
-	rm -rf main.o Aanimal.o Cat.o Dog.o
+	rm -rf main.o AMateria.o Cure.o Ice.o Character.o MateriaSource.o
 
 fclean: clean
 	rm -rf $(NAME)

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
+#include <string>
 
 AMateria::AMateria()
 {
@@ -41,6 +42,11 @@ AMateria::AMateria(std::string const & type)
 {
 	std::cout << "AMateria type string constructor called" << std::endl;
 	this->type = type;
+}
+
+std::string	const & AMateria::getType() const
+{
+	return (this->type);
 }
 
 void	AMateria::use(ICharacter& target)
