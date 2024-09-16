@@ -19,7 +19,9 @@ CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g3
 SRC_FILE =	main.cpp \
 			AMateria.cpp \
 			Cure.cpp \
-			Ice.cpp
+			Ice.cpp \
+			Character.cpp \
+			MateriaSource.cpp
 
 INCLUDE = -I include/
 

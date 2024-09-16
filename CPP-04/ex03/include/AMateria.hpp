@@ -12,9 +12,12 @@
 
 #ifndef AMATERIA_HPP
 # define AMATERIA_HPP
+# include "ICharacter.hpp"
 # include <iostream>
 # include <new>
 # include <cstddef>
+
+class ICharacter;
 
 class AMateria
 {
@@ -40,8 +43,8 @@ class Ice : public AMateria
 		~Ice();
 		Ice(const Ice& copyIce);
 		Ice& operator=(const Ice& copyIce);
-		Ice*	clone();
-		void	use(ICharacter& target);
+		AMateria*	clone() const;
+		void		use(ICharacter& target);
 };
 
 class Cure : public AMateria
@@ -52,9 +55,8 @@ class Cure : public AMateria
 		~Cure();
 		Cure(const Cure& copyCure);
 		Cure& operator=(const Cure& copyCure);
-		Cure*	clone();
-		void	use(ICharacter& target);
+		AMateria*	clone() const;
+		void		use(ICharacter& target);
 };
-
 
 #endif

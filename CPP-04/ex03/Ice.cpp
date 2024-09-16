@@ -12,7 +12,7 @@
 
 #include "AMateria.hpp"
 
-Ice::Ice() : AMateria("ice") 
+Ice::Ice()
 {
 	std::cout << "Default Ice Materia constructor called" << std::endl;
 	type = "ice";
@@ -37,13 +37,13 @@ Ice	&Ice::operator=(const Ice& copyIce)
 	return *this;
 }
 
-Ice*	Ice::clone()
+AMateria*	Ice::clone() const
 {
 	std::cout << "Ice clone() called" << std::endl;
 	return new(std::nothrow) Ice();
 }
 
-Ice	Ice::use(ICharacter& target)
+void	Ice::use(ICharacter& target)
 {
-	std::cout << "* shoots an ice bolt at " << target.name << " *" << std::endl;
+	std::cout << "* shoots an ice bolt at " << target.GetName() << " *" << std::endl;
 }

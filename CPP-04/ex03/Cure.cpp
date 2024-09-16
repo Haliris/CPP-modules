@@ -12,7 +12,7 @@
 
 #include "AMateria.hpp"
 
-Cure::Cure() : AMateria("cure") 
+Cure::Cure()
 {
 	std::cout << "Default Cure Materia constructor called" << std::endl;
 	type = "cure";
@@ -37,13 +37,13 @@ Cure	&Cure::operator=(const Cure& copyCure)
 	return *this;
 }
 
-Cure*	Cure::clone()
+AMateria*	Cure::clone() const
 {
 	std::cout << "Cure clone() called" << std::endl;
 	return new(std::nothrow) Cure();
 }
 
-Cure	Cure::use(ICharacter& target)
+void	Cure::use(ICharacter& target)
 {
-	std::cout << "* heals" << target.name << "'s wounds *" << std::endl;
+	std::cout << "* heals" << target.GetName() << "'s wounds *" << std::endl;
 }
