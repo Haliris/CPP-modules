@@ -18,7 +18,7 @@ Ice::Ice() : AMateria("ice")
 	type = "ice";
 }
 
-Ice::~Ice() :
+Ice::~Ice() 
 {
 	std::cout << "Default Ice Materia destructor called" << std::endl;
 }
@@ -31,9 +31,9 @@ Ice::Ice(const Ice& copyIce) : AMateria("ice")
 
 Ice	&Ice::operator=(const Ice& copyIce)
 {
-	std::cout << "Ice assignment operator called" << std::endl
-	if (*this != copyIce)
-		this->type = copyIce.type
+	std::cout << "Ice assignment operator called" << std::endl;
+	if (this != &copyIce)
+		this->type = copyIce.type;
 	return *this;
 }
 

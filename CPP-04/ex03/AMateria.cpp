@@ -18,7 +18,7 @@ AMateria::AMateria()
 	type = "default_materia";
 }
 
-~AMateria::AMateria()
+AMateria::~AMateria()
 {
 	std::cout << "AMateria default destructor called" << std::endl;
 }
@@ -32,7 +32,7 @@ AMateria::AMateria(const AMateria& copyAMateria)
 AMateria	&AMateria::operator=(const AMateria& copyAMateria)
 {
 	std::cout << "AMateria assignment operator called" << std::endl;
-	if (this != copyAMateria)
+	if (this != &copyAMateria)
 		this->type = copyAMateria.type;
 	return *this;
 }

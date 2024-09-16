@@ -18,7 +18,7 @@ Cure::Cure() : AMateria("cure")
 	type = "cure";
 }
 
-Cure::~Cure() :
+Cure::~Cure() 
 {
 	std::cout << "Default Cure Materia destructor called" << std::endl;
 }
@@ -31,9 +31,9 @@ Cure::Cure(const Cure& copyCure) : AMateria("cure")
 
 Cure	&Cure::operator=(const Cure& copyCure)
 {
-	std::cout << "Cure assignment operator called" << std::endl
-	if (*this != copyCure)
-		this->type = copyCure.type
+	std::cout << "Cure assignment operator called" << std::endl;
+	if (this != &copyCure)
+		this->type = copyCure.type;
 	return *this;
 }
 

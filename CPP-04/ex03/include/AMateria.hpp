@@ -23,7 +23,7 @@ class AMateria
 		std::string	type;
 	public:
 		AMateria();
-		~AMateria();
+		virtual ~AMateria();
 		AMateria(const AMateria& copyAMateria);
 		AMateria& operator=(const AMateria& copyAMateria);
 		AMateria(std::string const & type);
@@ -44,7 +44,7 @@ class Ice : public AMateria
 		void	use(ICharacter& target);
 };
 
-Class Cure : public AMateria
+class Cure : public AMateria
 {
 	private:
 	public:

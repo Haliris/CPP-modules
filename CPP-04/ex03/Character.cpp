@@ -16,7 +16,7 @@ Character::Character()
 {
 	std::cout << "Character default constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
-		inventor[i] = NULL;
+		inventory[i] = NULL;
 	materia_nb = 0;
 }
 
@@ -33,9 +33,21 @@ Character::Character(const Character& copyCharacter)
 Character	&Character::operator=(const Character& copyCharacter)
 {
 	std::cout << "Character assignment operator called" << std::endl;
-	if (*this != copyCharacter)
+	if (this != &copyCharacter)
 	{
-		*this = copyCharacter; //refactor this shit, needs to be deep;
+		*this = copyCharacter;
+		for (int i = 0; i < copyCharacter.materia_nb; i++)
+		{
+			if (this->inventory[i] != NULL)
+			{
+				delete this->inventory[i];
+				this->inventory[i] = NULL;
+			}
+			this->inventory[i] = copyCharacter.inventory[i]->clone();
+			if (this->inventory[i] == NULL)
+			   std::cout << "Could not allocate memory to copy new materia!" << std::endl;
+			this->name = copyCharacter.name;
+		}
 	}
 	return *this;
 }
@@ -45,7 +57,7 @@ Character::Character(std::string const & name)
 	std::cout << "Character name constructor called" << std::endl;
 	this->name = name;
 	for (int i = 0; i < 4; i++)
-		inventor[i] = NULL;
+		inventory[i] = NULL;
 	materia_nb = 0;
 }
 
@@ -73,7 +85,7 @@ void	Character::equip(AMateria* m)
 void	Character::unequip(int idx)
 {
 	if (idx > 3 || idx < 0)
-		std::cout << "Unequip index out of array bounds!" << std::endl
+		std::cout << "Unequip index out of array bounds!" << std::endl;
 	else if (inventory[idx] == NULL)
 		std::cout << "No materia to unequip at this index!" << std::endl;
 	else
@@ -87,9 +99,9 @@ void	Character::unequip(int idx)
 void	Character::use(int idx, ICharacter &target)
 {
 	if (idx > 3 || idx < 0)
-		std::cout << "Unequip index out of array bounds!" << std::endl
+		std::cout << "Unequip index out of array bounds!" << std::endl;
 	else if (inventory[idx] == NULL)
 		std::cout << "No materia to use at this index!" << std::endl;
 	else
-		inventory[idx]->use(target);
+		this->inventory[idx]->AMateria::use(target);
 }
