@@ -71,6 +71,11 @@ std::string const &	Character::GetName() const
 
 void	Character::equip(AMateria* m)
 {
+	if (!m)
+	{
+		std::cout << "NULL passed to equip()!" << std::endl;
+		return ;
+	}
 	if (materia_nb < 4 && inventory[materia_nb] == NULL)
 	{
 		this->inventory[materia_nb] = m;
