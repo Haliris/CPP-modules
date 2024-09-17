@@ -38,7 +38,7 @@ WrongAnimal	&WrongAnimal::operator=(const WrongAnimal& copyAnimal)
 
 void	WrongAnimal::makeSound() const
 {
-	std::cout << "default wrong animal sound" << std::endl;
+	std::cout << std::endl;
 }
 
 const std::string	WrongAnimal::getType() const

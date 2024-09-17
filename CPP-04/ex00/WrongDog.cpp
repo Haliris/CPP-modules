@@ -15,7 +15,7 @@
 WrongDog::WrongDog() : WrongAnimal()
 {
 	std::cout << "Default WrongDog constructor called" << std::endl;
-	type = "Cat";
+	type = "WrongDog";
 }
 
 WrongDog::~WrongDog()
