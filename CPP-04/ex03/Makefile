@@ -21,7 +21,8 @@ SRC_FILE =	main.cpp \
 			Cure.cpp \
 			Ice.cpp \
 			Character.cpp \
-			MateriaSource.cpp
+			MateriaSource.cpp \
+			Stash.cpp
 
 INCLUDE = -I include/
 

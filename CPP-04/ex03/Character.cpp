@@ -25,7 +25,7 @@ Character::~Character()
 	void*	temp_addr[4];
 	int		addr_idx = 0;
 	bool	already_freed;
- 
+
 	for (int i = 0; i < 4; i++)
 		temp_addr[i] = NULL;
 	std::cout << "Character destructor called" << std::endl;
@@ -33,7 +33,7 @@ Character::~Character()
 	{
 		already_freed = false;
 		if (inventory[i])
-		{	
+		{
 			for (int idx = 0; idx < 4; idx++)
 			{
 				if (inventory[i] == temp_addr[idx])
@@ -120,6 +120,7 @@ void	Character::unequip(int idx)
 	else
 	{
 		std::cout << "Unequipped Materia at idx: " << idx << std::endl;
+		this->unequipped_stash->addStash(inventory[idx]);
 		inventory[idx] = NULL;
 		materia_nb--;
 	}
@@ -136,4 +137,10 @@ void	Character::use(int idx, ICharacter &target)
 		std::cout << GetName() + " ";
 		this->inventory[idx]->use(target);
 	}
+}
+
+void	Character::assign_stash(Stash* stash)
+{
+	std::cout << "Assigning stash to " << name << std::endl;
+	this->unequipped_stash = stash;
 }

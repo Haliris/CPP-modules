@@ -15,6 +15,7 @@
 # include "ICharacter.hpp"
 # include <iostream>
 # include "AMateria.hpp"
+# include "Stash.hpp"
 
 class Character : public ICharacter
 {
@@ -22,9 +23,10 @@ class Character : public ICharacter
 		AMateria*	inventory[4];
 		std::string	name;
 		int			materia_nb;
+		Stash*		unequipped_stash;
 	public:
-		Character(); 
-		~Character(); 
+		Character();
+		~Character();
 		Character(const Character& copyCharacter);
 		Character& operator=(const Character& copyCharacter);
 		Character(std::string const & name);
@@ -32,6 +34,7 @@ class Character : public ICharacter
 		void				equip(AMateria* m);
 		void				unequip(int idx);
 		void				use(int idx, ICharacter& target);
+		void				assign_stash(Stash* stash);
 };
 
 #endif

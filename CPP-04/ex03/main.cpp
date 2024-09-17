@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:31:56 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/17 11:32:03 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:16:39 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,25 @@
 #include "IMateriaSource.hpp"
 #include "ICharacter.hpp"
 #include "Character.hpp"
+#include "Stash.hpp"
 
 int	main(void)
 {
 	IMateriaSource* src = new MateriaSource();
+	Stash		garbage_stash;
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
 	ICharacter* me = new Character("me");
+	dynamic_cast <Character*>(me)->assign_stash(&garbage_stash);
 	ICharacter* you = new Character("you");
+	dynamic_cast <Character*>(you)->assign_stash(&garbage_stash);
 	ICharacter* hoarder = new Character("hoarder");
-	AMateria* tmp;
+	dynamic_cast <Character*>(hoarder)->assign_stash(&garbage_stash);
+	AMateria*	tmp;
 
 	tmp = src->createMateria("ice");
 	me->equip(tmp);
 	tmp = src->createMateria("cure");
-	me->equip(tmp);
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
 	me->use(1, *bob);
@@ -46,6 +50,7 @@ int	main(void)
 	you->equip(tmp);
 	you->use(1, *bob);
 	ICharacter* student = you;
+	dynamic_cast <Character*>(student)->assign_stash(&garbage_stash);
 	you->unequip(0);
 
 	std::cout << "-------------" << std::endl;
@@ -57,8 +62,6 @@ int	main(void)
 	student->use(1, *bob);
 	std::cout << "-------------" << std::endl;
 
-
-	std::cout << "-------------" << std::endl;
 	std::cout << "hoarder test" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
