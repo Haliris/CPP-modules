@@ -25,20 +25,20 @@ SRC_FILE =	main.cpp \
 
 INCLUDE = -I include/
 
-OBJ_FILE = $(SRC_FILE:.c=.o)
+OBJ_FILE = $(SRC_FILE:.cpp=.o)
 
 OBJS = $(OBJ_FILE)
 
 all: $(NAME)
 
-$(OBJS):
-	$(CPP) $(CPP_FLAGS) $(INCLUDE) $(SRC_FILE) -c $< -o $@
+%.o : %.cpp
+	$(CPP) $(CPP_FLAGS) $(INCLUDE) -c $< -o $@
 
 $(NAME): $(OBJS)
 	$(CPP) $(CPP_FLAGS) $(INCLUDE) -o $(NAME) $(OBJS)
 
 clean:
-	rm -rf main.o AMateria.o Cure.o Ice.o Character.o MateriaSource.o
+	rm -rf $(OBJS)
 
 fclean: clean
 	rm -rf $(NAME)

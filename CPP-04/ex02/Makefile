@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/18 14:44:08 by jteissie          #+#    #+#              #
-#    Updated: 2024/09/17 12:59:17 by jteissie         ###   ########.fr        #
+#    Updated: 2024/09/17 13:00:00 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,20 +25,20 @@ SRC_FILE =	main.cpp \
 
 INCLUDE = -I include/
 
-OBJ_FILE = $(SRC_FILE:.c=.o)
+OBJ_FILE = $(SRC_FILE:.cpp=.o)
 
 OBJS = $(OBJ_FILE)
 
 all: $(NAME)
 
-$(OBJS):
-	$(CPP) $(CPP_FLAGS) $(INCLUDE) $(SRC_FILE) -c $< -o $@
+%.o : %.cpp
+	$(CPP) $(CPP_FLAGS) $(INCLUDE) -c $< -o $@
 
 $(NAME): $(OBJS)
 	$(CPP) $(CPP_FLAGS) $(INCLUDE) -o $(NAME) $(OBJS)
 
 clean:
-	rm -rf main.o Aanimal.o Cat.o Dog.o
+	rm -rf $(OBJS)
 
 fclean: clean
 	rm -rf $(NAME)
