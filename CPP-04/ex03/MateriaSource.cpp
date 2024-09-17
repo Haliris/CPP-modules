@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   MateriaSource.cpp                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/17 11:31:58 by jteissie          #+#    #+#             */
+/*   Updated: 2024/09/17 11:32:03 by jteissie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "AMateria.hpp"
 #include "IMateriaSource.hpp"
 
@@ -17,7 +29,7 @@ MateriaSource::MateriaSource(const MateriaSource& copyMateriaSource)
 	*this = copyMateriaSource;
 }
 
-MateriaSource	&MateriaSource::operator=(const MateriaSource& copyMateriaSource) 
+MateriaSource	&MateriaSource::operator=(const MateriaSource& copyMateriaSource)
 {
 	std::cout << "MateriaSource assignment operator called" << std::endl;
 	if (this != &copyMateriaSource)
@@ -47,7 +59,7 @@ void	MateriaSource::learnMateria(AMateria* m)
 
 AMateria*	MateriaSource::createMateria(std::string const & type)
 {
-	for (int i=0; i < materia_nb; i++)	
+	for (int i=0; i < materia_nb; i++)
 	{
 		if (materias[materia_nb]->getType() == type)
 			return materias[materia_nb]->clone();

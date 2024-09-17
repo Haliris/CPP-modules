@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/17 11:31:56 by jteissie          #+#    #+#             */
+/*   Updated: 2024/09/17 11:32:03 by jteissie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "AMateria.hpp"
 #include "IMateriaSource.hpp"
 #include "ICharacter.hpp"
@@ -6,7 +18,7 @@
 int	main(void)
 {
 	MateriaSource*	materia_stash;
-	Ice*			ice_materia;	
+	Ice*			ice_materia;
 	Cure*			cure_materia;
 	Character*		bob;
 	Character*		dummy;

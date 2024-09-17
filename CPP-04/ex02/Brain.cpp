@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Brain.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/17 11:31:36 by jteissie          #+#    #+#             */
+/*   Updated: 2024/09/17 11:32:03 by jteissie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Brain.hpp"
 
 Brain::Brain()
@@ -31,7 +43,7 @@ const std::string	Brain::getIdea(int idx)
 		std::cout << "Index out of bound of ideas array!" << std::endl;
 		return "buffer overflow ideas";
 	}
-	else	
+	else
 		return ideas[idx];
 }
 
