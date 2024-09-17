@@ -22,28 +22,34 @@ Character::Character()
 
 Character::~Character()
 {
-	void*	temp_addr[4];
-	int		addr_idx = 0;
-	bool	already_freed;
+	AMateria*	temp_addr[4];
+	bool		already_del;
+	int			temp_addr_idx;
 
+	temp_addr_idx = 0;
 	for (int i = 0; i < 4; i++)
 		temp_addr[i] = NULL;
 	std::cout << "Character destructor called" << std::endl;
-	for (int i = 0; i < materia_nb; i++)
+	for (int i = 0; i < 4; i++)
 	{
-		already_freed = false;
+		already_del = false;
 		if (inventory[i])
 		{
-			for (int idx = 0; idx < 4; idx++)
+			if (this->unequipped_stash->inStash(inventory[i]))
+				continue;
+			else
 			{
-				if (inventory[i] == temp_addr[idx])
-					already_freed = true;
+				for (int j = 0; j < 4; j++)
+				{
+					if (temp_addr[j] == inventory[i])
+						already_del = true;
+				}
+				if (already_del == false)
+				{
+					temp_addr[temp_addr_idx++] = inventory[i];
+	  				delete inventory[i];
+				}
 			}
-			if (already_freed == true)
-				continue ;
-			temp_addr[addr_idx++] = inventory[i];
-			delete inventory[i];
-			inventory[i] = NULL;
 		}
 	}
 }

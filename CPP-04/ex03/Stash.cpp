@@ -52,7 +52,27 @@ void	Stash::addStash(AMateria* m)
 		std::cout << "Stash full!" << std::endl;
 		return ;
 	}
+	for (int i = 0; i < stash_index; i++)
+	{
+		if (this->stash[i] == m)
+			return ;
+	}
 	std::cout << "Adding materia: " << m->getType() << " to stash" << std::endl;
 	this->stash[stash_index] = m;
 	stash_index++;
+}
+
+int	Stash::getIndex()
+{
+	return stash_index;
+}
+
+bool	Stash::inStash(AMateria* m)
+{
+	for (int i = 0; i < stash_index; i++)
+	{
+		if (this->stash[i] == m)
+			return true;
+	}
+	return false;
 }

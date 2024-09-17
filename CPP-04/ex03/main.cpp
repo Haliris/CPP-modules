@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:31:56 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/17 15:23:29 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:16:39 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(void)
 
 	tmp = src->createMateria("ice");
 	me->equip(tmp);
+	you->equip(tmp);
 	tmp = src->createMateria("cure");
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
@@ -41,8 +42,6 @@ int	main(void)
 	me->unequip(-2);
 	me->unequip(4);
 	me->equip(NULL);
-	std::cout << "-------------" << std::endl;
-	std::cout << "you test" << std::endl;
 	you->equip(tmp);
 	you->use(0, *bob);
 	tmp = src->createMateria("ice");

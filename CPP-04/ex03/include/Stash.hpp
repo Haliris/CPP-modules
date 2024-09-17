@@ -24,5 +24,7 @@ class Stash
 		Stash &operator=(const Stash &);
 		~Stash();
 		void	addStash(AMateria* m);
+		int		getIndex();
+		bool	inStash(AMateria* m);
 };
 #endif
