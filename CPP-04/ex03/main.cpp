@@ -6,7 +6,7 @@
 /*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:31:56 by jteissie          #+#    #+#             */
-/*   Updated: 2024/09/17 15:16:39 by jteissie         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:23:29 by jteissie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "IMateriaSource.hpp"
 #include "ICharacter.hpp"
 #include "Character.hpp"
-#include "Stash.hpp"
 
 int	main(void)
 {
