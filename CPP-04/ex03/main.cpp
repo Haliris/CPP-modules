@@ -61,7 +61,13 @@ int	main(void)
 	std::cout << "-------------" << std::endl;
 	std::cout << "hoarder test" << std::endl;
 	for (int i = 0; i < 4; i++)
+	{
+		if (i % 2 == 0)
+			tmp = src->createMateria("ice");
+		else
+			tmp = src->createMateria("cure");
 		hoarder->equip(tmp);
+	}
 	hoarder->equip(tmp);
 	hoarder->equip(tmp);
 	hoarder->unequip(1);
@@ -72,7 +78,7 @@ int	main(void)
 	src->learnMateria(NULL);
 
 	delete you;
-//	delete hoarder;
+	delete hoarder;
 	delete bob;
 	delete me;
 	delete src;

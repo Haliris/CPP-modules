@@ -22,9 +22,30 @@ Character::Character()
 
 Character::~Character()
 {
+	void*	temp_addr[4];
+	int		addr_idx = 0;
+	bool	already_freed;
+ 
+	for (int i = 0; i < 4; i++)
+		temp_addr[i] = NULL;
 	std::cout << "Character destructor called" << std::endl;
 	for (int i = 0; i < materia_nb; i++)
-		delete inventory[i];
+	{
+		already_freed = false;
+		if (inventory[i])
+		{	
+			for (int idx = 0; idx < 4; idx++)
+			{
+				if (inventory[i] == temp_addr[idx])
+					already_freed = true;
+			}
+			if (already_freed == true)
+				continue ;
+			temp_addr[addr_idx++] = inventory[i];
+			delete inventory[i];
+			inventory[i] = NULL;
+		}
+	}
 }
 
 Character::Character(const Character& copyCharacter)
