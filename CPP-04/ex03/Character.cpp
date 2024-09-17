@@ -71,15 +71,19 @@ std::string const &	Character::GetName() const
 
 void	Character::equip(AMateria* m)
 {
+	int	index = 0;
+
 	if (!m)
 	{
 		std::cout << "NULL passed to equip()!" << std::endl;
 		return ;
 	}
-	if (materia_nb < 4 && inventory[materia_nb] == NULL)
+	if (materia_nb < 4)
 	{
-		this->inventory[materia_nb] = m;
-		std::cout << "Equipped materia " << m->getType() << " at index " << materia_nb << std::endl;
+		while (this->inventory[index] != NULL)
+			index++;
+		this->inventory[index] = m;
+		std::cout << "Equipped materia " << m->getType() << " at index " << index << std::endl;
 		materia_nb++;
 	}
 	else
@@ -91,7 +95,7 @@ void	Character::unequip(int idx)
 	if (idx > 3 || idx < 0)
 		std::cout << "Unequip index out of array bounds!" << std::endl;
 	else if (inventory[idx] == NULL)
-		std::cout << "No materia to unequip at this index!" << std::endl;
+		std::cout << "No materia to unequip at index: " << idx << std::endl;
 	else
 	{
 		std::cout << "Unequipped Materia at idx: " << idx << std::endl;
@@ -105,7 +109,10 @@ void	Character::use(int idx, ICharacter &target)
 	if (idx > 3 || idx < 0)
 		std::cout << "Unequip index out of array bounds!" << std::endl;
 	else if (inventory[idx] == NULL)
-		std::cout << "No materia to use at this index!" << std::endl;
+		std::cout << "No materia to use at index: " << idx << std::endl;
 	else
+	{
+		std::cout << GetName() + " ";
 		this->inventory[idx]->use(target);
+	}
 }

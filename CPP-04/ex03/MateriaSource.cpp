@@ -52,6 +52,11 @@ MateriaSource	&MateriaSource::operator=(const MateriaSource& copyMateriaSource)
 
 void	MateriaSource::learnMateria(AMateria* m)
 {
+	if (!m)
+	{
+		std::cout << "Null passed to learnMateria()!" << std::endl;
+		return ;
+	}
 	if (materia_nb > 3)
 		std::cout << "MateriaSource full of materias, cannot learn more!" << std::endl;
 	else
