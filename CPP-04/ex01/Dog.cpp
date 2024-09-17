@@ -37,7 +37,9 @@ Dog	&Dog::operator=(const Dog& copyDog)
 	if (this != &copyDog)
 	{
 		this->type = copyDog.type;
-		this->brain = new Brain(*copyDog.brain);
+		this->brain = new(std::nothrow) Brain(*copyDog.brain);
+		if (this->brain == NULL)
+			std::cout << "Could not create new brain for Dog assignment operator, handle exit here" << std::endl;
 	}
 	return *this;
 }

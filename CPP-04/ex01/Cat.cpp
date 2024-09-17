@@ -39,7 +39,9 @@ Cat	&Cat::operator=(const Cat& copyCat)
 	if (this != &copyCat)
 	{
 		this->type = copyCat.type;
-		this->brain = new Brain(*copyCat.brain);
+		this->brain = new(std::nothrow) Brain(*copyCat.brain);
+		if (this->brain == NULL)
+			std::cout << "Could not create new brain for Cat copy constructor, handle exit here" << std::endl;
 	}
 	return *this;
 }

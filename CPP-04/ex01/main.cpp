@@ -98,6 +98,19 @@ int	main()
 	idea = copyCat->getIdea(0);
 	std::cout << idea << std::endl;
 	std::cout << "------------" << std::endl;
+	
+	std::cout << "Single copy test" << std::endl;
+	std::cout << std::endl;
+
+	Dog copy_test;
+	copy_test.addIdea("Copy brain test", 0);
+	{
+		Dog temp = copy_test;
+		temp.getIdea(0);
+	}
+	copy_test.getIdea(0);
+	std::cout << "----------------" << std::endl;
+	std::cout << std::endl;
 
 	for (int j = 0; j < 10; j++)
 		delete horde[j];
