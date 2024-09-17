@@ -21,6 +21,8 @@ MateriaSource::MateriaSource()
 MateriaSource::~MateriaSource()
 {
 	std::cout << "MateriaSource default destructor called" << std::endl;
+	for (int i = 0; i < materia_nb; i++)
+		delete materias[i];
 }
 
 MateriaSource::MateriaSource(const MateriaSource& copyMateriaSource)
@@ -61,8 +63,8 @@ AMateria*	MateriaSource::createMateria(std::string const & type)
 {
 	for (int i=0; i < materia_nb; i++)
 	{
-		if (materias[materia_nb]->getType() == type)
-			return materias[materia_nb]->clone();
+		if (materias[i]->getType() == type)
+			return materias[i]->clone();
 	}
 	std::cout << "Unknown materia type in createMateria()" << std::endl;
 	return 0;

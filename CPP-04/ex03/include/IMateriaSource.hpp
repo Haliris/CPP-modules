@@ -22,7 +22,7 @@ class IMateriaSource
 		virtual AMateria*	createMateria(std::string const & type) = 0;
 };
 
-class MateriaSource : IMateriaSource
+class MateriaSource : public IMateriaSource
 {
 	private:
 		AMateria*	materias[4];

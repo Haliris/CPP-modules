@@ -23,6 +23,8 @@ Character::Character()
 Character::~Character()
 {
 	std::cout << "Character destructor called" << std::endl;
+	for (int i = 0; i < materia_nb; i++)
+		delete inventory[i];
 }
 
 Character::Character(const Character& copyCharacter)
