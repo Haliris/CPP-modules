@@ -6,11 +6,11 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/18 14:44:08 by jteissie          #+#    #+#              #
-#    Updated: 2024/09/14 17:26:05 by marvin           ###   ########.fr        #
+#    Updated: 2024/09/17 12:59:17 by jteissie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = poly_test
+NAME = abstract_test
 
 CPP = c++
 

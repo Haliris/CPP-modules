@@ -16,8 +16,8 @@
 #include "Brain.hpp"
 
 int	main()
-{
-	// Aanimal		Aanimal_obj;
+{	
+//	Aanimal		Aanimal_obj;
 	Aanimal*		Aanimal_ptr;
 	Aanimal*		horde[10];
 	Dog*		copyDog;
