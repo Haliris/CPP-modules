@@ -97,20 +97,25 @@ int	main()
 	std::cout << idea << std::endl;
 	idea = copyCat->getIdea(0);
 	std::cout << idea << std::endl;
+
+	std::cout << std::endl;
 	std::cout << "------------" << std::endl;
-	
 	std::cout << "Single copy test" << std::endl;
 	std::cout << std::endl;
 
 	Dog copy_test;
-	idea = copy_test.addIdea("Copy brain test", 0);
-	std::cout << idea << std::endl;
+	copy_test.addIdea("Copy brain test", 0);
+	idea = copy_test.getIdea(0);
+	std::cout << "copy_test idea: "<< idea << std::endl;
 	{
 		Dog temp = copy_test;
 		idea = temp.getIdea(0);
-		std::cout << idea << std::endl;
+		std::cout << "temp idea: " << idea << std::endl;
 	}
-	copy_test.getIdea(0);
+	idea = copy_test.getIdea(0);
+	std::cout << "copy_test idea: " << idea << std::endl;
+
+	std::cout << std::endl;
 	std::cout << "----------------" << std::endl;
 	std::cout << std::endl;
 
