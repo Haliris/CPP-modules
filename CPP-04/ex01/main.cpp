@@ -103,10 +103,12 @@ int	main()
 	std::cout << std::endl;
 
 	Dog copy_test;
-	copy_test.addIdea("Copy brain test", 0);
+	idea = copy_test.addIdea("Copy brain test", 0);
+	std::cout << idea << std::endl;
 	{
 		Dog temp = copy_test;
-		temp.getIdea(0);
+		idea = temp.getIdea(0);
+		std::cout << idea << std::endl;
 	}
 	copy_test.getIdea(0);
 	std::cout << "----------------" << std::endl;
