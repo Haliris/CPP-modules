@@ -15,13 +15,15 @@ class Form
    		~Form();
    		Form(const Form& copyForm);
    		Form& operator=(const Form& copyForm);
+		Form(int grade, std::string name);
 		class GradeTooHighException;
 		class GradeTooLowException;
+		class FormAlreadySignedException;
 		std::string getName() const;
 		bool		getStatus() const;
 		int			getSignedGrade() const;
 		int			getExecGrade() const;
-		void		BeSigned(Bureaucrat bureaucrat);
+		void		BeSigned(const Bureaucrat& bureaucrat);
 };
 
 class Form::GradeTooHighException : public std::exception
@@ -31,6 +33,12 @@ class Form::GradeTooHighException : public std::exception
 };
 
 class Form::GradeTooLowException : public std::exception
+{
+	public:
+		const char*	what() const throw();
+};
+
+class Form::FormAlreadySignedException : public std::exception
 {
 	public:
 		const char*	what() const throw();

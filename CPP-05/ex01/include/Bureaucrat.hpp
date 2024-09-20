@@ -31,7 +31,7 @@ class Bureaucrat
 		Bureaucrat(int grade, std::string name);
 		std::string	getName() const;
 		int			getGrade() const;
-		void		signForm(int auth, std::string reason, std::string form_name);
+		void		signForm(int auth, std::string reason, std::string form_name) const;
 		class		GradeTooHighException;
 		class		GradeTooLowException;
 };

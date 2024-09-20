@@ -74,12 +74,13 @@ int	Bureaucrat::getGrade() const
 	return grade;
 }
 
-void	Bureaucrat::signForm(int auth, std::string reason, std::string form_name)
+void	Bureaucrat::signForm(int auth, std::string reason, std::string form_name) const
 {
+	std::cout << "signForm called by " << this->getName() << std::endl;
 	if (auth == true)
-		std::cout << name << " bureaucrat signed form " << form_name << std::endl;
+		std::cout << this->getName() << " bureaucrat signed form " << form_name << std::endl;
 	else
-		std::cout << name << " bureaucrat could not sign form " << form_name << " reason: " << reason << std::endl;
+		std::cout << this->getName() << " bureaucrat could not sign form " << form_name << " reason: " << reason << std::endl;
 
 }
 
