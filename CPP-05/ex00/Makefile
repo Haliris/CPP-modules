@@ -10,19 +10,14 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = temu_final_fantasy
+NAME = bureaucrat_test
 
 CPP = c++
 
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g3
 
 SRC_FILE =	main.cpp \
-			AMateria.cpp \
-			Cure.cpp \
-			Ice.cpp \
-			Character.cpp \
-			MateriaSource.cpp \
-			Stash.cpp
+			Bureaucrat.cpp
 
 INCLUDE = -I include/
 
