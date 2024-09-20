@@ -28,11 +28,21 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& c
 
 void	RobotomyRequestForm::execute(Bureaucrat const & executor, std::string target)
 {
+	int	roll;
+
 	if (executor.getGrade() < this->getExecGrade())	
 	{
 		throw AForm::GradeTooLowException();
 	}
 	else
-		std::cout << target << " has been pardonned by Zaphod Beelblebrox." << std::endl;
+	{
+		std::cout << "* Drilling noise *" << std::endl;
+		roll = rand() % 100;
+		if (roll >= 50)
+			std::cout << this->getTarget() << " Has been robotomized succesfully." << std::endl;
+		else
+			std::cout << "Robotomy on " << this->getTarget() << " has failed." << std::endl;
+	}
+		
 }
  
