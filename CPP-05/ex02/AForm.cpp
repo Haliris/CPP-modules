@@ -16,12 +16,12 @@ const char*	AForm::AFormAlreadySignedException::what() const throw()
 	return "[FORM][ERROR]: Already signed";
 }
 
-AForm::AForm() : name("form"), required_sign_grade(100), required_exec_grade(42)
+AForm::AForm() : name("form"), target("default"), required_sign_grade(100), required_exec_grade(42)
 {
 	signed_status = false;
 }
 
-AForm::AForm(int signgrade, int execgrade, std::string name) : name(name), required_sign_grade(signgrade), required_exec_grade(execgrade)
+AForm::AForm(int signgrade, int execgrade, std::string name, std::string target) : name(name), target(target), required_sign_grade(signgrade), required_exec_grade(execgrade)
 {
 	signed_status = false;
 }

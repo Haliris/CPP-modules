@@ -7,6 +7,7 @@ class AForm
 {
 	private:
 		const std::string	name;
+		const std::string	target;
 		bool				signed_status;
 		const int			required_sign_grade;
 		const int			required_exec_grade;
@@ -16,15 +17,16 @@ class AForm
    		virtual ~AForm();
    		AForm(const AForm& copyForm);
    		AForm& operator=(const AForm& copyForm);
-		AForm(int signgrade, int execgrade, std::string name);
+		AForm(int signgrade, int execgrade, std::string name, std::string target);
 		class GradeTooHighException;
 		class GradeTooLowException;
 		class AFormAlreadySignedException;
-		virtual std::string getName() const = 0;
-		virtual bool		getStatus() const = 0;
-		virtual int			getSignedGrade() const = 0;
-		virtual int			getExecGrade() const = 0;
-		virtual void		BeSigned(const Bureaucrat& bureaucrat) = 0;
+		std::string getName();
+		bool		getStatus();
+		int			getSignedGrade();
+		int			getExecGrade();
+		void		BeSigned(const Bureaucrat& bureaucrat);
+		virtual void		execute(Bureaucrat const & executor) = 0;
 
 };
 
