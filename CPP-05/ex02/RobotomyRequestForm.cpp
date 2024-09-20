@@ -26,7 +26,7 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& c
     return *this;
 }
 
-void	RobotomyRequestForm::execute(Bureaucrat const & executor, std::string target)
+void	RobotomyRequestForm::execute(Bureaucrat const & executor)
 {
 	int	roll;
 

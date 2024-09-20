@@ -12,7 +12,7 @@ class RobotomyRequestForm : public AForm
 		RobotomyRequestForm(const RobotomyRequestForm& copyRobotomyRequestForm);
 		RobotomyRequestForm& operator=(const RobotomyRequestForm& copyRobotomyRequestForm);
 		RobotomyRequestForm(std::string target);
-		void		execute(Bureaucrat const & executor, std::string target);
+		void	execute(Bureaucrat const & executor);
 };
 
 #endif
