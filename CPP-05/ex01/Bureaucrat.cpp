@@ -80,7 +80,7 @@ void	Bureaucrat::signForm(const Form form, int auth, std::string reason)
 	if (auth == true)
 		std::cout << name << " bureaucrat signed form " << form.getName() << std::endl;
 	else
-		std::cout << name << " bureaucrat could not sign form " << form.getName() << " because " << reason << std::endl;
+		std::cout << name << " bureaucrat could not sign form " << form.getName() << " reason: " << reason << std::endl;
 
 }
 
