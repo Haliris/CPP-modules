@@ -14,9 +14,16 @@ class ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm(std::string target);
 		void	execute(Bureaucrat const & executor);
 		class	NoSrcFileException;
+		class	NoOutFileException;
 };
 
 class ShrubberyCreationForm::NoSrcFileException : public std::exception
+{
+	public:
+		const char*	what() const throw();
+};
+
+class ShrubberyCreationForm::NoOutFileException : public std::exception
 {
 	public:
 		const char*	what() const throw();

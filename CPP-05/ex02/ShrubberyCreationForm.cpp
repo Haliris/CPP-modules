@@ -6,6 +6,11 @@ const char*	ShrubberyCreationForm::NoSrcFileException::what() const throw()
 	return "Could not open shrubbery source file!";
 }
 
+const char*	ShrubberyCreationForm::NoOutFileException::what() const throw()
+{
+	return "Could not open shrubbery out file!";
+}
+
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm(145, 137, "Shrubbery Creation Form", "default")
 {
 }
@@ -36,6 +41,8 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor)
 {
 	std::ifstream	ShrubberySrc;
 	std::ofstream	ShrubberyFile;
+	std::string		file_name;
+	std::string		line;
 
 	if (executor.getGrade() > this->getExecGrade())
 		throw AForm::GradeTooLowException();
@@ -44,6 +51,16 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor)
 		ShrubberySrc.open("tree_src.txt");	
 		if (!ShrubberySrc)
 			throw ShrubberyCreationForm::NoSrcFileException();
-		
+		file_name = this->getTarget() + "_shrubbery";	
+		ShrubberyFile.open(file_name);
+		if (!ShrubberyFile)
+		{
+			ShrubberySrc.close();
+			throw ShrubberyCreationForm::NoOutFileException();
+		}
+		while (std::getline(ShrubberySrc, line))
+			ShrubberyFile << line;
 	}
+	ShrubberySrc.close();
+	ShrubberyFile.close();
 }
