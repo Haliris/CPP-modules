@@ -48,7 +48,7 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor)
 		throw AForm::GradeTooLowException();
 	else
 	{
-		ShrubberySrc.open("tree_src.txt");	
+		ShrubberySrc.open("ShrubberySrc.txt");	
 		if (!ShrubberySrc)
 			throw ShrubberyCreationForm::NoSrcFileException();
 		file_name = this->getTarget() + "_shrubbery";	
