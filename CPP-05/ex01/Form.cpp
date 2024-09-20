@@ -1,10 +1,14 @@
 
 #include "Form.hpp"
 
-
 const char*	Form::GradeTooLowException::what() const throw()
 {
+	return "[GRADE][ERROR]: Grade too low.";
+}
 
+const char*	Form::GradeTooHighException::what() const throw()
+{
+	return "[GRADE][ERROR]: Grade too high.";
 }
 
 Form::Form() : name("form"), required_sign_grade(100), required_exec_grade(42)
@@ -50,17 +54,17 @@ int	Form::getExecGrade() const
 	return this->required_exec_grade;
 }
 
-void	Form::BeSigned(const Bureaucrat bureaucrat)
+void	Form::BeSigned(Bureaucrat bureaucrat)
 {
 	if (bureaucrat.getGrade() < required_sign_grade)
 	{
-		signed_status = true;
-		bureaucrat.signForm(this, true, "");
+		this->signed_status = true;
+		bureaucrat.signForm(true, "", this->getName());
 	}
 	else
 	{
-		bureaucrat.signForm(this, false, "Grade too low");
-		throw Form::GradeTooLowException()
+		bureaucrat.signForm(false, "Grade too low", this->getName());
+		throw Form::GradeTooLowException();
 	}
 }
 

@@ -21,16 +21,16 @@ class Form
 		bool		getStatus() const;
 		int			getSignedGrade() const;
 		int			getExecGrade() const;
-		void		BeSigned(const Bureaucrat bureaucrat);
+		void		BeSigned(Bureaucrat bureaucrat);
 };
 
-class GradeTooHighException : public std::exception
+class Form::GradeTooHighException : public std::exception
 {
 	public:
 		const char*	what() const throw();
 };
 
-class GradeTooLowException : public std::exception
+class Form::GradeTooLowException : public std::exception
 {
 	public:
 		const char*	what() const throw();

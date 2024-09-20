@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include <string>
 
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
@@ -75,12 +74,12 @@ int	Bureaucrat::getGrade() const
 	return grade;
 }
 
-void	Bureaucrat::signForm(const Form form, int auth, std::string reason)
+void	Bureaucrat::signForm(int auth, std::string reason, std::string form_name)
 {
 	if (auth == true)
-		std::cout << name << " bureaucrat signed form " << form.getName() << std::endl;
+		std::cout << name << " bureaucrat signed form " << form_name << std::endl;
 	else
-		std::cout << name << " bureaucrat could not sign form " << form.getName() << " reason: " << reason << std::endl;
+		std::cout << name << " bureaucrat could not sign form " << form_name << " reason: " << reason << std::endl;
 
 }
 
