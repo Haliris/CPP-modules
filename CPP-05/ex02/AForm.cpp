@@ -11,9 +11,14 @@ const char*	AForm::GradeTooHighException::what() const throw()
 	return "[GRADE][ERROR]: Grade too high.";
 }
 
-const char*	AForm::AFormAlreadySignedException::what() const throw()
+const char*	AForm::AlreadySignedException::what() const throw()
 {
-	return "[FORM][ERROR]: Already signed";
+	return "[FORM][ERROR]: Already signed.";
+}
+
+const char*	AForm::NotSignedException::what() const throw()
+{
+	return "[FORM][ERROR]: Form is not signed.";
 }
 
 AForm::AForm() : name("form"), target("default"), required_sign_grade(100), required_exec_grade(42)
@@ -74,7 +79,7 @@ void	AForm::BeSigned(const Bureaucrat& bureaucrat)
 	if (signed_status == true)
 	{
 		bureaucrat.signForm(false, "AForm already signed", this->getName());
-		throw AForm::AFormAlreadySignedException();
+		throw AForm::AlreadySignedException();
 	}
 	if (bureaucrat.getGrade() < required_sign_grade)
 	{

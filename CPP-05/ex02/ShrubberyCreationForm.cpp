@@ -46,6 +46,8 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor)
 
 	if (executor.getGrade() > this->getExecGrade())
 		throw AForm::GradeTooLowException();
+	if (this->getStatus() == false)
+		throw AForm::NotSignedException();
 	else
 	{
 		ShrubberySrc.open("ShrubberySrc.txt");	

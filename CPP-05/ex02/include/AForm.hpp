@@ -21,7 +21,8 @@ class AForm
 		AForm(int signgrade, int execgrade, std::string name, std::string target);
 		class GradeTooHighException;
 		class GradeTooLowException;
-		class AFormAlreadySignedException;
+		class AlreadySignedException;
+		class NotSignedException;
 		std::string getName() const;
 		bool		getStatus() const;
 		int			getSignedGrade() const;
@@ -44,7 +45,13 @@ class AForm::GradeTooLowException : public std::exception
 		const char*	what() const throw();
 };
 
-class AForm::AFormAlreadySignedException : public std::exception
+class AForm::AlreadySignedException : public std::exception
+{
+	public:
+		const char*	what() const throw();
+};
+
+class AForm::NotSignedException : public std::exception
 {
 	public:
 		const char*	what() const throw();

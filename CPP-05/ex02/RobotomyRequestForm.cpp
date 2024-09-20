@@ -30,6 +30,8 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor)
 {
 	int	roll;
 
+	if (this->getStatus() == false)
+		throw AForm::NotSignedException();
 	if (executor.getGrade() < this->getExecGrade())	
 	{
 		throw AForm::GradeTooLowException();
