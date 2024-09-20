@@ -11,10 +11,11 @@ class AForm
 		const int			required_sign_grade;
 		const int			required_exec_grade;
 	protected:
+	public:
    		AForm();
    		virtual ~AForm();
    		AForm(const AForm& copyForm);
-   		AForm& operator=(const Form& copyForm);
+   		AForm& operator=(const AForm& copyForm);
 		AForm(int signgrade, int execgrade, std::string name);
 		class GradeTooHighException;
 		class GradeTooLowException;
@@ -24,7 +25,7 @@ class AForm
 		virtual int			getSignedGrade() const = 0;
 		virtual int			getExecGrade() const = 0;
 		virtual void		BeSigned(const Bureaucrat& bureaucrat) = 0;
-	public:
+
 };
 
 class AForm::GradeTooHighException : public std::exception
