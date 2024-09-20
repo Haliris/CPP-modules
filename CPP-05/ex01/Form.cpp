@@ -69,7 +69,7 @@ void	Form::BeSigned(const Bureaucrat& bureaucrat)
 	if (signed_status == true)
 	{
 		bureaucrat.signForm(false, "Form already signed", this->getName());
-		throw Form::GradeTooLowException();
+		throw Form::FormAlreadySignedException();
 	}
 	if (bureaucrat.getGrade() < required_sign_grade)
 	{

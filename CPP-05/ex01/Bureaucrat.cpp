@@ -76,7 +76,6 @@ int	Bureaucrat::getGrade() const
 
 void	Bureaucrat::signForm(int auth, std::string reason, std::string form_name) const
 {
-	std::cout << "signForm called by " << this->getName() << std::endl;
 	if (auth == true)
 		std::cout << this->getName() << " bureaucrat signed form " << form_name << std::endl;
 	else

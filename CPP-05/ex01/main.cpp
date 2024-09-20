@@ -39,17 +39,19 @@ int	main(void)
 	{
 		Form	default_form;
 		Form	boss_form(2, "boss_form");
-		Form	manager_form(42, "manager_form");
+		Form	manager_form(71, "manager_form");
 		Bureaucrat	boss(1, "boss");
 		Bureaucrat	manager(70, "manager");
 		Bureaucrat	intern(150, "intern");
 		
 //		boss_form.BeSigned(intern);
-		std::cout << boss.getName() << std::endl;
+		std::cout << default_form;
+		std::cout << boss_form;
+		std::cout << manager_form;
 		boss_form.BeSigned(boss);
-		boss_form.BeSigned(boss);
-		manager_form.BeSigned(intern);
-		manager_form.BeSigned(boss);
+//		boss_form.BeSigned(boss);
+//		manager_form.BeSigned(intern);
+		manager_form.BeSigned(manager);
 	}
 	catch (std::exception & e)
 	{
