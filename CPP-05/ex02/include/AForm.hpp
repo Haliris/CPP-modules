@@ -2,6 +2,7 @@
 #ifndef AFORM_HPP
 # define AFORM_HPP
 # include "Bureaucrat.hpp"
+#include <string>
 
 class AForm
 {
@@ -21,10 +22,11 @@ class AForm
 		class GradeTooHighException;
 		class GradeTooLowException;
 		class AFormAlreadySignedException;
-		std::string getName();
-		bool		getStatus();
-		int			getSignedGrade();
-		int			getExecGrade();
+		std::string getName() const;
+		bool		getStatus() const;
+		int			getSignedGrade() const;
+		int			getExecGrade() const;
+		std::string	getTarget() const;
 		void		BeSigned(const Bureaucrat& bureaucrat);
 		virtual void		execute(Bureaucrat const & executor) = 0;
 

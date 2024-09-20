@@ -64,21 +64,26 @@ int	AForm::getExecGrade() const
 	return this->required_exec_grade;
 }
 
+std::string	AForm::getTarget() const
+{
+	return this->target;
+}
+
 void	AForm::BeSigned(const Bureaucrat& bureaucrat)
 {
 	if (signed_status == true)
 	{
-		bureaucrat.signAForm(false, "AForm already signed", this->getName());
+		bureaucrat.signForm(false, "AForm already signed", this->getName());
 		throw AForm::AFormAlreadySignedException();
 	}
 	if (bureaucrat.getGrade() < required_sign_grade)
 	{
 		signed_status = true;
-		bureaucrat.signAForm(true, "", this->getName());
+		bureaucrat.signForm(true, "", this->getName());
 	}
 	else
 	{
-		bureaucrat.signAForm(false, "Grade too low", this->getName());
+		bureaucrat.signForm(false, "Grade too low", this->getName());
 		throw AForm::GradeTooLowException();
 	}
 }
