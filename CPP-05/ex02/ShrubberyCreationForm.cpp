@@ -30,9 +30,6 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copySh
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& copyShrubberyCreationForm)
 {
-    if (this != &copyShrubberyCreationForm)
-    {
-    }
     return *this;
 }
 
@@ -66,3 +63,5 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor)
 	ShrubberySrc.close();
 	ShrubberyFile.close();
 }
+
+

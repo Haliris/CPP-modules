@@ -37,7 +37,7 @@ int	main(void)
 	}
 	try
 	{
-		Form	default_form;
+		AForm	default_form;
 		Form	boss_form(2, "boss_form");
 		Form	manager_form(71, "manager_form");
 		Bureaucrat	boss(1, "boss");

@@ -23,12 +23,12 @@ class AForm
 		class GradeTooLowException;
 		class AlreadySignedException;
 		class NotSignedException;
-		std::string getName() const;
-		bool		getStatus() const;
-		int			getSignedGrade() const;
-		int			getExecGrade() const;
-		std::string	getTarget() const;
-		void		BeSigned(const Bureaucrat& bureaucrat);
+		std::string 		getName() const;
+		bool				getStatus() const;
+		int					getSignedGrade() const;
+		int					getExecGrade() const;
+		std::string			getTarget() const;
+		void				BeSigned(const Bureaucrat& bureaucrat);
 		virtual void		execute(Bureaucrat const & executor) = 0;
 
 };
