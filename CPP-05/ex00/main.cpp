@@ -37,9 +37,9 @@ int	main(void)
 	
 	try
 	{
-		Bureaucrat	bad_boss(-1, "bad boss");	
+//		Bureaucrat	bad_boss(-1, "bad boss");	
 		Bureaucrat	bad_intern(151, "bad intern");
-		std::cout << bad_boss;
+//		std::cout << bad_boss;
 		std::cout << bad_intern;
 	}
 	catch (std::exception & e)
