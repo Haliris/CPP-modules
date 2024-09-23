@@ -11,7 +11,10 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int	main(void)
 {
@@ -29,29 +32,12 @@ int	main(void)
 		std::cout << good_boss;
 		std::cout << good_manager;
 		std::cout << good_intern;
-	}
-	catch (std::exception & e)
-	{
-		std::cout << e.what() << std::endl;
-		return (1);
-	}
-	try
-	{
-		AForm	default_form;
-		Form	boss_form(2, "boss_form");
-		Form	manager_form(71, "manager_form");
-		Bureaucrat	boss(1, "boss");
-		Bureaucrat	manager(70, "manager");
-		Bureaucrat	intern(150, "intern");
-		
-//		boss_form.BeSigned(intern);
-		std::cout << default_form;
-		std::cout << boss_form;
-		std::cout << manager_form;
-		boss_form.BeSigned(boss);
-//		boss_form.BeSigned(boss);
-//		manager_form.BeSigned(intern);
-		manager_form.BeSigned(manager);
+	
+		ShrubberyCreationForm	shrub_form;
+		RobotomyRequestForm		robo_form;
+		PresidentialPardonForm	pres_form;
+
+		robo_form.BeSigned(good_intern);
 	}
 	catch (std::exception & e)
 	{

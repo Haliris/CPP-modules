@@ -29,7 +29,7 @@ class AForm
 		int					getExecGrade() const;
 		std::string			getTarget() const;
 		void				BeSigned(const Bureaucrat& bureaucrat);
-		virtual void		execute(Bureaucrat const & executor) = 0;
+		virtual void		execute(Bureaucrat const & executor) const = 0;
 
 };
 

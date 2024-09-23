@@ -83,11 +83,11 @@ void	Bureaucrat::signForm(int auth, std::string reason, std::string form_name) c
 
 }
 
-void	Bureaucrat::executeForm(AForm const & form)
+void	Bureaucrat::executeForm(AForm const & form) const
 {
 	try
 	{
-		form.execute(this);
+		form.execute(*this);
 	}
 	catch (std::exception & e)
 	{
