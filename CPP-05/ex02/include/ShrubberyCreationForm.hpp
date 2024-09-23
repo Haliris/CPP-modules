@@ -9,10 +9,10 @@ class ShrubberyCreationForm : public AForm
 	public:
 		ShrubberyCreationForm();
 		~ShrubberyCreationForm();
-		ShrubberyCreationForm(const ShrubberyCreationForm& copyShrubberyCreationForm);
-		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& copyShrubberyCreationForm);
+		ShrubberyCreationForm(const ShrubberyCreationForm& copy);
+		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& copy);
 		ShrubberyCreationForm(std::string target);
-		void	execute(Bureaucrat const & executor);
+		void	execute(Bureaucrat const & executor) const;
 		class	NoSrcFileException;
 		class	NoOutFileException;
 };

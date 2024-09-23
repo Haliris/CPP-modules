@@ -13,19 +13,17 @@ PresidentialPardonForm::~PresidentialPardonForm()
 {
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& copyPresidentialPardonForm)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& copy) : AForm(copy)
 {
-    *this = copyPresidentialPardonForm;
+    *this = copy;
 }
 
-PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& copyPresidentialPardonForm)
+PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& copy)
 {
-    if (this != &copyPresidentialPardonForm)
-    {
-    }
+	(void)copy;
     return *this;
 }
-void	PresidentialPardonForm::execute(Bureaucrat const & executor)
+void	PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
 	if (this->getStatus() == false)
 		throw AForm::NotSignedException();

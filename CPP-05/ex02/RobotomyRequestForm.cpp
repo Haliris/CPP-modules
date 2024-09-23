@@ -13,20 +13,18 @@ RobotomyRequestForm::~RobotomyRequestForm()
 {
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copyRobotomyRequestForm)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy) : AForm(copy)
 {
-    *this = copyRobotomyRequestForm;
+    *this = copy;
 }
 
-RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& copyRobotomyRequestForm)
+RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& copy)
 {
-    if (this != &copyRobotomyRequestForm)
-    {
-    }
+	(void)copy;
     return *this;
 }
 
-void	RobotomyRequestForm::execute(Bureaucrat const & executor)
+void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
 	int	roll;
 
@@ -38,6 +36,7 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor)
 	}
 	else
 	{
+		srand(time(0));
 		std::cout << "* Drilling noise *" << std::endl;
 		roll = rand() % 100;
 		if (roll >= 50)

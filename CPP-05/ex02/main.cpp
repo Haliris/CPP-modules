@@ -37,7 +37,8 @@ int	main(void)
 		RobotomyRequestForm		robo_form;
 		PresidentialPardonForm	pres_form;
 
-		robo_form.BeSigned(good_intern);
+		robo_form.BeSigned(good_boss);
+		good_boss.executeForm(robo_form);
 	}
 	catch (std::exception & e)
 	{
@@ -46,3 +47,4 @@ int	main(void)
 	}
 	return (0);
 }
+

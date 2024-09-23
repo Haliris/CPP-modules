@@ -18,7 +18,10 @@ CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g3
 
 SRC_FILE =	main.cpp \
 			Bureaucrat.cpp \
-			Form.cpp
+			AForm.cpp \
+			ShrubberyCreationForm.cpp \
+			RobotomyRequestForm.cpp \
+			PresidentialPardonForm.cpp
 
 INCLUDE = -I include/
 

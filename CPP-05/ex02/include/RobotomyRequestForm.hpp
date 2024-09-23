@@ -2,6 +2,9 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
 # define ROBOTOMYREQUESTFORM_HPP
 # include "AForm.hpp"
+# include <stdio.h>
+# include <stdlib.h>
+# include <time.h>
 
 class RobotomyRequestForm : public AForm
 {
@@ -9,10 +12,10 @@ class RobotomyRequestForm : public AForm
 	public:
 		RobotomyRequestForm();
 		~RobotomyRequestForm();
-		RobotomyRequestForm(const RobotomyRequestForm& copyRobotomyRequestForm);
-		RobotomyRequestForm& operator=(const RobotomyRequestForm& copyRobotomyRequestForm);
+		RobotomyRequestForm(const RobotomyRequestForm& copy);
+		RobotomyRequestForm& operator=(const RobotomyRequestForm& copy);
 		RobotomyRequestForm(std::string target);
-		void	execute(Bureaucrat const & executor);
+		void	execute(Bureaucrat const & executor) const;
 };
 
 #endif

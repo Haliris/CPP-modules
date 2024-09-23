@@ -23,18 +23,19 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 {
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copyShrubberyCreationForm)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy) : AForm(copy)
 {
-    *this = copyShrubberyCreationForm;
+    *this = copy;
 }
 
-ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& copyShrubberyCreationForm)
+ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& copy)
 {
+	(void)copy;
     return *this;
 }
 
 
-void	ShrubberyCreationForm::execute(Bureaucrat const & executor)
+void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
 	std::ifstream	ShrubberySrc;
 	std::ofstream	ShrubberyFile;
@@ -47,11 +48,11 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor)
 		throw AForm::NotSignedException();
 	else
 	{
-		ShrubberySrc.open("ShrubberySrc.txt");	
+		ShrubberySrc.open("ShrubberySrc.txt");
 		if (!ShrubberySrc)
 			throw ShrubberyCreationForm::NoSrcFileException();
-		file_name = this->getTarget() + "_shrubbery";	
-		ShrubberyFile.open(file_name);
+		file_name = this->getTarget() + "_shrubbery";
+		ShrubberyFile.open(file_name.c_str());
 		if (!ShrubberyFile)
 		{
 			ShrubberySrc.close();
