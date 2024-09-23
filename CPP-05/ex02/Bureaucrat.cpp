@@ -52,7 +52,7 @@ Bureaucrat::~Bureaucrat()
 {
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& copyBureaucrat)
+Bureaucrat::Bureaucrat(const Bureaucrat& copyBureaucrat) : name(copyBureaucrat.name)
 {
     *this = copyBureaucrat;
 }
