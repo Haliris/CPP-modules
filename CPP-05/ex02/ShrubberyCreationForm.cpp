@@ -43,9 +43,9 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	std::string		line;
 
 	if (executor.getGrade() > this->getExecGrade())
-		throw AForm::GradeTooLowException();
+		throw GradeTooLowException();
 	if (this->getStatus() == false)
-		throw AForm::NotSignedException();
+		throw NotSignedException();
 	else
 	{
 		ShrubberySrc.open("ShrubberySrc.txt");

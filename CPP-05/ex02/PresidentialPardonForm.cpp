@@ -26,11 +26,9 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 void	PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
 	if (this->getStatus() == false)
-		throw AForm::NotSignedException();
+		throw NotSignedException();
 	if (executor.getGrade() > this->getExecGrade())	
-	{
-		throw AForm::GradeTooLowException();
-	}
+		throw GradeTooLowException();
 	else
 		std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }
