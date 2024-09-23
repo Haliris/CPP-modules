@@ -12,6 +12,7 @@
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "Intern.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
@@ -24,30 +25,18 @@ int	main(void)
 		Bureaucrat	good_boss(1, "boss");
 		Bureaucrat	good_manager(30, "manager");
 		Bureaucrat	good_intern(150, "intern");
-		std::cout << default_bureaucrat.getGrade() << std::endl;
-		std::cout << good_boss.getGrade() << std::endl;
-		std::cout << good_manager.getGrade() << std::endl;
-		std::cout << good_intern.getGrade() << std::endl;
-		std::cout << default_bureaucrat;
-		std::cout << good_boss;
-		std::cout << good_manager;
-		std::cout << good_intern;
-	
-		ShrubberyCreationForm	shrub_form("good_manager");
-		RobotomyRequestForm		robo_form("good_intern");
-		PresidentialPardonForm	pres_form("good_boss");
-
-		good_boss.executeForm(robo_form);
-		robo_form.BeSigned(good_boss);
-//		robo_form.BeSigned(good_boss);
-		good_boss.executeForm(robo_form);
-//		pres_form.BeSigned(good_manager);
-		pres_form.BeSigned(good_boss);
-		good_manager.executeForm(pres_form);
-		good_boss.executeForm(pres_form);
-		good_intern.executeForm(shrub_form);
-		shrub_form.BeSigned(good_manager);
-		good_manager.executeForm(shrub_form);
+		Intern		dude;
+		AForm		*form = NULL;
+		AForm		*form2 = NULL;
+		form = dude.makeForm("Robotomy", "good_intern");	
+//		form = dude.makeForm("nothing", "good_intern");	
+		form2 = dude.makeForm("Presidential request", "good_intern");	
+		form->BeSigned(good_manager);
+		form2->BeSigned(good_boss);
+		good_manager.executeForm(*form);
+		good_boss.executeForm(*form2);
+		delete form;
+		delete form2;
 	}
 	catch (std::exception & e)
 	{

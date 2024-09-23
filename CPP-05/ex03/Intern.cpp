@@ -25,8 +25,7 @@ Intern::Intern(const Intern& copyIntern)
 
 Intern& Intern::operator=(const Intern& copyIntern)
 {
-	(void)copyIntern;
-    return *this;
+	(void)copyIntern; return *this;
 }
 
 AForm*	Intern::makeForm(std::string type, std::string target)
@@ -34,14 +33,14 @@ AForm*	Intern::makeForm(std::string type, std::string target)
 	AForm	*Form;
 	int	search = -1;
 	std::string levels[3] = {"presidential", "shrubbery", "robotomy"};
-	for (int i = 0; i < type.length(); i++)
+	for (size_t i = 0; i < type.length(); i++)
 	{
 		if (type[i] >= 'A' && type[i] <= 'Z')
-			type[i] -= 32;
+			type[i] += 32;
 	}
 	for (int i = 0; i < 3; i++)	
 	{
-		if (levels[i] == type)
+		if (levels[i] == type || levels[i] + " request" == type)
 			search = i;
 	}
 	if (search == -1)
@@ -58,6 +57,6 @@ AForm*	Intern::makeForm(std::string type, std::string target)
 			Form = new RobotomyRequestForm(target);
 			break ;
 	}
-	std::cout << "Intern creates " << Form << std::endl;
+	std::cout << "Intern creates " << *Form;
 	return Form;
 }
