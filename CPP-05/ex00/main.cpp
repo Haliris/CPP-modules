@@ -38,9 +38,24 @@ int	main(void)
 	try
 	{
 //		Bureaucrat	bad_boss(-1, "bad boss");	
-		Bureaucrat	bad_intern(151, "bad intern");
+		Bureaucrat	bad_intern(150, "bad intern");
 //		std::cout << bad_boss;
 		std::cout << bad_intern;
+	}
+	catch (std::exception & e)
+	{
+		std::cout << e.what() << std::endl;
+		return (1);
+	}
+	try
+	{
+		Bureaucrat fired_intern(149, "fired_intern");
+		Bureaucrat mega_boss(1, "mega_boss");
+
+		std::cout << fired_intern;
+		std::cout << mega_boss;
+		fired_intern.decreaseGrade();
+		mega_boss.increaseGrade();
 	}
 	catch (std::exception & e)
 	{

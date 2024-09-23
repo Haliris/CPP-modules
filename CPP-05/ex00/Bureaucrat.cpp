@@ -53,12 +53,12 @@ Bureaucrat::~Bureaucrat()
 {
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& copyBureaucrat)
+Bureaucrat::Bureaucrat(const Bureaucrat& copyBureaucrat) : name(copyBureaucrat.name)
 {
     *this = copyBureaucrat;
 }
 
-Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& copyBureaucrat)
+Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& copyBureaucrat) 
 {
     if (this != &copyBureaucrat)
 		this->grade = copyBureaucrat.grade;
@@ -73,6 +73,22 @@ std::string	Bureaucrat::getName() const
 int	Bureaucrat::getGrade() const
 {
 	return grade;
+}
+
+void	Bureaucrat::increaseGrade()
+{
+	if (this->getGrade() == 1)
+		throw Bureaucrat::GradeTooLowException();
+	else
+		this->grade--;
+}
+
+void	Bureaucrat::decreaseGrade()
+{
+	if (this->getGrade() == 150)
+		throw Bureaucrat::GradeTooHighException();
+	else
+		this->grade++;
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
