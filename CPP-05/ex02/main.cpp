@@ -33,17 +33,21 @@ int	main(void)
 		std::cout << good_manager;
 		std::cout << good_intern;
 	
-		ShrubberyCreationForm	shrub_form;
+		ShrubberyCreationForm	shrub_form("good_manager");
 		RobotomyRequestForm		robo_form("good_intern");
 		PresidentialPardonForm	pres_form("good_boss");
 
 		good_boss.executeForm(robo_form);
 		robo_form.BeSigned(good_boss);
+//		robo_form.BeSigned(good_boss);
 		good_boss.executeForm(robo_form);
 //		pres_form.BeSigned(good_manager);
 		pres_form.BeSigned(good_boss);
 		good_manager.executeForm(pres_form);
 		good_boss.executeForm(pres_form);
+		good_intern.executeForm(shrub_form);
+		shrub_form.BeSigned(good_manager);
+		good_manager.executeForm(shrub_form);
 	}
 	catch (std::exception & e)
 	{

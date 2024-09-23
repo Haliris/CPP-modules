@@ -59,7 +59,7 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 			throw ShrubberyCreationForm::NoOutFileException();
 		}
 		while (std::getline(ShrubberySrc, line))
-			ShrubberyFile << line;
+			ShrubberyFile << line << std::endl;
 	}
 	ShrubberySrc.close();
 	ShrubberyFile.close();
