@@ -22,7 +22,7 @@ int	main(void)
 	{
 		Bureaucrat	default_bureaucrat;
 		Bureaucrat	good_boss(1, "boss");
-		Bureaucrat	good_manager(70, "manager");
+		Bureaucrat	good_manager(30, "manager");
 		Bureaucrat	good_intern(150, "intern");
 		std::cout << default_bureaucrat.getGrade() << std::endl;
 		std::cout << good_boss.getGrade() << std::endl;
@@ -34,11 +34,14 @@ int	main(void)
 		std::cout << good_intern;
 	
 		ShrubberyCreationForm	shrub_form;
-		RobotomyRequestForm		robo_form;
-		PresidentialPardonForm	pres_form;
+		RobotomyRequestForm		robo_form("good_intern");
+		PresidentialPardonForm	pres_form("good_boss");
 
 		robo_form.BeSigned(good_boss);
 		good_boss.executeForm(robo_form);
+//		pres_form.BeSigned(good_manager);
+		pres_form.BeSigned(good_boss);
+		good_boss.executeForm(pres_form);
 	}
 	catch (std::exception & e)
 	{
