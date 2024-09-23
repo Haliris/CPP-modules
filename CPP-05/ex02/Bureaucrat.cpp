@@ -74,6 +74,22 @@ int	Bureaucrat::getGrade() const
 	return grade;
 }
 
+void	Bureaucrat::increaseGrade()
+{
+	if (this->getGrade() == 1)
+		throw Bureaucrat::GradeTooLowException();
+	else
+		this->grade--;
+}
+
+void	Bureaucrat::decreaseGrade()
+{
+	if (this->getGrade() == 150)
+		throw Bureaucrat::GradeTooHighException();
+	else
+		this->grade++;
+}
+
 void	Bureaucrat::signForm(int auth, std::string reason, std::string form_name) const
 {
 	if (auth == true)
