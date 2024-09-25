@@ -17,7 +17,7 @@ CPP = c++
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g3
 
 SRC_FILE =	main.cpp \
-			Bureaucrat.cpp
+			ScalarConverter.cpp
 
 INCLUDE = -I include/
 
