@@ -1,15 +1,9 @@
 #include "ScalarConverter.hpp"
 
-int main(void)
+int main(int ac, char **av)
 {
-	std::string c = "s";
-	std::string test = "42";
-	std::string testf = "42.0f";
-	std::string testd = "42.0";
+	if (ac > 2 || ac < 2)
+		return (1);
 
-	ScalarConverter::convert(c);
-	ScalarConverter::convert(test);
-	ScalarConverter::convert(testf);
-	ScalarConverter::convert(testd);
-	ScalarConverter::convert(c);
+	ScalarConverter::convert(av[1]);
 }
