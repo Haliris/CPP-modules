@@ -30,8 +30,7 @@ Intern& Intern::operator=(const Intern& copyIntern)
 
 AForm*	Intern::makeForm(std::string type, std::string target)
 {
-	AForm	*Form;
-	int	search = -1;
+	AForm	*Form = NULL;
 	std::string levels[3] = {"presidential", "shrubbery", "robotomy"};
 	for (size_t i = 0; i < type.length(); i++)
 	{
@@ -40,23 +39,27 @@ AForm*	Intern::makeForm(std::string type, std::string target)
 	}
 	for (int i = 0; i < 3; i++)	
 	{
-		if (levels[i] == type || levels[i] + " request" == type)
-			search = i;
+		if (type.find(levels[i]) != std::string::npos)
+		{
+			switch (i)
+			{
+				case PRESIDENTIAL:
+					Form = new PresidentialPardonForm(target);
+					break ;
+				case SHRUBBERY:
+					Form = new ShrubberyCreationForm(target);
+					break ;
+				case ROBOTOMY:
+					Form = new RobotomyRequestForm(target);
+					break ;
+			}
+		}
 	}
-	if (search == -1)
-		throw NoFormTypeException();
-	switch (search)
+	if (Form)
 	{
-		case PRESIDENTIAL:
-			Form = new PresidentialPardonForm(target);
-			break ;
-		case SHRUBBERY:
-			Form = new ShrubberyCreationForm(target);
-			break ;
-		case ROBOTOMY:
-			Form = new RobotomyRequestForm(target);
-			break ;
+		std::cout << "Intern creates " << *Form;
+		return Form;
 	}
-	std::cout << "Intern creates " << *Form;
-	return Form;
+	else
+		throw NoFormTypeException();
 }
