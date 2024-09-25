@@ -101,6 +101,16 @@ bool	ScalarConverter::is_int(std::string input)
 	return true;
 }
 
+void	ScalarConverter::convert_int(std::string input)
+{
+	int nb = atoi(input.c_str());
+	std::cout << "char: " << nb << '\n';
+	std::cout << "int: " << nb << '\n';
+	std::cout << "float: " << static_cast<float>(nb) << '\n';
+	std::cout << "double: " << static_cast<double>(nb) << '\n';
+}
+
+
 void	ScalarConverter::convert(std::string input)
 {
 	if (input.length() == 1 && !isdigit(input[0]))
