@@ -3,7 +3,6 @@
 Base*	generate(void)
 {
 	int roll;
-	srand(time(0));
 	roll = rand() % 100;
 	if (roll <= 33)
 	{
@@ -62,6 +61,7 @@ void	identify(Base& p)
 
 int	main(void)
 {
+	srand(time(0));
 	Base *p1 = generate();
 	identify(p1);
 	identify(*p1);
