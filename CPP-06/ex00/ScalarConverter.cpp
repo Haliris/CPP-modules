@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScalarConverter.cpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/30 14:57:02 by jteissie          #+#    #+#             */
+/*   Updated: 2024/09/30 14:57:06 by jteissie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
@@ -19,77 +30,6 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& copyScalarCon
 	(void)copyScalarConverter;
     return *this;
 }
-
-bool	ScalarConverter::is_pseudo(std::string input)
-{
-	std::cout << "is_pseudo input: " << input << std::endl;
-	if (input == "+inff" || input == "-inff")
-		return true;
-	if (input == "-inf" || input == "+inf" || input == "nan")
-		return true;
-	return false;
-}
-
-bool	ScalarConverter::is_float(std::string input)
-{
-	int start = 0;
-	int point = false;
-	if (input[0] == '+' || input[0] == '-')
-		start++;
-	if (input[input.length() - 1] != 'f')
-		return (false);
-	for (size_t i = start; i < input.length(); i++)
-	{
-		if (!isdigit(input[i]) && input[i] != '.')
-		{
-			if (input[i] == 'f' && i == input.length() - 1)
-				continue ;
-			return false;
-		}
-		if (input[i] == '.')
-		{
-			if (point == true)
-				return false;
-			point = true;
-		}
-	}
-	return (point);
-}
-
-bool	ScalarConverter::is_double(std::string input)
-{
-	int start = 0;
-	int point = false;
-	if (input[0] == '+' || input[0] == '-')
-		start++;
-	for (size_t i = start; i < input.length(); i++)
-	{
-		if (!isdigit(input[i]) && input[i] != '.')
-			return false;
-		if (input[i] == '.')
-		{
-			if (point == true)
-				return false;
-			point = true;
-		}
-	}
-	return (point);
-}
-
-bool	ScalarConverter::is_int(std::string input)
-{
-	int start = 0;
-	if (input[0] == '+' || input[0] == '-')
-		start++;
-	for (size_t i = start; i < input.length(); i++)
-	{
-		if (!isdigit(input[i]))
-			return false;
-	}
-	return true;
-}
-
-
 
 void	print_char(std::string input)
 {
