@@ -16,7 +16,7 @@ T	min(T& a, T& b)
 	if (a == b)
 		return b;
 	else 
-		return (a * (a < b) + b * (b < a));
+		return (a < b ? a : b);
 }
 template <typename T>
 T	max(T& a, T& b)
@@ -24,6 +24,6 @@ T	max(T& a, T& b)
 	if (a == b)
 		return b;
 	else
-		return (a * (b < a) + b * (a < b));
+		return (a < b ? b : a);
 }
 #endif
