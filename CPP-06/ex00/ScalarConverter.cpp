@@ -47,7 +47,7 @@ void	print_char(std::string input)
 
 void	print_int(std::string input)
 {
-	int nb = atoi(input.c_str());
+	long long nb = atoll(input.c_str());
 
 	if (nb > std::numeric_limits<int>::max() || nb < std::numeric_limits<int>::min())
 		std::cout << "Int: impossible" << std::endl;
@@ -63,7 +63,7 @@ void	print_float(std::string input)
 
 	if (input.length() == 1 && !isdigit(input[0]))
 		std::cout << "Float: " << static_cast<float>(input[0]) << ".0";
-	else if (std::isfinite(nb) && std::floor(nb) == nb)
+	else if (std::isfinite(nb) && std::floor(nb) == nb && nb < 1000000)
 		std::cout << "Float: " << static_cast<float>(nb) << ".0";
 	else
 		std::cout << "Float: " << static_cast<float>(nb);
@@ -76,7 +76,7 @@ void	print_double(std::string input)
 
 	if (input.length() == 1 && !isdigit(input[0]))
 		std::cout << "Double: " << static_cast<double>(input[0]) << ".0" << std::endl;
-	else if (std::isfinite(nb) && std::floor(nb) == nb)
+	else if (std::isfinite(nb) && std::floor(nb) == nb && nb < 1000000)
 		std::cout << "Double: " << static_cast<double>(nb) << ".0" << std::endl;
 	else if (input.length() == 1 && !isdigit(input[0]))
 		std::cout << "Double: " << static_cast<double>(input[0]) << std::endl;
