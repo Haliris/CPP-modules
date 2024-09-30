@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jteissie <jteissie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/30 16:18:09 by jteissie          #+#    #+#             */
+/*   Updated: 2024/09/30 16:18:22 by jteissie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Base.hpp"
 
 Base*	generate(void)
@@ -24,12 +36,12 @@ Base*	generate(void)
 void	identify(Base* p)
 {
 	if (A* a = dynamic_cast<A*>(p))
-		std::cout << "Identified p pointer as A" << std::endl;	
+		std::cout << "Identified p pointer as A" << std::endl;
 	else if (B* b = dynamic_cast<B*>(p))
-		std::cout << "Identified p pointer as B" << std::endl;	
+		std::cout << "Identified p pointer as B" << std::endl;
 	else if (C* c = dynamic_cast<C*>(p))
-		std::cout << "Identified p pointer as C" << std::endl;	
-	else	
+		std::cout << "Identified p pointer as C" << std::endl;
+	else
 		std::cout << "Unidentified p pointer" << std::endl;
 }
 
