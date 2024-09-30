@@ -102,7 +102,7 @@ void	print_char(std::string input)
 	else if (!isprint(c))
 		std::cout << "Char: non-printable" << '\n';
 	else
-		std::cout << "Char: " << std::endl;
+		std::cout << "Char: " << static_cast<char>(c) << std::endl;
 }
 
 void	print_int(std::string input)
