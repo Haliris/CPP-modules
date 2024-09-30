@@ -22,7 +22,8 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& copyScalarCon
 
 bool	ScalarConverter::is_pseudo(std::string input)
 {
-	if (input == "+inff" || "-inff")
+	std::cout << "is_pseudo input: " << input << std::endl;
+	if (input == "+inff" || input == "-inff")
 		return true;
 	if (input == "-inf" || input == "+inf" || input == "nan")
 		return true;
@@ -88,85 +89,69 @@ bool	ScalarConverter::is_int(std::string input)
 	return true;
 }
 
-void	ScalarConverter::convert_char(char c)
+
+
+void	print_char(std::string input)
 {
-	if (c <= 31 || c == 127)
-		std::cout << "Non printable char input in convert_char()" << std::endl;
+	long long c = atoll(input.c_str());
+
+	if (c > std::numeric_limits<char>::max() || c < std::numeric_limits<char>::min())
+		std::cout << "Char: impossible" << std::endl;
+	else if (input.length() == 1 && !isdigit(input[0]))
+		std::cout << "Char: " << static_cast<char>(input[0]) << std::endl;
+	else if (isprint(c))
+		std::cout << "Char: non-printable" << '\n';
 	else
-	{	
-		std::cout << "Char: " << c << '\n';
-		std::cout << "Int: " << static_cast<int>(c) << '\n';
-		std::cout << "Float: " << static_cast<int>(c) << ".0f" << '\n';
-		std::cout << "Double: " << static_cast<int>(c) << ".0" << std::endl;
-	}
+		std::cout << "Char: " << std::endl;
 }
 
-void	ScalarConverter::convert_int(std::string input)
+void	print_int(std::string input)
 {
 	int nb = atoi(input.c_str());
-	std::cout << "Char: " << static_cast<char>(nb) << '\n';
+
 	if (nb > std::numeric_limits<int>::max() || nb < std::numeric_limits<int>::min())
 		std::cout << "Int: impossible" << std::endl;
 	else
-		std::cout << "Int: " << nb << '\n';
-	std::cout << "Float: " << static_cast<float>(nb) << ".0f" << '\n';
-	std::cout << "Double: " << static_cast<double>(nb) << ".0" << '\n';
+		std::cout << "Int: " << static_cast<int>(nb) << '\n';
 }
 
-void	ScalarConverter::convert_float(std::string input)
+void	print_float(std::string input)
 {
 	double	nb = atof(input.c_str());
 
-	std::cout << "Char: " << static_cast<char>(nb) << std::endl;
-	std::cout << "Int: " << static_cast<int>(nb) << std::endl;
 	if (std::isfinite(nb) && std::floor(nb) == nb)
 		std::cout << "Float: " << static_cast<float>(nb) << ".0";
 	else
 		std::cout << "Float: " << static_cast<float>(nb);
 	std::cout << "f" << std::endl;
-	if (std::isfinite(nb) && std::floor(nb) == nb)
-		std::cout << "Double: " << nb << ".0" << std::endl;
-	else
-		std::cout << "Double: " << nb << std::endl;
 }
 
-void	ScalarConverter::convert_double(std::string input)
+void	print_double(std::string input)
 {
 	double	nb = atof(input.c_str());
 
-	std::cout << "Char: " << static_cast<char>(nb) << '\n';
-	std::cout << "Int: " << static_cast<int>(nb) << '\n';
 	if (std::isfinite(nb) && std::floor(nb) == nb)
-		std::cout << "Float: " << static_cast<float>(nb) << ".0f";
+		std::cout << "Double: " << static_cast<double>(nb) << ".0" << std::endl;
 	else
-		std::cout << "Float: " << static_cast<float>(nb) << 'f' << '\n';
-	if (std::isfinite(nb) && std::floor(nb) == nb)
-		std::cout << "Double: " << nb << ".0" << std::endl;
-	else
-		std::cout << "Double: " << nb << std::endl;
-}
-
-void	ScalarConverter::convert_pseudo(std::string input)
-{
-	double	nb = atof(input.c_str());
-	std::cout << "Char: impossible" << std::endl;
-	std::cout << "Int: impossible" << std::endl;
-	std::cout << "Float: " << static_cast<float>(nb) << std::endl;
-	std::cout << "Double: " << nb << std::endl; 
+		std::cout << "Double: " << static_cast<double>(nb) << std::endl;
 }
 
 void	ScalarConverter::convert(std::string input)
 {
-	if (input.length() == 1 && !isdigit(input[0]))
-		convert_char(input[0]);
-	else if (is_float(input))
-		convert_float(input);
-	else if (is_double(input))
-		convert_double(input);
-	else if (is_int(input))
-		convert_int(input);
-	else if (is_pseudo(input))
-		convert_pseudo(input);
-	else
-		std::cout << "Unrecognized input in convert" << std::endl;
+	print_char(input);
+	print_int(input);
+	print_float(input);
+	print_double(input);
+//	if (input.length() == 1 && !isdigit(input[0]))
+//		convert_char(input[0]);
+//	else if (is_float(input))
+//		convert_float(input);
+//	else if (is_double(input))
+//		convert_double(input);
+//	else if (is_int(input))
+//		convert_int(input);
+//	else if (is_pseudo(input))
+//		convert_pseudo(input);
+//	else
+//		std::cout << "Unrecognized input in convert" << std::endl;
 }
