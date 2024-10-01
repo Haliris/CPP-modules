@@ -20,14 +20,24 @@ int	main(void)
 		Bureaucrat	good_boss(1, "boss");
 		Bureaucrat	good_manager(70, "manager");
 		Bureaucrat	good_intern(150, "intern");
+		std::cout << default_bureaucrat.getName() << std::endl;
 		std::cout << default_bureaucrat.getGrade() << std::endl;
+		std::cout << good_boss.getName() << std::endl;
 		std::cout << good_boss.getGrade() << std::endl;
+		std::cout << good_manager.getName() << std::endl;
 		std::cout << good_manager.getGrade() << std::endl;
+		std::cout << good_intern.getName() << std::endl;
 		std::cout << good_intern.getGrade() << std::endl;
 		std::cout << default_bureaucrat;
 		std::cout << good_boss;
 		std::cout << good_manager;
 		std::cout << good_intern;
+		std::cout << "Good manager promotion!" << std::endl;
+		good_manager.increaseGrade();
+		std::cout << good_manager;
+		std::cout << "Good_boss demotion!" << std::endl;
+		good_boss.decreaseGrade();
+		std::cout << good_boss;
 	}
 	catch (std::exception & e)
 	{
