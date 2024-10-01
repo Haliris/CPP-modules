@@ -28,10 +28,10 @@ int	main(void)
 		std::cout << good_boss.getGrade() << std::endl;
 		std::cout << good_manager.getGrade() << std::endl;
 		std::cout << good_intern.getGrade() << std::endl;
-		std::cout << default_bureaucrat;
-		std::cout << good_boss;
-		std::cout << good_manager;
-		std::cout << good_intern;
+		std::cout << default_bureaucrat << std::endl;
+		std::cout << good_boss << std::endl;
+		std::cout << good_manager << std::endl;
+		std::cout << good_intern << std::endl;
 	
 		ShrubberyCreationForm	shrub_form("good_manager");
 		RobotomyRequestForm		robo_form("good_intern");

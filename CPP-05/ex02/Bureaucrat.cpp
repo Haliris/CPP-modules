@@ -107,14 +107,14 @@ void	Bureaucrat::executeForm(AForm const & form) const
 	}
 	catch (std::exception & e)
 	{
-		std::cout << getName() << " could not execute form." << std::endl;	
 		std::cout << e.what() << std::endl;
+		std::cout << *this << " could not execute form: " << form;	
 	}
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
 {
-	std::cout << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << std::endl;
+	std::cout << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
 	return os;
 }
 

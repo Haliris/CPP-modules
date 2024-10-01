@@ -24,11 +24,19 @@ const char*	AForm::NotSignedException::what() const throw()
 AForm::AForm() : name("form"), target("default"), required_sign_grade(100), required_exec_grade(42)
 {
 	signed_status = false;
+	if (required_sign_grade < 1 || required_exec_grade < 1)
+		throw GradeTooLowException();
+	if (required_sign_grade > 150 || required_exec_grade > 150)
+		throw GradeTooHighException();
 }
 
 AForm::AForm(int signgrade, int execgrade, std::string name, std::string target) : name(name), target(target), required_sign_grade(signgrade), required_exec_grade(execgrade)
 {
 	signed_status = false;
+	if (required_sign_grade < 1 || required_exec_grade < 1)
+		throw GradeTooLowException();
+	if (required_sign_grade > 150 || required_exec_grade > 150)
+		throw GradeTooHighException();
 }
 
 AForm::~AForm()
