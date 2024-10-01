@@ -19,11 +19,19 @@ const char*	Form::FormAlreadySignedException::what() const throw()
 Form::Form() : name("form"), required_sign_grade(100), required_exec_grade(42)
 {
 	signed_status = false;
+	if (required_sign_grade < 1 || required_exec_grade < 1)
+		throw GradeTooLowException();
+	if (required_sign_grade > 150 || required_exec_grade > 150)
+		throw GradeTooHighException();
 }
 
 Form::Form(int grade, std::string name) : name(name), required_sign_grade(grade), required_exec_grade(grade)
 {
 	signed_status = false;
+	if (required_sign_grade < 1 || required_exec_grade < 1)
+		throw GradeTooLowException();
+	if (required_sign_grade > 150 || required_exec_grade > 150)
+		throw GradeTooHighException();
 }
 
 Form::~Form()

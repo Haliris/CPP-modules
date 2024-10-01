@@ -21,6 +21,7 @@ int	main(void)
 		Bureaucrat	good_boss(1, "boss");
 		Bureaucrat	good_manager(70, "manager");
 		Bureaucrat	good_intern(150, "intern");
+//		Form		bad_form(-1, "bad_form");
 		std::cout << default_bureaucrat.getGrade() << std::endl;
 		std::cout << good_boss.getGrade() << std::endl;
 		std::cout << good_manager.getGrade() << std::endl;
@@ -52,6 +53,7 @@ int	main(void)
 //		boss_form.BeSigned(boss);
 //		manager_form.BeSigned(intern);
 		manager_form.BeSigned(manager);
+//		manager_form.BeSigned(manager);
 	}
 	catch (std::exception & e)
 	{
