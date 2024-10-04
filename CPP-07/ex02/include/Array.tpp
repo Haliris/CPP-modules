@@ -4,6 +4,8 @@
 template<typename T>
 Array<T>::Array::Array()
 {
+	array_size = 0;
+	array = NULL;
 }
 
 template<typename T>
@@ -36,12 +38,13 @@ Array<T> &Array<T>::operator=(const Array& copy)
     {
 		this->array_size = copy.array_size;
 		if (copy.array)
+		{
 			this->array = new T[array_size];
-		else
-			this->array = NULL;
-		if (copy.array)
 			for (unsigned int i = 0; i < copy.array_size; i++)
 				this->array[i] = copy.array[i];
+		}
+		else
+			this->array = NULL;
     }
     return *this;
 }
