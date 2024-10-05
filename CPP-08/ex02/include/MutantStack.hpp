@@ -7,6 +7,7 @@ class MutantStack : public std::stack<T>
 {
 	private:
 	public:
+		typedef typename std::stack<T>::container_type::iterator iterator;
 		MutantStack() {}
 		~MutantStack() {}
 		MutantStack(const MutantStack& copy) : std::stack<T>(copy) {}

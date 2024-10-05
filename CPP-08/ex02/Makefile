@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = template_test
+NAME = mutant_test
 
 CPP = c++
 
@@ -27,7 +27,7 @@ OBJS = $(OBJ_FILE)
 all: $(NAME)
 
 %.o : %.cpp
-	$(CPP_FLAGS) $(INCLUDE) -c $< -o $@
+	$(CPP) $(CPP_FLAGS) $(INCLUDE) -c $< -o $@
 
 $(NAME): $(OBJS)
 	$(CPP) $(CPP_FLAGS) $(INCLUDE) -o $(NAME) $(OBJS)
