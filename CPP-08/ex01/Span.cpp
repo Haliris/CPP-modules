@@ -1,15 +1,14 @@
-
 #include "Span.hpp"
-#include <cstdint>
 
 Span::Span() : _capacity(0)
 {
 	//throw ??
 }
 
-Span::Span(uint32_t	n) : _capacity(n)
+Span::Span(int n) : _capacity(n)
 {
-	this->_buff = std::vector<int>(_capacity);
+	_buff.reserve(_capacity);
+	_size = 0;
 }
 
 Span::~Span()
@@ -34,7 +33,7 @@ Span& Span::operator=(const Span& copy)
 void	Span::addNumber(int value)
 {
 	if (_size == _capacity)
-		throw
+		throw std::out_of_range("[SPAN] out of range");
 	_size++;
 	_buff.push_back(value);
 }
@@ -42,17 +41,21 @@ void	Span::addNumber(int value)
 void	Span::addNumber(std::vector<int>::iterator first, std::vector<int>::iterator last)
 {
 	if (_size == _capacity)
-		thow;
+		throw std::out_of_range("[SPAN] out of range");
+	if (std::distance(first, last) + _size >= _capacity)
+		throw std::out_of_range("[SPAN] out of range");
+	_buff.insert(_buff.end(), first , last);
+	_size += std::distance(first, last);
 }
 
 uint32_t	Span::longestSpan() const
 {
-	uint32_t	max = INT_MIN;
+	uint32_t	max = 0;
 	if (_size <= 1)
-		throw;
-	for (int i = 0; i < _size; i++)
+		throw std::out_of_range("[SPAN] out of range");
+	for (uint32_t i = 0; i < _size; i++)
 	{
-		for (int j = i + 1; j < _size; j++)
+		for (uint32_t j = i + 1; j < _size; j++)
 		{
 			if (my_abs(_buff[i] - _buff[j]) > max)
 				max = my_abs(_buff[i] - _buff[j]);
@@ -65,14 +68,26 @@ uint32_t	Span::shortestSpan() const
 {
 	uint32_t	min = INT_MAX;
 	if (_size <= 1)
-		throw;
-	for (int i = 0; i < _size; i++)
+		throw std::out_of_range("[SPAN] out of range");
+	for (uint32_t i = 0; i < _size; i++)
 	{
-		for (int j = i + 1; j < _size; j++)
+		for (uint32_t j = i + 1; j < _size; j++)
 		{
 			if (my_abs(_buff[i] - _buff[j]) < min)
 				min = my_abs(_buff[i] - _buff[j]);
 		}
 	}
 	return min;
+}
+
+void	Span::print()
+{
+	if (_size == 0)
+		return ;
+	std::vector<int>::iterator it = _buff.begin();
+	while (it != _buff.end())
+	{
+		std::cout << *it << std::endl;
+		++it;
+	}
 }

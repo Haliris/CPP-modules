@@ -1,7 +1,6 @@
 
 #pragma once
 #include <iostream>
-#include <cstdint>
 #include <vector>
 #include <stdint.h>
 #include <limits.h>
@@ -14,7 +13,7 @@ class Span
 		std::vector<int>		_buff;
 		Span();
 	public:
-		Span(uint32_t n);
+		Span(int n);
 		~Span();
 		Span(const Span& copy);
 		Span&	operator=(const Span& copy);
@@ -22,10 +21,11 @@ class Span
 		void		addNumber(std::vector<int>::iterator first, std::vector<int>::iterator last);
 		uint32_t	longestSpan() const;
 		uint32_t	shortestSpan() const;
+		void		print() ;
 };
 
 template<typename T>
-T my_abs(T value)
+uint32_t	my_abs(T value)
 {
 	return (value > 0 ? value : -value);
 };
