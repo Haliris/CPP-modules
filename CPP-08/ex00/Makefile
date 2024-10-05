@@ -10,15 +10,15 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = template_test
+NAME = easyfind_test
 
 CPP = c++
 
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g3
 
-SRC_FILE =	main.cpp \
+SRC_FILE =	main.cpp 
 
-INCLUDE = -I include/
+INCLUDE = -I ./
 
 OBJ_FILE = $(SRC_FILE:.cpp=.o)
 
@@ -27,7 +27,7 @@ OBJS = $(OBJ_FILE)
 all: $(NAME)
 
 %.o : %.cpp
-	$(CPP_FLAGS) $(INCLUDE) -c $< -o $@
+	$(CPP) $(CPP_FLAGS) $(INCLUDE) -c $< -o $@
 
 $(NAME): $(OBJS)
 	$(CPP) $(CPP_FLAGS) $(INCLUDE) -o $(NAME) $(OBJS)
