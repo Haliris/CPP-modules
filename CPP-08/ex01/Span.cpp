@@ -2,7 +2,6 @@
 
 Span::Span() : _capacity(0)
 {
-	//throw ??
 }
 
 Span::Span(int n) : _capacity(n)
@@ -50,32 +49,27 @@ void	Span::addNumber(std::vector<int>::iterator first, std::vector<int>::iterato
 
 uint32_t	Span::longestSpan() const
 {
-	uint32_t	max = 0;
 	if (_size <= 1)
 		throw std::out_of_range("[SPAN] out of range");
-	for (uint32_t i = 0; i < _size; i++)
-	{
-		for (uint32_t j = i + 1; j < _size; j++)
-		{
-			if (my_abs(_buff[i] - _buff[j]) > max)
-				max = my_abs(_buff[i] - _buff[j]);
-		}
-	}
-	return max;
+	std::vector<int> sorted(_buff);
+	std::sort(sorted.begin(), sorted.end());
+	return (*(sorted.end() - 1) - *sorted.begin());
 }
 
 uint32_t	Span::shortestSpan() const
 {
 	uint32_t	min = INT_MAX;
+
 	if (_size <= 1)
 		throw std::out_of_range("[SPAN] out of range");
-	for (uint32_t i = 0; i < _size; i++)
+	std::vector<int> sorted(_buff);
+	std::sort(sorted.begin(), sorted.end());
+	std::vector<int>::iterator it = sorted.begin();
+	while (it != sorted.end() - 1)
 	{
-		for (uint32_t j = i + 1; j < _size; j++)
-		{
-			if (my_abs(_buff[i] - _buff[j]) < min)
-				min = my_abs(_buff[i] - _buff[j]);
-		}
+		if (my_abs(*it - (*(it + 1))) < min)
+				min = my_abs(*it - *(it + 1));
+		++it;
 	}
 	return min;
 }
