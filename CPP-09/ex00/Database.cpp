@@ -40,7 +40,6 @@ Database::Database(const std::string& path) : _argPath(path)
 			throw std::runtime_error("Error: could not find separator in database file");
 		char	*end;
 		_db[line.substr(0, sep)] = std::strtod(line.substr(sep + 1, line.size() - 1).c_str(), &end);
-		std::cerr << "Date init: " << line.substr(0, sep) << std::endl;
 		if (end == line.substr(sep + 1, line.size() - 1).c_str())
 			std::cerr << "Error: could not parse value of key:" << line.substr(0, sep - 1) << std::endl;
 	}
@@ -79,7 +78,6 @@ std::string Database::findDate(const std::string& line) const
 	date = line.substr(0, sep - 1);
 	dateValue = convertDate(date);
 	match = date;
-//	std::cerr << "DateValue: " << dateValue << std::endl;
 	if (dateValue >= 20220329)
 		return _db.rbegin()->first;
 	if (dateValue <= 20090102)
@@ -95,7 +93,6 @@ std::string Database::findDate(const std::string& line) const
 		}
 		it++;
 	}
-//	std::cerr << "Match: " << match << std::endl;
 	return match;
 }
 
@@ -105,12 +102,21 @@ double	Database::extractValue(const std::string& line) const
 	
 	size_t	sep = line.find('|');
 	if (sep == std::string::npos)
-		throw std::runtime_error("Error: bad input"); // overload what()
-	while (line[sep] && !isdigit(line[sep]))
+	{
+		throw std::runtime_error("Error: bad input => " + line);
+	}
+	sep++;
+	while (line[sep] && isspace(line[sep]))
 		sep++;
+	if (line[sep] == '-' || line[sep] == '+')
+	{
+		if (line[sep] == '-')
+			throw std::runtime_error("Error: not a positive number");
+		sep++;
+	}
+	if (!isdigit(line[sep]))
+		throw std::runtime_error("Error: bad input => " + line);
 	result = std::strtod(line.substr(sep, line.size() - 1).c_str(), NULL);
-	if (result < 0)
-		throw std::runtime_error("Error: not a positive number");
 	if (result > 1000)
 		throw std::runtime_error("Error: too large a number");
 	return result;
@@ -137,10 +143,8 @@ void	Database::display() const
 			double				value;
 
 			date = findDate(line);
-			std::cerr << "Date found: " << date << std::endl;
 			initialValue = _db.at(date);
-//			std::cerr << "Initialvalue: " << initialValue << std::endl;
-			value = extractValue(date);
+			value = extractValue(line);
 			std::cout << date << " => " << initialValue << " = " << value*initialValue << std::endl;
 		}
 		catch (std::exception &e)
