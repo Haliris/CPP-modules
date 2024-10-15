@@ -39,7 +39,8 @@ Database::Database(const std::string& path) : _argPath(path)
 		if (sep == line.size())
 			throw std::runtime_error("Error: could not find separator in database file");
 		char	*end;
-		_db[line.substr(0, sep - 1)] = std::strtod(line.substr(sep + 1, line.size() - 1).c_str(), &end);
+		_db[line.substr(0, sep)] = std::strtod(line.substr(sep + 1, line.size() - 1).c_str(), &end);
+		std::cerr << "Date init: " << line.substr(0, sep) << std::endl;
 		if (end == line.substr(sep + 1, line.size() - 1).c_str())
 			std::cerr << "Error: could not parse value of key:" << line.substr(0, sep - 1) << std::endl;
 	}
@@ -53,13 +54,13 @@ uint32_t	Database::convertDate(const std::string& date) const
 	
 	for (size_t i = 0; i < dateCopy.size(); i++)
 	{
-		if (dateCopy[i] == ':')
+		if (dateCopy[i] == '-')
 		{
 			dateCopy.erase(i, 1);
 			sepNum++;
 		}
 	}
-	if (sepNum != 3)
+	if (sepNum != 2)
 		throw std::runtime_error("Error: could not convert date value");
 	value = std::atoi(dateCopy.c_str());
 	return value;
@@ -78,6 +79,7 @@ std::string Database::findDate(const std::string& line) const
 	date = line.substr(0, sep - 1);
 	dateValue = convertDate(date);
 	match = date;
+//	std::cerr << "DateValue: " << dateValue << std::endl;
 	if (dateValue >= 20220329)
 		return _db.rbegin()->first;
 	if (dateValue <= 20090102)
@@ -93,6 +95,7 @@ std::string Database::findDate(const std::string& line) const
 		}
 		it++;
 	}
+//	std::cerr << "Match: " << match << std::endl;
 	return match;
 }
 
@@ -134,7 +137,9 @@ void	Database::display() const
 			double				value;
 
 			date = findDate(line);
+			std::cerr << "Date found: " << date << std::endl;
 			initialValue = _db.at(date);
+//			std::cerr << "Initialvalue: " << initialValue << std::endl;
 			value = extractValue(date);
 			std::cout << date << " => " << initialValue << " = " << value*initialValue << std::endl;
 		}
