@@ -3,14 +3,17 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <limits.h>
+#include <map>
 
 class Database
 {
 	private:
-		std::ifstream	_db;	
+		Database() {};
+		std::map<std::string, double>	_db;	
 		std::ifstream	_inputFile;
 	public:
-		Database();
 		~Database();
 		Database(const Database& copy);
 		Database& operator=(const Database& copy);
@@ -18,6 +21,7 @@ class Database
 		void		display() const;
 		std::string	findDate(const std::string& line) const;
 		double		extractValue(const std::string& line) const;
+		double		doMath(const std::string date, const double initialValue) const;
 };
 
 
