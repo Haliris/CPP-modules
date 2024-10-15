@@ -22,6 +22,7 @@ class Database
 		std::string	findDate(const std::string& line) const;
 		double		extractValue(const std::string& line) const;
 		double		doMath(const std::string date, const double initialValue) const;
+		uint32_t	convertDate(const std::string& date) const;
 };
 
 

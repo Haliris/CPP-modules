@@ -1,5 +1,6 @@
 
 #include "Database.hpp"
+#include <cstddef>
 #include <string>
 
 Database::~Database()
@@ -43,7 +44,7 @@ Database::Database(const std::string& path)
 	}
 }
 
-uint32_t	convertDate(const std::string& date)
+uint32_t	Database::convertDate(const std::string& date) const
 {
 	std::string	dateCopy = date;
 	uint32_t	value = 0;
@@ -97,23 +98,22 @@ std::string Database::findDate(const std::string& line) const
 double	Database::extractValue(const std::string& line) const
 {
 	double	result;
-
+	
+	size_t	sep = line.find('|');
+	if (sep == std::string::npos)
+		throw std::runtime_error("Error: bad input"); // overload what()
+	while (line[sep] && !isdigit(line[sep]))
+		sep++;
+	result = std::strtod(line.substr(sep, line.size() - 1).c_str(), NULL);
+	if (result < 0)
+		throw std::runtime_error("Error: not a positive number");
+	if (result > 1000)
+		throw std::runtime_error("Error: too large a number");
 	return result;
-}
-
-double	Database::doMath(const std::string date, const double initialValue) const
-{
-	double	result;
-
-	return	result;
 }
 
 void	Database::display() const
 {
-	//validate line
-	//find corresponding date
-	//perform math operation
-	//print
 	std::string	line;
 	std::getline(_inputFile, line);
 	if (line != "date | value")
@@ -127,9 +127,9 @@ void	Database::display() const
 			double				value;
 
 			date = findDate(line);
-			initialValue = extractValue(line);
-			value = doMath(date, initialValue);
-			std::cout << date << " => " << initialValue << " = " << value << std::endl;
+			initialValue = _db.at(date);
+			value = extractValue(date);
+			std::cout << date << " => " << initialValue << " = " << value*initialValue << std::endl;
 		}
 		catch (std::exception &e)
 		{
