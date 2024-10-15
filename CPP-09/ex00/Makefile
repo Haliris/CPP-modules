@@ -10,13 +10,14 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = easyfind_test
+NAME = btc
 
 CPP = c++
 
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g3
 
-SRC_FILE =	main.cpp 
+SRC_FILE =	main.cpp \
+			Database.cpp
 
 INCLUDE = -I ./
 

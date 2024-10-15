@@ -20,11 +20,12 @@ Database& Database::operator=(const Database& copy)
     return *this;
 }
 
-Database::Database(const std::string& path)
+Database::Database(const std::string& path) : _argPath(path)
 {
 	std::ifstream fileDb, fileArg;
-	fileDb.open("data.csv");	
-	fileArg.open(path);
+
+	fileDb.open(DB_PATH);	
+	fileArg.open(path.c_str());
 	if (!fileDb || !fileArg)
 		throw std::runtime_error("Could not open files.");
 	
@@ -50,7 +51,7 @@ uint32_t	Database::convertDate(const std::string& date) const
 	uint32_t	value = 0;
 	uint32_t 	sepNum = 0;
 	
-	for (int i = 0; i < dateCopy.size(); i++)
+	for (size_t i = 0; i < dateCopy.size(); i++)
 	{
 		if (dateCopy[i] == ':')
 		{
@@ -85,10 +86,10 @@ std::string Database::findDate(const std::string& line) const
 	while (it != _db.end())
 	{
 		uint32_t dbDate = convertDate(it->first);
-		if (abs(dbDate - dateValue) < diff)
+		if (dbDate - dateValue < diff)
 		{
 			match = it->first;
-			diff = abs(dbDate - dateValue);
+			diff = dbDate - dateValue;
 		}
 		it++;
 	}
@@ -114,11 +115,17 @@ double	Database::extractValue(const std::string& line) const
 
 void	Database::display() const
 {
+	std::ifstream fileDb, fileArg;
 	std::string	line;
-	std::getline(_inputFile, line);
+
+	fileDb.open(DB_PATH);	
+	fileArg.open(_argPath.c_str());
+	if (!fileDb || !fileArg)
+		throw std::runtime_error("Could not open files.");
+	std::getline(fileArg, line);
 	if (line != "date | value")
 		throw std::runtime_error("Diplay error: could not recognize file");
-	while (std::getline(_inputFile, line))
+	while (std::getline(fileArg, line))
 	{
 		try
 		{
@@ -133,7 +140,7 @@ void	Database::display() const
 		}
 		catch (std::exception &e)
 		{
-			e.what();
+			std::cerr << e.what() << std::endl;
 			continue;
 		}
 	}

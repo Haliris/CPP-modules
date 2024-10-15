@@ -5,14 +5,16 @@
 #include <string>
 #include <cstdlib>
 #include <limits.h>
+#include <stdint.h>
 #include <map>
+#define DB_PATH "data.csv"
 
 class Database
 {
 	private:
 		Database() {};
 		std::map<std::string, double>	_db;	
-		std::ifstream	_inputFile;
+		const std::string				_argPath;
 	public:
 		~Database();
 		Database(const Database& copy);
