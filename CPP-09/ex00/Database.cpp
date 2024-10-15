@@ -60,7 +60,7 @@ uint32_t	Database::convertDate(const std::string& date) const
 		}
 	}
 	if (sepNum != 2)
-		throw std::runtime_error("Error: could not convert date value");
+		throw std::runtime_error("Error: could not convert date value => " + date);
 	value = std::atoi(dateCopy.c_str());
 	return value;
 }
