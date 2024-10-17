@@ -48,6 +48,11 @@ listMerge& listMerge::operator=(const listMerge& copy)
 // BOILER PLATES //
 ///////////////////
 
+void	vectorMerge::sortPairs()
+{
+
+}
+
 bool	vectorMerge::checkNum(const std::string& token)
 {
 	size_t	i = 0;
@@ -63,12 +68,25 @@ bool	vectorMerge::checkNum(const std::string& token)
 	return true;
 }
 
+bool	vectorMerge::checkDuplicates(int num)
+{
+	std::vector<std::pair<int, int>>::const_iterator it;
+
+	for (it = _pairs.begin(); it != _pairs.end(); it++)
+	{
+		if (num == it->first || num == it->second)
+			return true;
+	}
+	return false;
+}
+
 vectorMerge::vectorMerge(const std::string&	input)
 {
 	std::stringstream					inputStream(input);
 	std::string							token;
 	int									num1, num2, index = 0;
 
+	_pairs.reserve(input.size() / 2); // check correct size
 	while (getline(inputStream, token, ' '))
 	{
 		if (checkNum(token) == false)
@@ -78,9 +96,17 @@ vectorMerge::vectorMerge(const std::string&	input)
 		else if (index % 2 == 1)
 		{
 			num2 = atoi(token.c_str());
+			if (checkDuplicates(num1) == true)
+				throw std::runtime_error("Error: no dupliactes allowed: " + token);
+			if (checkDuplicates(num2) == true)
+				throw std::runtime_error("Error: no dupliactes allowed: " + token);
 			_pairs.push_back(std::make_pair(num1, num2));	
 		}
 	} 
 	if (index % 2 == 0)
+	{	
+		if (checkDuplicates(num1) == true)
+			throw std::runtime_error("Error: no dupliactes allowed: " + token);
 		_orphan = num1;
+	}
 }

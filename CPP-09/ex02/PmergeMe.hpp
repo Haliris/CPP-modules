@@ -20,6 +20,8 @@ class vectorMerge
 		vectorMerge(const std::string&	input);
 		~vectorMerge();
 		bool	checkNum(const std::string&	token);
+		bool	checkDuplicates(int num);
+		void	sortPairs();
 };
 
 class listMerge
@@ -34,6 +36,8 @@ class listMerge
 		listMerge(const std::string&	input);
 		~listMerge();
 		bool	checkNum(const std::string&	token);
+		bool	checkDuplicates(int num1);
+		void	sortPairs();
 };
 
 
