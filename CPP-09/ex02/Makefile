@@ -10,13 +10,14 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = easyfind_test
+NAME = PmergeMe
 
 CPP = c++
 
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98 -g3
 
-SRC_FILE =	main.cpp 
+SRC_FILE =	main.cpp \
+			PmergeMe.cpp
 
 INCLUDE = -I ./
 
