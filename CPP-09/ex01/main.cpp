@@ -11,6 +11,7 @@ int main(int ac, char **av)
 	{
 		Equation equation(av[1]);
 		equation.process();
+		return 0;
 	}
 	catch (std::exception &e)
 	{

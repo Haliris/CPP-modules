@@ -1,6 +1,5 @@
 
 #include "RPN.hpp"
-#include <cstdint>
 
 Equation::Equation()
 {
@@ -43,7 +42,9 @@ Equation::Equation(const std::string& input) : _input(input)
 
 void	Equation::process()
 {
-	int					result = 0;
+	int					left;
+	int					right;
+	int					result;
 	char				op;
 	std::string			token;
 	std::stringstream	stream(_input);
@@ -57,18 +58,36 @@ void	Equation::process()
 			if (_stack.size() < 2)
 				throw (std::runtime_error("Error: cannot perform operation on one or less numbers"));
 			op = token[0];
-			result = _stack.top();
+			right = _stack.top();
+			_stack.pop();
+			left = _stack.top();
 			_stack.pop();
 			if (op == '+')
-				result += _stack.top();
+			{
+//				std::cerr << "Doing: " << left << " " << op << " " << right << " = ";
+				result = left + right;
+//				std::cerr << result << std::endl;
+			}
 			else if (op == '-')
-				result -= _stack.top();
+			{
+//				std::cerr << "Doing: " << left << " " << op << " " << right << " = ";
+				result = left - right;
+//				std::cerr << result << std::endl;
+			}
 			else if (op == '*')
-				result *= _stack.top();
+			{
+//				std::cerr << "Doing: " << left << " " << op << " " << right << " = ";
+				result = left * right;
+//				std::cerr << result << std::endl;
+			}
 			else if (op == '/')
-				result /= _stack.top();
-			_stack.pop();
+			{
+//				std::cerr << "Doing: " << left << " " << op << " " << right << " = ";
+				result = left / right;
+//				std::cerr << result << std::endl;
+			}
 			_stack.push(result);
 		}
 	}
+	std::cout << _stack.top() << std::endl;
 }
