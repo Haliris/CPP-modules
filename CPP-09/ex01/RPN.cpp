@@ -23,48 +23,52 @@ Equation& Equation::operator=(const Equation& copy)
     return *this;
 }
 
-bool	Equation::isOperator(const std::string& token)
+bool	Equation::isOperator(const char token)
 {
-
-	if (token.size() != 1)
-		return false;
-	if (token[0] == '-' || token[0] == '+' || token[0] == '*' || token[0] == '/')
+	if (token == '-' || token == '+' || token == '*' || token == '/')
 		return true;
 	return false;
 }
 
-void	Equation::validateInput(const std::string& input)
+Equation::Equation(const std::string& input) : _input(input)
 {
 	std::string			token;
 	std::stringstream	streamInput(input);
 	while (getline(streamInput, token, ' '))
 	{
-		if (!isOperator(token) && !(std::isdigit(token[0])))
+		if (token.size() != 1 || (!isOperator(token[0]) && !(std::isdigit(token[0]))))
 			throw std::runtime_error("Error: unexpected character in input");
-		_stack.push(token[0]);
 	}
 }
 
-Equation::Equation(const std::string& input)
+void	Equation::process()
 {
-	try
-	{
-		validateInput(input);
-	}
-	catch (std::exception &e)
-	{
+	int					result = 0;
+	char				op;
+	std::string			token;
+	std::stringstream	stream(_input);
 
-		std::cerr << e.what() << std::endl;
-	}
-	
-}
-
-void	Equation::process() const
-{
-	int	result = 0;
-
-	while (_stack.size() != 1)
+	while (getline(stream, token, ' '))
 	{
-		
+		if (std::isdigit(token[0]))
+			_stack.push(token[0] - '0');
+		if (isOperator(token[0]))
+		{
+			if (_stack.size() < 2)
+				throw (std::runtime_error("Error: cannot perform operation on one or less numbers"));
+			op = token[0];
+			result = _stack.top();
+			_stack.pop();
+			if (op == '+')
+				result += _stack.top();
+			else if (op == '-')
+				result -= _stack.top();
+			else if (op == '*')
+				result *= _stack.top();
+			else if (op == '/')
+				result /= _stack.top();
+			_stack.pop();
+			_stack.push(result);
+		}
 	}
 }

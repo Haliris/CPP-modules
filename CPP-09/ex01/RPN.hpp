@@ -12,13 +12,13 @@ class Equation
 		Equation();
 		Equation(const Equation& copy);
 		Equation& operator=(const Equation& copy);
-		std::stack<char>	_stack;
+		const std::string	_input;
+		std::stack<int>	_stack;
 	public:
 		Equation(const std::string& input);
 		~Equation();
-		bool	isOperator(const std::string& token);
-		void	validateInput(const std::string& input);
-		void	process() const;
+		bool	isOperator(const char token);
+		void	process();
 };
 
 
