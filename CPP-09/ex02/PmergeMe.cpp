@@ -147,7 +147,8 @@ void	vectorMerge::updatePairs()
 			_pairs.push_back(std::make_pair(num1, num2));
 		}
 		index++;
-	}	
+	}
+	_bigElements.erase(_bigElements.begin(), _bigElements.end());
 }
 
 void	vectorMerge::insertElements()
