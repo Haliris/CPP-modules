@@ -1,7 +1,5 @@
 
-#include "Database.hpp"
-#include <cstddef>
-#include <string>
+#include "BitcoinExchange.hpp"
 
 Database::~Database()
 {

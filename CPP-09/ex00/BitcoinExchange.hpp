@@ -5,6 +5,8 @@
 #include <string>
 #include <cstdlib>
 #include <limits.h>
+#include <cstddef>
+#include <string>
 #include <stdint.h>
 #include <map>
 #define DB_PATH "data.csv"
