@@ -6,6 +6,7 @@
 #include <utility>
 #include <iostream>
 #include <sstream>
+#include <limits.h>
 
 
 class vectorMerge
@@ -14,6 +15,8 @@ class vectorMerge
 		vectorMerge(const vectorMerge& copy);
 		vectorMerge& operator=(const vectorMerge& copy);
 		vectorMerge();
+		std::vector<int>					_smallElements;
+		std::vector<int>					_bigElements;
 		std::vector<std::pair<int, int>>	_pairs;
 		int									_orphan;
 	public:
@@ -21,7 +24,11 @@ class vectorMerge
 		~vectorMerge();
 		bool	checkNum(const std::string&	token);
 		bool	checkDuplicates(int num);
+		void	initPairs();
+		void	updatePairs();
 		void	sortPairs();
+		void	recursiveSort();
+		void	insertElements();
 };
 
 class listMerge

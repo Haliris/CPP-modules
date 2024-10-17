@@ -50,7 +50,17 @@ listMerge& listMerge::operator=(const listMerge& copy)
 
 void	vectorMerge::sortPairs()
 {
-
+	std::vector<std::pair<int, int>>::iterator it;
+	
+	for (it = _pairs.begin(); it != _pairs.end(); it++)
+	{
+		if (it->first < it->second)
+		{
+			int	temp = it->first;
+			it->first = it->second;
+			it->second = temp;
+		}
+	}
 }
 
 bool	vectorMerge::checkNum(const std::string& token)
@@ -80,33 +90,119 @@ bool	vectorMerge::checkDuplicates(int num)
 	return false;
 }
 
+void	vectorMerge::initPairs()
+{
+	int	num1, num2;
+	size_t	index = 0;
+	std::vector<int>::iterator	it = _smallElements.begin();	
+	while (it != _smallElements.end())
+	{
+		if (index % 2 == 0)
+	  	{
+			num1 = *it;
+			it = _smallElements.erase(it);
+		}
+		else if (index % 2 == 1)
+		{
+			num2 = *it;
+			_pairs.push_back(std::make_pair(num1, num2));	
+			it = _smallElements.erase(it);
+		}
+		index++;
+	} 
+	if (index % 2 == 0)
+		_orphan = num1;
+}
+
+void	vectorMerge::updatePairs()
+{
+	std::vector<std::pair<int, int>>::iterator	it = _pairs.begin();
+	_smallElements.reserve(_pairs.size() / 2);
+	_bigElements.reserve(_pairs.size() / 2);
+	while (it != _pairs.end())
+	{
+		_smallElements.push_back(it->second);
+		_bigElements.push_back(it->first);
+		it = _pairs.erase(it);
+	}
+
+	std::vector<int>::iterator	bigIt;
+	size_t						index = 0;
+	int							num1, num2;
+	
+	for (bigIt = _bigElements.begin(); bigIt != _bigElements.end(); bigIt++)
+	{
+		if (index % 2 == 0)
+			num1 = *bigIt;
+		else
+		{
+			num2 = *bigIt;
+			_pairs.push_back(std::make_pair(num1, num2));
+		}
+		index++;
+	}	
+}
+
+void	vectorMerge::insertElements()
+{
+	std::vector<int>	sortedVector;
+	std::vector<int>::const_iterator smallIt = _smallElements.begin();
+
+	sortedVector.reserve(_smallElements.size() + (_pairs.size() * 2));
+	for (std::vector<std::pair<int, int>>::const_iterator it = _pairs.begin(); it != _pairs.end(); it++)
+	{
+		sortedVector.push_back(it->first);
+		sortedVector.push_back(it->second);
+	}
+	while (smallIt != _smallElements.end())
+	{
+		int	left = 0, right = sortedVector.size() - 1;
+		int	diff = INT_MAX;
+		int	prospect = 0;
+		while (left <= right)
+		{
+			int	mid = left + (right - left) / 2;
+			if (*smallIt - sortedVector[mid] < diff)
+			{
+				diff = *smallIt - sortedVector[mid];
+				prospect = mid;
+			}
+			if (*smallIt > mid)
+				right = mid - 1;
+			else
+				left = mid + 1;
+		}
+		smallIt = _smallElements.erase(smallIt);
+	}
+}
+
+void	vectorMerge::recursiveSort()
+{
+	while (_pairs.size() > 2)
+	{
+		sortPairs();
+		updatePairs();
+		recursiveSort();
+	}
+	insertElements();
+}
+
 vectorMerge::vectorMerge(const std::string&	input)
 {
 	std::stringstream					inputStream(input);
 	std::string							token;
-	int									num1, num2, index = 0;
+	int									num;
 
-	_pairs.reserve(input.size() / 2); // check correct size
+	_smallElements.reserve(input.size() / 2);
+	_pairs.reserve(input.size() / 4);
 	while (getline(inputStream, token, ' '))
 	{
 		if (checkNum(token) == false)
 			throw std::runtime_error("Error: non numeric argument: " + token);
-		if (index % 2 == 0)
-			num1 = atoi(token.c_str());
-		else if (index % 2 == 1)
-		{
-			num2 = atoi(token.c_str());
-			if (checkDuplicates(num1) == true)
-				throw std::runtime_error("Error: no dupliactes allowed: " + token);
-			if (checkDuplicates(num2) == true)
-				throw std::runtime_error("Error: no dupliactes allowed: " + token);
-			_pairs.push_back(std::make_pair(num1, num2));	
-		}
-	} 
-	if (index % 2 == 0)
-	{	
-		if (checkDuplicates(num1) == true)
+		num = atoi(token.c_str());
+		if (checkDuplicates(num) == true)
 			throw std::runtime_error("Error: no dupliactes allowed: " + token);
-		_orphan = num1;
+		_smallElements.push_back(num);
 	}
+	initPairs();
 }
