@@ -189,16 +189,20 @@ void	vectorMerge::insertElements()
 		while (right >= left)
 		{
 			int	mid = left + (right - left) / 2;
+			std::cerr << "Insertion: comparing: " << *smallIt << " and " << sortedVector[mid] << std::endl;
 			if (abs(*smallIt - sortedVector[mid]) < diff)
 			{
 				diff = abs(*smallIt - sortedVector[mid]);
-				prospect = mid;
+				if (*smallIt > sortedVector[mid])
+					prospect = mid + 1;
+				else
+					prospect = mid;
+				std::cerr << "Prospect for: " << *smallIt << " => " << prospect << std::endl;
 			}
-			if (*smallIt <= sortedVector[mid])
-				right = mid - 1;
-			else
+			if (*smallIt > sortedVector[mid])
 				left = mid + 1;
-			mid = left + (right - left) / 2;
+			else
+				right = mid - 1;
 		}
 		sortedVector.insert(sortedVector.begin() + prospect, *smallIt);
 		smallIt = _smallElements.erase(smallIt);
