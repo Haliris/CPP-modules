@@ -7,6 +7,7 @@
 #include <iostream>
 #include <sstream>
 #include <limits.h>
+#include <math.h>
 
 
 class vectorMerge
@@ -17,8 +18,9 @@ class vectorMerge
 		vectorMerge();
 		std::vector<int>					_smallElements;
 		std::vector<int>					_bigElements;
-		std::vector<std::pair<int, int>>	_pairs;
+		std::vector<std::pair<int, int> >	_pairs;
 		int									_orphan;
+		bool								_hasOrphan;
 	public:
 		vectorMerge(const std::string&	input);
 		~vectorMerge();
@@ -37,7 +39,7 @@ class listMerge
 		listMerge();
 		listMerge(const listMerge& copy);
 		listMerge& operator=(const listMerge& copy);
-		std::list<std::pair<int, int>>		_pairs;
+		std::list<std::pair<int, int> >		_pairs;
 		int									_orphan;
 	public:
 		listMerge(const std::string&	input);
