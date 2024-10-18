@@ -1,4 +1,5 @@
 #include "PmergeMe.hpp"
+#include <algorithm>
 
 vectorMerge::vectorMerge()
 {
@@ -109,10 +110,7 @@ void	vectorMerge::initPairs()
 		index++;
 	} 
 	if (index % 2 == 1)
-	{
-		_orphan = num1;
-		_hasOrphan = true;
-	}
+		_smallElements.push_back(num1);
 }
 
 void	vectorMerge::updatePairs()
@@ -163,15 +161,6 @@ void	vectorMerge::insertElements()
 		sortedVector.push_back(it->first);
 		sortedVector.push_back(it->second);
 	}
-	if (_hasOrphan == true)
-	{
-		if (_orphan > sortedVector[0] && _orphan < sortedVector[1])
-			sortedVector.insert(sortedVector.begin() + 1, _orphan);
-		else if (_orphan > sortedVector[1])
-			sortedVector.push_back(_orphan);
-		else
-			sortedVector.insert(sortedVector.begin(), _orphan);
-	}
 	while (_smallElements.size())
 	{
 		int	left = 0, right = sortedVector.size() - 1;
@@ -197,8 +186,16 @@ void	vectorMerge::insertElements()
 		smallIt = _smallElements.erase(smallIt);
 	}
 	std::cout << "After:\t";
-	for (std::vector<int>::const_iterator it = sortedVector.begin(); it != sortedVector.end(); it++)
-		std::cout << *it << " ";
+	for (size_t i = 0; i < sortedVector.size(); i++)
+	{
+		if (i == 4)
+	 	 {
+			std::cout << "[...]";
+			break;
+		}
+		else
+			std::cout << sortedVector[i] << " ";
+	}
 	std::cout << std::endl;
 	_timerEnd = clock();
 	double	time_taken = double(_timerEnd - _timerStart) * 10000.0 / CLOCKS_PER_SEC;
@@ -225,8 +222,6 @@ vectorMerge::vectorMerge(const std::string&	input)
 
 	_timerStart = clock();
 	_range = input.size();
-	std::cout << "Before:\t " << input << std::endl;
-	_hasOrphan = false;
 	_smallElements.reserve(input.size());
 	while (getline(inputStream, token, ' '))
 	{
@@ -237,7 +232,19 @@ vectorMerge::vectorMerge(const std::string&	input)
 			throw std::runtime_error("Error: no dupliactes allowed: " + token);
 		_smallElements.push_back(num);
 	}
+	std::cout << "Before:\t ";
+	for (size_t i = 0; i < _smallElements.size(); i++)
+	{
+		if (i == 4)
+		{
+			std::cout << "[...]";
+			break;
+		}
+		else
+			std::cout << _smallElements[i] << " ";
+	}
+	std::cout << std::endl;
 	_pairs.reserve(_smallElements.size()/ 2);
 	initPairs();
-	_range = _pairs.size() * 2 + _hasOrphan;
+	_range = _pairs.size() * 2 + _smallElements.size();
 }

@@ -22,8 +22,6 @@ class vectorMerge
 		std::vector<int>					_smallElements;
 		std::vector<int>					_bigElements;
 		std::vector<std::pair<int, int> >	_pairs;
-		int									_orphan;
-		bool								_hasOrphan;
 		uint32_t							_range;
 		clock_t								_timerStart, _timerEnd;
 	public:
