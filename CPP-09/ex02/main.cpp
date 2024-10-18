@@ -15,6 +15,9 @@ int main(int ac, char **av)
 	{
 		vectorMerge	vectorSort(input);
 		vectorSort.recursiveSort();
+
+		listMerge	listSort(input);
+		listSort.recursiveSort();
 		return 0;
 	}
 	catch (std::exception &e)
