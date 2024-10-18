@@ -200,6 +200,10 @@ void	vectorMerge::insertElements()
 	_timerEnd = clock();
 	double	time_taken = double(_timerEnd - _timerStart) * 10000.0 / CLOCKS_PER_SEC;
 	std::cout << "Time to process a range of\t" << _range << " elements with std::vector : "<< std::fixed << time_taken << " ms" << std::setprecision(5) << std::endl;
+//	if (is_sorted(sortedVector.begin(), sortedVector.end()))
+//		std::cerr << "Success!" << std::endl;
+//	else
+//		std::cerr << "Failure :(" << std::endl;
 }
 
 void	vectorMerge::recursiveSort()

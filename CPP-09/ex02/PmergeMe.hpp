@@ -53,3 +53,17 @@ class listMerge
 };
 
 
+//template <typename Iterator>
+//bool is_sorted(Iterator first, Iterator last) {
+//    if (first == last) return true;
+//    Iterator next = first;
+//    ++next;
+//    while (next != last) {
+//        if (*next < *first) {
+//            return false;
+//        }
+//        ++first;
+//        ++next;
+//    }
+//    return true;
+//}
