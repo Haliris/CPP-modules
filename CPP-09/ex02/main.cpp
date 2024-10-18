@@ -6,7 +6,11 @@ int main(int ac, char **av)
 		return 1;
 	std::string	input;
 	for (int i = 1; i < ac; i++)
-		input += av[1];
+	{
+		input += av[i];
+		if (i != ac - 1)
+			input += " ";
+	}
 	try
 	{
 		vectorMerge	vectorSort(input);
