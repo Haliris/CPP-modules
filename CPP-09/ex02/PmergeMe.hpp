@@ -1,5 +1,6 @@
 
 #pragma once
+#include <stdint.h>
 #include <ctype.h>
 #include <vector>
 #include <list>
@@ -10,6 +11,7 @@
 #include <math.h>
 #include <ctime>
 #include <iomanip>
+#include <algorithm>
 
 class vectorMerge
 {
@@ -22,17 +24,18 @@ class vectorMerge
 		std::vector<std::pair<int, int> >	_pairs;
 		int									_orphan;
 		bool								_hasOrphan;
+		uint32_t							_range;
 		clock_t								_timerStart, _timerEnd;
 	public:
-		vectorMerge(const std::string&	input);
+		vectorMerge(const std::string& input);
 		~vectorMerge();
-		bool	checkNum(const std::string&	token);
-		bool	checkDuplicates(int num);
-		void	initPairs();
-		void	updatePairs();
-		void	sortPairs();
-		void	recursiveSort();
-		void	insertElements();
+		bool		checkNum(const std::string&	token);
+		bool		checkDuplicates(int num);
+		void		initPairs();
+		void		updatePairs();
+		void		sortPairs();
+		void		recursiveSort();
+		void		insertElements();
 };
 
 class listMerge

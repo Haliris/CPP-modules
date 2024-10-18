@@ -1,7 +1,4 @@
 #include "PmergeMe.hpp"
-#include <cstddef>
-#include <ctime>
-#include <sstream>
 
 vectorMerge::vectorMerge()
 {
@@ -204,8 +201,8 @@ void	vectorMerge::insertElements()
 		std::cout << *it << " ";
 	std::cout << std::endl;
 	_timerEnd = clock();
-	double	time_taken = double(_timerEnd - _timerStart) * 1000000.0 / CLOCKS_PER_SEC;
-	std::cout << "Time to process a range of\t" << 5 << " elements with std::vector : "<< std::fixed << time_taken << " µs" << std::setprecision(5) << std::endl;
+	double	time_taken = double(_timerEnd - _timerStart) * 10000.0 / CLOCKS_PER_SEC;
+	std::cout << "Time to process a range of\t" << _range << " elements with std::vector : "<< std::fixed << time_taken << " ms" << std::setprecision(5) << std::endl;
 }
 
 void	vectorMerge::recursiveSort()
@@ -227,10 +224,10 @@ vectorMerge::vectorMerge(const std::string&	input)
 	int									num;
 
 	_timerStart = clock();
+	_range = input.size();
 	std::cout << "Before:\t " << input << std::endl;
 	_hasOrphan = false;
-	_smallElements.reserve(input.size() / 2);
-	_pairs.reserve(input.size() / 4);
+	_smallElements.reserve(input.size());
 	while (getline(inputStream, token, ' '))
 	{
 		if (checkNum(token) == false)
@@ -240,5 +237,7 @@ vectorMerge::vectorMerge(const std::string&	input)
 			throw std::runtime_error("Error: no dupliactes allowed: " + token);
 		_smallElements.push_back(num);
 	}
+	_pairs.reserve(_smallElements.size()/ 2);
 	initPairs();
+	_range = _pairs.size() * 2 + _hasOrphan;
 }
