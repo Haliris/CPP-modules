@@ -8,7 +8,8 @@
 #include <sstream>
 #include <limits.h>
 #include <math.h>
-
+#include <ctime>
+#include <iomanip>
 
 class vectorMerge
 {
@@ -21,6 +22,7 @@ class vectorMerge
 		std::vector<std::pair<int, int> >	_pairs;
 		int									_orphan;
 		bool								_hasOrphan;
+		clock_t								_timerStart, _timerEnd;
 	public:
 		vectorMerge(const std::string&	input);
 		~vectorMerge();

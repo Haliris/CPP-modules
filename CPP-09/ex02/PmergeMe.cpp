@@ -1,5 +1,6 @@
 #include "PmergeMe.hpp"
 #include <cstddef>
+#include <ctime>
 #include <sstream>
 
 vectorMerge::vectorMerge()
@@ -54,14 +55,11 @@ void	vectorMerge::sortPairs()
 	
 	for (it = _pairs.begin(); it != _pairs.end(); it++)
 	{
-		std::cerr << "Comparing: " << it->first << " " << it->second << std::endl;
 		if (it->first < it->second)
 		{
-			std::cerr << "Sorting: " << it->first << " " << it->second << std::endl;
 			int	temp = it->first;
 			it->first = it->second;
 			it->second = temp;
-	  		std::cerr << "Sorted pair:" << it->first << " " << it->second << std::endl;
 		}
 	}
 }
@@ -108,7 +106,6 @@ void	vectorMerge::initPairs()
 		else if (index % 2 == 1)
 		{
 			num2 = *it;
-			std::cerr << "Making pair: " << num1 << " " << num2 << std::endl;
 			_pairs.push_back(std::make_pair(num1, num2));	
 			it = _smallElements.erase(it);
 		}
@@ -178,10 +175,6 @@ void	vectorMerge::insertElements()
 		else
 			sortedVector.insert(sortedVector.begin(), _orphan);
 	}
-	std::cerr << "Sorted vector before insertion: ";
-	for (std::vector<int>::iterator it = sortedVector.begin(); it != sortedVector.end(); it++)
-		std::cerr << *it << " ";
-	std::cerr << std::endl;
 	while (_smallElements.size())
 	{
 		int	left = 0, right = sortedVector.size() - 1;
@@ -190,7 +183,6 @@ void	vectorMerge::insertElements()
 		while (right >= left)
 		{
 			int	mid = left + (right - left) / 2;
-			std::cerr << "Insertion: comparing: " << *smallIt << " and " << sortedVector[mid] << std::endl;
 			if (abs(*smallIt - sortedVector[mid]) < diff)
 			{
 				diff = abs(*smallIt - sortedVector[mid]);
@@ -198,7 +190,6 @@ void	vectorMerge::insertElements()
 					prospect = mid + 1;
 				else
 					prospect = mid;
-				std::cerr << "Prospect for: " << *smallIt << " => " << prospect << std::endl;
 			}
 			if (*smallIt > sortedVector[mid])
 				left = mid + 1;
@@ -208,14 +199,17 @@ void	vectorMerge::insertElements()
 		sortedVector.insert(sortedVector.begin() + prospect, *smallIt);
 		smallIt = _smallElements.erase(smallIt);
 	}
+	std::cout << "After:\t";
 	for (std::vector<int>::const_iterator it = sortedVector.begin(); it != sortedVector.end(); it++)
 		std::cout << *it << " ";
 	std::cout << std::endl;
+	_timerEnd = clock();
+	double	time_taken = double(_timerEnd - _timerStart) * 1000000.0 / CLOCKS_PER_SEC;
+	std::cout << "Time to process a range of\t" << 5 << " elements with std::vector : "<< std::fixed << time_taken << " µs" << std::setprecision(5) << std::endl;
 }
 
 void	vectorMerge::recursiveSort()
 {
-	std::cerr << "_pairs.size() == " << _pairs.size() << std::endl;
 	while (_pairs.size() >= 2)
 	{
 		sortPairs();
@@ -232,6 +226,8 @@ vectorMerge::vectorMerge(const std::string&	input)
 	std::string							token;
 	int									num;
 
+	_timerStart = clock();
+	std::cout << "Before:\t " << input << std::endl;
 	_hasOrphan = false;
 	_smallElements.reserve(input.size() / 2);
 	_pairs.reserve(input.size() / 4);
@@ -244,10 +240,5 @@ vectorMerge::vectorMerge(const std::string&	input)
 			throw std::runtime_error("Error: no dupliactes allowed: " + token);
 		_smallElements.push_back(num);
 	}
-	std::cerr << "input: " << input << std::endl;
-	std::cerr << "_smallElements at input: ";
-	for (std::vector<int>::iterator it = _smallElements.begin(); it != _smallElements.end(); it++)
-		std::cerr << *it << " ";
-	std::cerr << std::endl;
 	initPairs();
 }
