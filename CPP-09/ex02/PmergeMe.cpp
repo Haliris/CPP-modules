@@ -149,10 +149,9 @@ void	vectorMerge::updatePairs()
 
 void	vectorMerge::insertElements()
 {
-	std::vector<int>	sortedVector;
+	std::vector<int>	sortedVector(_smallElements.size() + (_pairs.size() * 2));
 	std::vector<int>::iterator smallIt = _smallElements.begin();
 
-	sortedVector.reserve(_smallElements.size() + (_pairs.size() * 2));
 	for (std::vector<std::pair<int, int> >::iterator it = _pairs.begin(); it != _pairs.end(); it++)
 	{
 		int	temp;
