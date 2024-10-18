@@ -83,11 +83,11 @@ bool	vectorMerge::checkNum(const std::string& token)
 
 bool	vectorMerge::checkDuplicates(int num)
 {
-	std::vector<std::pair<int, int> >::const_iterator it;
+	std::vector<int>::const_iterator it;
 
-	for (it = _pairs.begin(); it != _pairs.end(); it++)
+	for (it = _smallElements.begin(); it != _smallElements.end(); it++)
 	{
-		if (num == it->first || num == it->second)
+		if (num == *it)
 			return true;
 	}
 	return false;
@@ -237,7 +237,7 @@ vectorMerge::vectorMerge(const std::string&	input)
 			throw std::runtime_error("Error: non numeric argument: " + token);
 		num = atoi(token.c_str());
 		if (checkDuplicates(num) == true)
-			throw std::runtime_error("Error: no dupliactes allowed: " + token);
+			throw std::runtime_error("Error: no duplicates allowed: " + input + " => " + token);
 		_smallElements.push_back(num);
 	}
 	std::cout << "Before:\t ";
@@ -293,11 +293,11 @@ bool	listMerge::checkNum(const std::string& token)
 
 bool	listMerge::checkDuplicates(int num)
 {
-	std::list<std::pair<int, int> >::const_iterator it;
+	std::list<int>::const_iterator it;
 
-	for (it = _pairs.begin(); it != _pairs.end(); it++)
+	for (it = _smallElements.begin(); it != _smallElements.end(); it++)
 	{
-		if (num == it->first || num == it->second)
+		if (num == *it)
 			return true;
 	}
 	return false;
@@ -448,7 +448,7 @@ listMerge::listMerge(const std::string&	input)
 			throw std::runtime_error("Error: non numeric argument: " + token);
 		num = atoi(token.c_str());
 		if (checkDuplicates(num) == true)
-			throw std::runtime_error("Error: no dupliactes allowed: " + token);
+			throw std::runtime_error("Error: no duplicates allowed: " + input + " => " + token);
 		_smallElements.push_back(num);
 	}
 	_range = _smallElements.size();
