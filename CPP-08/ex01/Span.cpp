@@ -24,7 +24,7 @@ Span& Span::operator=(const Span& copy)
     if (this != &copy)
     {
 		this->_size	= copy._size;
-		this->_buff = copy._buff; //test this fucking shit, 99% a shallow copy;
+		this->_buff = copy._buff;
     }
     return *this;
 }
@@ -32,7 +32,7 @@ Span& Span::operator=(const Span& copy)
 void	Span::addNumber(int value)
 {
 	if (_size == _capacity)
-		throw std::out_of_range("[SPAN] out of range");
+		throw std::out_of_range("[SPAN] Error: out of range");
 	_size++;
 	_buff.push_back(value);
 }
@@ -40,9 +40,9 @@ void	Span::addNumber(int value)
 void	Span::addNumber(std::vector<int>::iterator first, std::vector<int>::iterator last)
 {
 	if (_size == _capacity)
-		throw std::out_of_range("[SPAN] out of range");
+		throw std::out_of_range("[SPAN] Error: out of range");
 	if (std::distance(first, last) + _size >= _capacity)
-		throw std::out_of_range("[SPAN] out of range");
+		throw std::out_of_range("[SPAN] Error: out of range");
 	_buff.insert(_buff.end(), first , last);
 	_size += std::distance(first, last);
 }
@@ -50,7 +50,7 @@ void	Span::addNumber(std::vector<int>::iterator first, std::vector<int>::iterato
 uint32_t	Span::longestSpan() const
 {
 	if (_size <= 1)
-		throw std::out_of_range("[SPAN] out of range");
+		throw std::runtime_error("[SPAN] Error: Span is one element or smaller");
 	std::vector<int> sorted(_buff);
 	std::sort(sorted.begin(), sorted.end());
 	return (*(sorted.end() - 1) - *sorted.begin());
@@ -61,7 +61,7 @@ uint32_t	Span::shortestSpan() const
 	uint32_t	min = INT_MAX;
 
 	if (_size <= 1)
-		throw std::out_of_range("[SPAN] out of range");
+		throw std::runtime_error("[SPAN] Error: Span is one element or smaller");
 	std::vector<int> sorted(_buff);
 	std::sort(sorted.begin(), sorted.end());
 	std::vector<int>::iterator it = sorted.begin();
