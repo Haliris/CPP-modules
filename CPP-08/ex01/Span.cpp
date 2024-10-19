@@ -74,11 +74,11 @@ uint32_t	Span::shortestSpan() const
 	return min;
 }
 
-void	Span::print()
+void	Span::print() const
 {
 	if (_size == 0)
 		return ;
-	std::vector<int>::iterator it = _buff.begin();
+	std::vector<int>::const_iterator it = _buff.begin();
 	while (it != _buff.end())
 	{
 		std::cout << *it << std::endl;

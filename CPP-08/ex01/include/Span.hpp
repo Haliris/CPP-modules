@@ -17,12 +17,12 @@ class Span
 		Span(int n);
 		~Span();
 		Span(const Span& copy);
-		Span&	operator=(const Span& copy);
+		Span&		operator=(const Span& copy);
 		void		addNumber(int value);
 		void		addNumber(std::vector<int>::iterator first, std::vector<int>::iterator last);
 		uint32_t	longestSpan() const;
 		uint32_t	shortestSpan() const;
-		void		print() ;
+		void		print() const;
 };
 
 template<typename T>
