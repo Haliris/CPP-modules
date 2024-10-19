@@ -24,23 +24,45 @@ int main(void)
 			++it;
 		}
 	}
+	std::cout << mstack.size() << std::endl;
+	
 	//////////////
 	///Copy_test//
 	//////////////
-	std::cout << std::endl << "list Test" << std::endl;
-	std::list<int> s;
-	s.push_front(5);
-	s.push_front(17);
-	std::cout << s.front() << std::endl;
-	s.pop_front();
-	std::cout << s.size() << std::endl;
-	s.push_back(3);
-	s.push_back(5);
-	s.push_back(737);
-	s.push_back(0);
+
+	std::cout << std::endl << "copy Test" << std::endl;
+	MutantStack<int> copystack(mstack);
 	{
-		std::list<int>::iterator it = s.begin();
-		std::list<int>::iterator ite = s.end();
+		MutantStack<int>::iterator it = copystack.begin();
+		MutantStack<int>::iterator ite = copystack.end();
+		++it;
+		--it;
+		while (it != ite)
+		{
+			std::cout << *it << std::endl;
+			++it;
+		}
+	}
+	std::cout << copystack.size() << std::endl;
+	
+	//////////////
+	///List_test//
+	//////////////
+
+	std::cout << std::endl << "list Test" << std::endl;
+	std::list<int> l;
+	l.push_front(5);
+	l.push_front(17);
+	std::cout << l.front() << std::endl;
+	l.pop_front();
+	std::cout << l.size() << std::endl;
+	l.push_back(3);
+	l.push_back(5);
+	l.push_back(737);
+	l.push_back(0);
+	{
+		std::list<int>::iterator it = l.begin();
+		std::list<int>::iterator ite = l.end();
 		++it;
 		--it;
 		while (it != ite)
