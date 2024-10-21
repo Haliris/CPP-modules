@@ -27,13 +27,14 @@ class vectorMerge
 	public:
 		vectorMerge(const std::string& input);
 		~vectorMerge();
-		bool		checkNum(const std::string&	token);
-		bool		checkDuplicates(int num);
-		void		initPairs();
-		void		updatePairs();
-		void		sortPairs();
-		void		recursiveSort();
-		void		insertElements();
+		bool					checkNum(const std::string&	token);
+		bool					checkDuplicates(int num);
+		void					initPairs();
+		void					updatePairs();
+		void					sortPairs();
+		void					recursiveSort();
+		void					insertElements();
+		const std::vector<int>	GenerateJacobstahlSeq(int n);
 };
 
 class listMerge
@@ -50,13 +51,14 @@ class listMerge
 	public:
 		listMerge(const std::string& input);
 		~listMerge();
-		bool		checkNum(const std::string&	token);
-		bool		checkDuplicates(int num1);
-		void		initPairs();
-		void		updatePairs();
-		void		sortPairs();
-		void		recursiveSort();
-		void		insertElements();
+		bool					checkNum(const std::string&	token);
+		bool					checkDuplicates(int num1);
+		void					initPairs();
+		void					updatePairs();
+		void					sortPairs();
+		void					recursiveSort();
+		void					insertElements();
+		const std::vector<int>	GenerateJacobstahlSeq(int n);
 };
 
 
