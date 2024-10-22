@@ -36,7 +36,7 @@ Equation::Equation(const std::string& input) : _input(input)
 	while (getline(streamInput, token, ' '))
 	{
 		if (token.size() != 1 || (!isOperator(token[0]) && !(std::isdigit(token[0]))))
-			throw std::runtime_error("Error: unexpected character in input");
+			throw std::runtime_error("Error: unexpected input: " + token);
 	}
 }
 
@@ -63,29 +63,13 @@ void	Equation::process()
 			left = _stack.top();
 			_stack.pop();
 			if (op == '+')
-			{
-//				std::cerr << "Doing: " << left << " " << op << " " << right << " = ";
 				result = left + right;
-//				std::cerr << result << std::endl;
-			}
 			else if (op == '-')
-			{
-//				std::cerr << "Doing: " << left << " " << op << " " << right << " = ";
 				result = left - right;
-//				std::cerr << result << std::endl;
-			}
 			else if (op == '*')
-			{
-//				std::cerr << "Doing: " << left << " " << op << " " << right << " = ";
 				result = left * right;
-//				std::cerr << result << std::endl;
-			}
 			else if (op == '/')
-			{
-//				std::cerr << "Doing: " << left << " " << op << " " << right << " = ";
 				result = left / right;
-//				std::cerr << result << std::endl;
-			}
 			_stack.push(result);
 		}
 	}
