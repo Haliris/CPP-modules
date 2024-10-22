@@ -76,3 +76,32 @@ bool is_sorted(Iterator first, Iterator last) {
     }
     return true;
 }
+
+template<typename T>
+int	binarySearch(std::vector<T>& arr, T key, int start, int end) 
+{
+    while (start < end) 
+	{
+        int mid = start + (end - start) / 2;
+        if (arr[mid] > key) 
+            end = mid;
+        else
+            start = mid + 1;
+    }
+    return start;
+}
+template<typename T>
+int	binarySearch(std::list<T>& arr, T key, int start, int end) 
+{
+    while (start < end) 
+	{
+        int mid = start + (end - start) / 2;
+		typename std::list<T>::iterator it = arr.begin();
+		std::advance(it, mid);
+        if (*it > key) 
+            end = mid;
+        else
+            start = mid + 1;
+    }
+    return start;
+}

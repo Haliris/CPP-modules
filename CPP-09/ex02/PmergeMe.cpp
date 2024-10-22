@@ -1,9 +1,14 @@
 #include "PmergeMe.hpp"
+#include <algorithm>
 
 ///////////////////
 // BOILER PLATE  //
 ///////////////////
 
+bool	comparePairs(const std::pair<int, int>& a, const std::pair<int, int>& b) 
+{
+    return a.first < b.first;
+}
 
 vectorMerge::vectorMerge()
 {
@@ -64,6 +69,7 @@ void	vectorMerge::sortPairs()
 			it->second = temp;
 		}
 	}
+	std::sort(_pairs.begin(), _pairs.end(), comparePairs);
 }
 
 bool	vectorMerge::checkNum(const std::string& token)
@@ -129,20 +135,12 @@ void	vectorMerge::updatePairs()
 		_bigElements.push_back(it->first);
 		it = _pairs.erase(it);
 	}
-
-	int							num1, num2;
 	for (size_t i = 0; i < _bigElements.size(); i++)
 	{
 		if (i % 2 == 0)
-	  	{
-			num1 = _bigElements[i];
-			_pairs.push_back(std::make_pair(num1, -1));
-		}
+			_pairs.push_back(std::make_pair(_bigElements[i], -1));
 		else
-		{
-			num2 = _bigElements[i];
-			_pairs[_pairs.size() - 1].second = num2;
-		}
+			_pairs[_pairs.size() - 1].second = _bigElements[i];
 	}
 	_bigElements.erase(_bigElements.begin(), _bigElements.end());
 }
@@ -150,17 +148,13 @@ void	vectorMerge::updatePairs()
 const std::vector<int>	vectorMerge::GenerateJacobstahlSeq(int n)
 {
 	std::vector<int>	sequence;
-	sequence.reserve(2 + 1);
+	sequence.reserve(2 + n);
 	sequence.push_back(0);
 	sequence.push_back(1);
-	std::cerr << "Jacob expected size: " << n << std::endl;
 	while (sequence.back() < n)
 	{
-		int	next = sequence.back() + 2 * sequence[sequence.size() - 2];
-		if (next >= n)
-			break;
-		sequence.push_back(next);
-		std::cerr << "back: " << sequence.back() << std::endl;
+		int size = sequence.size();
+		sequence.push_back(sequence[size - 1] + 2 * sequence[size - 2]);
 	}
 	return sequence;
 }
@@ -170,46 +164,33 @@ void	vectorMerge::insertElements()
 	std::vector<int>	sortedVector;
 
 	sortedVector.reserve(_smallElements.size() + _pairs.size() * 2);
-	std::cerr << "Small: ";
-	for (size_t i = 0; i < _smallElements.size(); i++)
-		std::cerr << _smallElements[i] << " ";
-	std::cerr << std::endl;
-	std::cerr << "pairs:";
-	for (size_t i = 0; i < _pairs.size(); i++)
-	{
-		std::cerr << "first: " << _pairs[i].first << " ";
-		std::cerr << "second: " << _pairs[i].second << " ";
-	}
-	std::cerr << std::endl;
 	for (std::vector<std::pair<int, int> >::iterator it = _pairs.begin(); it != _pairs.end(); it++)
 	{
-		int	temp;
-		if (it->first > it->second)
-		{
-			temp = it->first;
-			it->first = it->second;
-			it->second = temp;
-		}
 		sortedVector.push_back(it->first);
 		sortedVector.push_back(it->second);
 	}
 	const std::vector<int>	jacobSequence = GenerateJacobstahlSeq(_smallElements.size());
-	for (size_t i = jacobSequence.size() - 1; i > 0; i--)
+	std::vector<bool> inserted(_smallElements.size(), false);
+	for (size_t i = 1; i < jacobSequence.size() && jacobSequence[i] < static_cast<int>(_smallElements.size()) ; i++)
 	{
-		size_t pos = jacobSequence[i] - 1;
-		if (pos < sortedVector.size())
+		int start = jacobSequence[i];
+		int prev = (i > 0) ? jacobSequence[i - 1] : 0;
+		for (int idx = start; idx > prev; --idx)
 		{
-			std::vector<int>::iterator it = std::lower_bound(sortedVector.begin(), sortedVector.end(), _smallElements[pos]);
-			sortedVector.insert(it, _smallElements[pos]);
+			if (idx < static_cast<int>(_smallElements.size()) && !inserted[idx]) 
+			{
+				int pos = binarySearch(sortedVector, _smallElements[idx], 0, sortedVector.size());
+				sortedVector.insert(sortedVector.begin() + pos, _smallElements[idx]);
+				inserted[idx] = true;
+			}
 		}
 	}
 	for (size_t i = 0; i < _smallElements.size(); i++)
 	{
-		if (std::find(jacobSequence.begin(), jacobSequence.end(), i + 1) == jacobSequence.end())
+		if (!inserted[i])
 		{
-			std::vector<int>::iterator it = std::lower_bound(sortedVector.begin(), sortedVector.end(), _smallElements[i]);
-			std::cerr << "Inserting: " << _smallElements[i] << std::endl;
-			sortedVector.insert(it, _smallElements[i]);
+			int pos = binarySearch(sortedVector, _smallElements[i], 0, sortedVector.size());
+			sortedVector.insert(sortedVector.begin() + pos, _smallElements[i]);
 		}
 	}
 	std::cout << "After:\t";
@@ -297,6 +278,7 @@ void	listMerge::sortPairs()
 			it->second = temp;
 		}
 	}
+	_pairs.sort(comparePairs);
 }
 
 bool	listMerge::checkNum(const std::string& token)
@@ -375,69 +357,62 @@ void	listMerge::updatePairs()
 const std::vector<int>	listMerge::GenerateJacobstahlSeq(int n)
 {
 	std::vector<int>	sequence;
-	sequence.reserve(n);
+	sequence.reserve(2 + n);
 	sequence.push_back(0);
-	if (n > 1)
-		sequence.push_back(1);
+	sequence.push_back(1);
 	while (sequence.back() < n)
 	{
-		int	next = sequence.back() + 2 * sequence[sequence.size() - 2];
-		if (next >= n)
-			break;
-		sequence.push_back(next);
+		int size = sequence.size();
+		sequence.push_back(sequence[size - 1] + 2 * sequence[size - 2]);
 	}
 	return sequence;
 }
 
 void	listMerge::insertElements()
 {
-	std::list<int>	sortedlist;
-	std::list<int>::iterator smallIt = _smallElements.begin();
+	std::list<int>	sortedList;
 
 	for (std::list<std::pair<int, int> >::iterator it = _pairs.begin(); it != _pairs.end(); it++)
 	{
-		int	temp;
-		if (it->first > it->second)
-		{
-			temp = it->first;
-			it->first = it->second;
-			it->second = temp;
-		}
-		sortedlist.push_back(it->first);
-		sortedlist.push_back(it->second);
+		sortedList.push_back(it->first);
+		sortedList.push_back(it->second);
 	}
-	while (_smallElements.size())
+	std::vector<bool> inserted(_smallElements.size(), false);
+	const std::vector<int>	jacobSequence = GenerateJacobstahlSeq(_smallElements.size());
+	for (size_t i = 1; i < jacobSequence.size() && jacobSequence[i] < static_cast<int>(_smallElements.size()) ; i++)
 	{
-		int	left = 0, right = sortedlist.size() - 1;
-		int	diff = INT_MAX;
-		int	prospect = 0;
-		while (right >= left)
+		int start = jacobSequence[i];
+		int prev = (i > 0) ? jacobSequence[i - 1] : 0;
+		for (int idx = start; idx > prev; --idx)
 		{
-			int	mid = left + (right - left) / 2;
-			std::list<int>::iterator cursor = sortedlist.begin();
-			std::advance(cursor, mid);
-			if (abs(*smallIt - *cursor) < diff)
+			if (idx < static_cast<int>(_smallElements.size()) && !inserted[idx]) 
 			{
-				diff = abs(*smallIt - *cursor);
-				if (*smallIt > *cursor)
-					prospect = mid + 1;
-				else
-					prospect = mid;
+				std::list<int>::iterator lt = _smallElements.begin();
+				std::list<int>::iterator cursor = _smallElements.begin();
+				std::advance(lt, idx);
+				int pos = binarySearch(sortedList, *lt, 0, sortedList.size());
+				std::advance(cursor, pos);
+				sortedList.insert(cursor, *lt);
+				inserted[idx] = true;
 			}
-			if (*smallIt > *cursor)
-				left = mid + 1;
-			else
-				right = mid - 1;
 		}
-		std::list<int>::iterator cursor = sortedlist.begin();
-		std::advance(cursor, prospect);
-		sortedlist.insert(cursor, *smallIt);
-		smallIt = _smallElements.erase(smallIt);
+	}
+	for (size_t i = 0; i < _smallElements.size(); i++)
+	{
+		if (!inserted[i])
+		{
+			std::list<int>::iterator lt = _smallElements.begin();
+			std::list<int>::iterator cursor = _smallElements.begin();
+			std::advance(lt, i);
+			int pos = binarySearch(sortedList, *lt, 0, sortedList.size());
+			std::advance(cursor, pos);
+			sortedList.insert(cursor, *lt);
+		}
 	}
 	std::cout << "After:\t";
-	for (size_t i = 0; i < sortedlist.size(); i++)
+	for (size_t i = 0; i < sortedList.size(); i++)
 	{
-	  	std::list<int>::iterator it = sortedlist.begin();
+	  	std::list<int>::iterator it = sortedList.begin();
 		std::advance(it, i);
 //		if (i == 4)
 //	 	 {
@@ -451,7 +426,7 @@ void	listMerge::insertElements()
 	_timerEnd = clock();
 	double	time_taken = double(_timerEnd - _timerStart) * 10000.0 / CLOCKS_PER_SEC;
 	std::cout << "Time to process a range of\t" << _range << " elements with std::list : "<< std::fixed << time_taken << " ms" << std::setprecision(5) << std::endl;
-	if (is_sorted(sortedlist.begin(), sortedlist.end()))
+	if (is_sorted(sortedList.begin(), sortedList.end()))
 		std::cerr << "Success!" << std::endl;
 	else
 		std::cerr << "Failure :(" << std::endl;
