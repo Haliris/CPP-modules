@@ -388,26 +388,26 @@ void	listMerge::insertElements()
 			if (idx < static_cast<int>(_smallElements.size()) && !inserted[idx]) 
 			{
 				std::list<int>::iterator lt = _smallElements.begin();
-				std::list<int>::iterator cursor = _smallElements.begin();
+				std::list<int>::iterator cursor = sortedList.begin();
 				std::advance(lt, idx);
-				int pos = binarySearch(sortedList, *lt, 0, sortedList.size());
+				int pos = binarySearch(sortedList, *lt);
 				std::advance(cursor, pos);
 				sortedList.insert(cursor, *lt);
 				inserted[idx] = true;
 			}
 		}
 	}
+	std::list<int>::iterator smallLt = _smallElements.begin();
 	for (size_t i = 0; i < _smallElements.size(); i++)
 	{
-		if (!inserted[i])
+		if (!inserted[i] && *smallLt != -1)
 		{
-			std::list<int>::iterator lt = _smallElements.begin();
-			std::list<int>::iterator cursor = _smallElements.begin();
-			std::advance(lt, i);
-			int pos = binarySearch(sortedList, *lt, 0, sortedList.size());
+			std::list<int>::iterator cursor = sortedList.begin();
+			int pos = binarySearch(sortedList, *smallLt);
 			std::advance(cursor, pos);
-			sortedList.insert(cursor, *lt);
+			sortedList.insert(cursor, *smallLt);
 		}
+		++smallLt;
 	}
 	std::cout << "After:\t";
 	for (size_t i = 0; i < sortedList.size(); i++)

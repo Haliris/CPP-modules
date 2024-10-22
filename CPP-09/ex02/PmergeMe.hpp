@@ -91,17 +91,22 @@ int	binarySearch(std::vector<T>& arr, T key, int start, int end)
     return start;
 }
 template<typename T>
-int	binarySearch(std::list<T>& arr, T key, int start, int end) 
+int	binarySearch(std::list<T>& lst, int target) 
 {
-    while (start < end) 
+	int								left = 0;
+	int								right = lst.size();
+	typename std::list<T>::iterator	mid;
+    while (left < right) 
 	{
-        int mid = start + (end - start) / 2;
-		typename std::list<T>::iterator it = arr.begin();
-		std::advance(it, mid);
-        if (*it > key) 
-            end = mid;
-        else
-            start = mid + 1;
+        int midPos = left + (right - left) / 2;
+		mid = lst.begin();
+		std::advance(mid, midPos);
+		if (*mid == target)
+			return midPos;
+		else if (*mid < target)
+			left = midPos + 1;
+		else
+			right = midPos;
     }
-    return start;
+    return left;
 }
