@@ -166,6 +166,8 @@ void	vectorMerge::insertElements()
 	sortedVector.reserve(_smallElements.size() + _pairs.size() * 2);
 	for (std::vector<std::pair<int, int> >::iterator it = _pairs.begin(); it != _pairs.end(); it++)
 	{
+		if (it->first > it->second)
+			std::swap(it->first, it->second);
 		sortedVector.push_back(it->first);
 		sortedVector.push_back(it->second);
 	}
@@ -196,12 +198,12 @@ void	vectorMerge::insertElements()
 	std::cout << "After:\t";
 	for (size_t i = 0; i < sortedVector.size(); i++)
 	{
-//		if (i == 4)
-//	 	 {
-//			std::cout << "[...]";
-//			break;
-//		}
-//		else
+		if (i == 4)
+	 	 {
+			std::cout << "[...]";
+			break;
+		}
+		else
 			std::cout << sortedVector[i] << " ";
 	}
 	std::cout << std::endl;
@@ -374,6 +376,8 @@ void	listMerge::insertElements()
 
 	for (std::list<std::pair<int, int> >::iterator it = _pairs.begin(); it != _pairs.end(); it++)
 	{
+		if (it->first > it->second)
+			std::swap(it->first, it->second);
 		sortedList.push_back(it->first);
 		sortedList.push_back(it->second);
 	}
@@ -414,12 +418,12 @@ void	listMerge::insertElements()
 	{
 	  	std::list<int>::iterator it = sortedList.begin();
 		std::advance(it, i);
-//		if (i == 4)
-//	 	 {
-//			std::cout << "[...]";
-//			break;
-//		}
-//		else
+		if (i == 4)
+	 	 {
+			std::cout << "[...]";
+			break;
+		}
+		else
 			std::cout << *it << " ";
 	}
 	std::cout << std::endl;
