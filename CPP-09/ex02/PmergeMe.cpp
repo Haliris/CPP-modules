@@ -1,5 +1,4 @@
 #include "PmergeMe.hpp"
-#include <algorithm>
 
 ///////////////////
 // BOILER PLATE  //
@@ -232,7 +231,7 @@ vectorMerge::vectorMerge(const std::string&	input)
 {
 	std::stringstream					inputStream(input);
 	std::string							token;
-	int									num;
+	long long							num;
 
 	_timerStart = clock();
 	_range = input.size();
@@ -241,7 +240,9 @@ vectorMerge::vectorMerge(const std::string&	input)
 	{
 		if (checkNum(token) == false)
 			throw std::runtime_error("Error: non numeric argument: " + token);
-		num = atoi(token.c_str());
+		num = atoll(token.c_str());
+		if (std::numeric_limits<int>::max() < num)
+			throw std::runtime_error("Error: integer overflow: " + token);
 		if (checkDuplicates(num) == true)
 			throw std::runtime_error("Error: no duplicates allowed: " + input + " => " + token);
 		_smallElements.push_back(num);
@@ -452,14 +453,16 @@ listMerge::listMerge(const std::string&	input)
 {
 	std::stringstream					inputStream(input);
 	std::string							token;
-	int									num;
+	long long							num;
 
 	_timerStart = clock();
 	while (getline(inputStream, token, ' '))
 	{
 		if (checkNum(token) == false)
 			throw std::runtime_error("Error: non numeric argument: " + token);
-		num = atoi(token.c_str());
+		num = atoll(token.c_str());
+		if (std::numeric_limits<int>::max() < num)
+			throw std::runtime_error("Error: integer overflow" + token);
 		if (checkDuplicates(num) == true)
 			throw std::runtime_error("Error: no duplicates allowed: " + input + " => " + token);
 		_smallElements.push_back(num);

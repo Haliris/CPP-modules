@@ -12,6 +12,7 @@
 #include <ctime>
 #include <iomanip>
 #include <algorithm>
+#include <limits>
 
 class vectorMerge
 {
